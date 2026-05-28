@@ -15,9 +15,9 @@ type SuccessCaseModalProps = {
 
 type CurtainPhase = "idle" | "drop" | "hold" | "exit" | "done";
 
-const DROP_MS = 850;
-const HOLD_MS = 280;
-const EXIT_MS = 550;
+const DROP_MS = 1150;
+const HOLD_MS = 400;
+const EXIT_MS = 750;
 
 export function SuccessCaseModal({ successCase, onClose }: SuccessCaseModalProps) {
   const [phase, setPhase] = useState<CurtainPhase>("idle");
@@ -141,7 +141,7 @@ export function SuccessCaseModal({ successCase, onClose }: SuccessCaseModalProps
           <div className="pointer-events-none fixed inset-0 z-[100] overflow-hidden">
             <div
               className={cn(
-                "absolute inset-0 flex items-center justify-center bg-gradient-to-b from-[#0084be] via-[#00aeef] to-[#0077ad] will-change-[transform,opacity]",
+                "absolute inset-0 flex items-center justify-center bg-[#02172d] will-change-[transform,opacity]",
                 phase === "drop" && "animate-curtain-drop-down",
                 phase === "exit" && "animate-curtain-vanish"
               )}

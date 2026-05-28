@@ -146,9 +146,9 @@
 }
 
 .animate-curtain-drop-down {
-  animation: curtain-drop-down 0.85s cubic-bezier(0.33, 1, 0.45, 1) forwards;
+  animation: curtain-drop-down 1.15s cubic-bezier(0.33, 1, 0.45, 1) forwards;
 }
 
 .animate-curtain-vanish {
-  animation: curtain-vanish 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: curtain-vanish 0.75s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
