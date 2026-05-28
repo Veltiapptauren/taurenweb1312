@@ -125,15 +125,30 @@
   }
 }
 
-@keyframes curtain-open-up {
+@keyframes curtain-drop-down {
   from {
-    transform: translateY(0);
+    transform: translateY(-100%);
   }
   to {
-    transform: translateY(-100%);
+    transform: translateY(0);
   }
 }
 
-.animate-curtain-open-up {
-  animation: curtain-open-up 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+@keyframes curtain-vanish {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(8%);
+  }
+}
+
+.animate-curtain-drop-down {
+  animation: curtain-drop-down 0.85s cubic-bezier(0.33, 1, 0.45, 1) forwards;
+}
+
+.animate-curtain-vanish {
+  animation: curtain-vanish 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }

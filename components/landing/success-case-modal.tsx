@@ -13,10 +13,11 @@ type SuccessCaseModalProps = {
   onClose: () => void;
 };
 
-type CurtainPhase = "idle" | "covered" | "opening" | "done";
+type CurtainPhase = "idle" | "drop" | "hold" | "exit" | "done";
 
-const LOGO_MS = 500;
-const OPEN_MS = 1800;
+const DROP_MS = 850;
+const HOLD_MS = 280;
+const EXIT_MS = 550;
 
 export function SuccessCaseModal({ successCase, onClose }: SuccessCaseModalProps) {
   const [phase, setPhase] = useState<CurtainPhase>("idle");
@@ -27,14 +28,19 @@ export function SuccessCaseModal({ successCase, onClose }: SuccessCaseModalProps
       return;
     }
 
-    setPhase("covered");
+    setPhase("drop");
     document.body.style.overflow = "hidden";
 
-    const openTimer = setTimeout(() => setPhase("opening"), LOGO_MS);
-    const doneTimer = setTimeout(() => setPhase("done"), LOGO_MS + OPEN_MS);
+    const holdTimer = setTimeout(() => setPhase("hold"), DROP_MS);
+    const exitTimer = setTimeout(() => setPhase("exit"), DROP_MS + HOLD_MS);
+    const doneTimer = setTimeout(
+      () => setPhase("done"),
+      DROP_MS + HOLD_MS + EXIT_MS
+    );
 
     return () => {
-      clearTimeout(openTimer);
+      clearTimeout(holdTimer);
+      clearTimeout(exitTimer);
       clearTimeout(doneTimer);
       document.body.style.overflow = "";
     };
@@ -47,7 +53,8 @@ export function SuccessCaseModal({ successCase, onClose }: SuccessCaseModalProps
     }
   };
 
-  const showCurtain = phase === "covered" || phase === "opening";
+  const showCurtain =
+    phase === "drop" || phase === "hold" || phase === "exit";
   const isOpen = !!successCase;
 
   return (
@@ -134,8 +141,9 @@ export function SuccessCaseModal({ successCase, onClose }: SuccessCaseModalProps
           <div className="pointer-events-none fixed inset-0 z-[100] overflow-hidden">
             <div
               className={cn(
-                "absolute inset-0 flex items-center justify-center bg-gradient-to-b from-[#0084be] via-[#00aeef] to-[#0077ad] will-change-transform",
-                phase === "opening" && "animate-curtain-open-up"
+                "absolute inset-0 flex items-center justify-center bg-gradient-to-b from-[#0084be] via-[#00aeef] to-[#0077ad] will-change-[transform,opacity]",
+                phase === "drop" && "animate-curtain-drop-down",
+                phase === "exit" && "animate-curtain-vanish"
               )}
             >
               <TaurenLogo href={undefined} imageClassName="h-14 sm:h-16" />
