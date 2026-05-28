@@ -1,0 +1,170 @@
+"use client";
+
+import { services } from "@/lib/services";
+import { cn } from "@/lib/utils";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
+
+const AUTO_MS = 9500;
+const TRANSITION_MS = 1200;
+
+function getSpread() {
+  if (typeof window === "undefined") return 320;
+  if (window.innerWidth >= 1280) return 440;
+  if (window.innerWidth >= 768) return 360;
+  return 280;
+}
+
+export function ServicesCarousel() {
+  const [active, setActive] = useState(0);
+  const [spread, setSpread] = useState(320);
+  const total = services.length;
+
+  const next = useCallback(() => {
+    setActive((i) => (i + 1) % total);
+  }, [total]);
+
+  const prev = useCallback(() => {
+    setActive((i) => (i - 1 + total) % total);
+  }, [total]);
+
+  useEffect(() => {
+    const update = () => setSpread(getSpread());
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(next, AUTO_MS);
+    return () => clearInterval(timer);
+  }, [next]);
+
+  const getOffset = (index: number) => {
+    let diff = index - active;
+    if (diff > total / 2) diff -= total;
+    if (diff < -total / 2) diff += total;
+    return diff;
+  };
+
+  return (
+    <div className="relative mt-16 w-full lg:mt-20">
+      <div className="relative min-h-[220px] sm:min-h-[280px] lg:min-h-[340px]">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-12 bg-gradient-to-r from-black via-black/80 to-transparent sm:w-20 lg:w-28" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-12 bg-gradient-to-l from-black via-black/80 to-transparent sm:w-20 lg:w-28" />
+
+        <div
+          className="relative flex min-h-[220px] items-center justify-center py-6 sm:min-h-[280px] sm:py-8 lg:min-h-[340px]"
+          style={{ perspective: "1800px" }}
+        >
+          {services.map((item, index) => {
+            const offset = getOffset(index);
+            if (Math.abs(offset) > 2) return null;
+            const isActive = offset === 0;
+            const isSide = Math.abs(offset) === 1;
+            const scale = isActive ? 1 : isSide ? 0.88 : 0.74;
+            const rotateY = isActive ? 0 : offset * -12;
+
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setActive(index)}
+                aria-current={isActive ? "true" : undefined}
+                className={cn(
+                  "absolute left-1/2 top-1/2 aspect-[16/9] overflow-hidden rounded-2xl border bg-neutral-950 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                  isActive
+                    ? "z-30 w-[min(94vw,780px)] border-[#00aeef]/55 shadow-[0_0_80px_rgba(0,174,239,0.22)]"
+                    : isSide
+                      ? "z-20 w-[min(82vw,560px)] cursor-pointer border-white/20"
+                      : "z-10 w-[min(72vw,460px)] border-white/10"
+                )}
+                style={{
+                  transition: `transform ${TRANSITION_MS}ms cubic-bezier(0.22, 1, 0.36, 1), opacity ${TRANSITION_MS}ms ease, box-shadow ${TRANSITION_MS}ms ease`,
+                  transform: `translate3d(calc(-50% + ${offset * spread}px), -50%, 0) scale(${scale}) rotateY(${rotateY}deg)`,
+                  opacity: isActive ? 1 : isSide ? 0.78 : 0.45,
+                  transformStyle: "preserve-3d",
+                }}
+              >
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 768px) 94vw, 780px"
+                  priority={isActive}
+                  className={cn(
+                    "object-cover",
+                    isActive ? "brightness-[0.92]" : "brightness-[0.65]"
+                  )}
+                  style={{
+                    transition: `filter ${TRANSITION_MS}ms ease`,
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/5" />
+                <div className="absolute inset-x-0 bottom-0 z-10 p-5 pb-6 sm:p-7 sm:pb-8">
+                  <span className="text-xs font-semibold tracking-[0.25em] text-[#00aeef]">
+                    {item.number}
+                  </span>
+                  <h3
+                    className={cn(
+                      "mt-2 font-semibold leading-tight text-white",
+                      isActive ? "text-xl sm:text-2xl lg:text-3xl" : "text-base sm:text-lg"
+                    )}
+                  >
+                    {item.title}
+                  </h3>
+                  <p
+                    className={cn(
+                      "mt-2 leading-relaxed text-white/75",
+                      isActive
+                        ? "line-clamp-2 text-sm opacity-100 sm:text-base"
+                        : "max-h-0 overflow-hidden text-sm opacity-0"
+                    )}
+                    style={{
+                      transition: `opacity ${TRANSITION_MS}ms ease, max-height ${TRANSITION_MS}ms ease`,
+                    }}
+                  >
+                    {item.description}
+                  </p>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        <button
+          type="button"
+          onClick={prev}
+          aria-label="Anterior"
+          className="absolute left-1 top-1/2 z-40 flex size-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-black/70 text-white backdrop-blur-md transition-colors hover:border-[#00aeef]/60 hover:bg-black sm:left-3 lg:size-14"
+        >
+          <ChevronLeft className="size-6 lg:size-7" />
+        </button>
+        <button
+          type="button"
+          onClick={next}
+          aria-label="Siguiente"
+          className="absolute right-1 top-1/2 z-40 flex size-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-black/70 text-white backdrop-blur-md transition-colors hover:border-[#00aeef]/60 hover:bg-black sm:right-3 lg:size-14"
+        >
+          <ChevronRight className="size-6 lg:size-7" />
+        </button>
+      </div>
+
+      <div className="mt-8 flex justify-center gap-2.5">
+        {services.map((item, index) => (
+          <button
+            key={item.id}
+            type="button"
+            onClick={() => setActive(index)}
+            aria-label={item.title}
+            className={cn(
+              "h-2 rounded-full transition-all duration-500",
+              index === active ? "w-10 bg-[#00aeef]" : "w-2 bg-white/30 hover:bg-white/50"
+            )}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
