@@ -4,7 +4,7 @@ import { ParallaxFrame } from "@/components/motion/parallax-frame";
 import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { ShineLink } from "@/components/motion/shine-link";
 import { TextReveal } from "@/components/motion/text-reveal";
-import { siteConfig } from "@/lib/site";
+import { getWhatsAppUrl, siteConfig } from "@/lib/site";
 import Image from "next/image";
 
 export function Cta() {
@@ -38,7 +38,18 @@ export function Cta() {
                 Cuéntanos tu proyecto y te respondemos con alcance, tiempos y
                 presupuesto.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ul className="mt-5 space-y-1.5 text-sm text-white/55">
+                <li>
+                  <a
+                    href={`tel:${siteConfig.contactPhoneTel}`}
+                    className="transition-colors hover:text-white"
+                  >
+                    {siteConfig.contactPhone}
+                  </a>
+                </li>
+                <li>{siteConfig.contactAddress}</li>
+              </ul>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <ShineLink
                   href={`mailto:${siteConfig.contactEmail}`}
                   className="h-11 rounded-full bg-[#00aeef] px-6 text-sm font-medium text-black hover:opacity-90"
@@ -46,11 +57,11 @@ export function Cta() {
                   {siteConfig.contactEmail}
                 </ShineLink>
                 <ShineLink
-                  href={`https://wa.me/?text=${encodeURIComponent("Hola Tauren Pro Eventos, quiero cotizar un proyecto")}`}
+                  href={getWhatsAppUrl()}
                   external
                   className="h-11 rounded-full border border-white/40 px-6 text-sm font-medium text-white hover:bg-white/10"
                 >
-                  WhatsApp
+                  {siteConfig.contactPhone}
                 </ShineLink>
               </div>
             </div>

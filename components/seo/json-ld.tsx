@@ -4,19 +4,29 @@ export function JsonLd() {
   const organization = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteConfig.url}#organization`,
     name: siteConfig.name,
     url: siteConfig.url,
     email: siteConfig.contactEmail,
+    telephone: siteConfig.contactPhoneTel,
     description: siteConfig.description,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: siteConfig.contactAddress,
+      addressLocality: "Providencia",
+      addressCountry: "CL",
+    },
   };
 
   const website = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${siteConfig.url}#website`,
     name: siteConfig.name,
     url: siteConfig.url,
     description: siteConfig.description,
     inLanguage: siteConfig.locale,
+    publisher: { "@id": `${siteConfig.url}#organization` },
   };
 
   const webPage = {

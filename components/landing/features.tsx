@@ -31,7 +31,7 @@ export function Features() {
           </div>
         </ScrollReveal>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-2 lg:items-stretch">
+        <div className="mt-16 grid gap-6 lg:grid-cols-2 lg:items-stretch sm:mt-20">
           <ScrollReveal direction="left" delay={80} className="h-full">
             <ShowreelVideo />
           </ScrollReveal>
@@ -74,7 +74,21 @@ export function Features() {
           </ScrollReveal>
         </div>
 
-        <ServicesCarousel />
+        <div className="mt-24 sm:mt-32 lg:mt-40">
+          <ScrollReveal direction="up" delay={60}>
+            <div className="max-w-2xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00aeef]">
+                Nuestros servicios
+              </p>
+              <TextReveal
+                as="h2"
+                text="Donde la tecnología y la creatividad se encuentran"
+                className="mt-3 block text-2xl font-semibold tracking-tight text-white sm:text-3xl lg:text-4xl"
+              />
+            </div>
+          </ScrollReveal>
+          <ServicesCarousel />
+        </div>
       </div>
     </section>
   );

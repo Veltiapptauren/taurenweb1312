@@ -22,7 +22,7 @@ export function SuccessCollage() {
   }, [hoveredId]);
 
   return (
-    <section id="proyectos" className="relative z-20 overflow-hidden border-t border-white/10 bg-black py-16 sm:py-24">
+    <section id="proyectos" className="relative z-20 overflow-hidden border-t border-white/10 bg-black py-20 sm:py-28">
       <SectionGlow />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <ScrollReveal direction="up">
