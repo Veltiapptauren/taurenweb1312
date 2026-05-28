@@ -10,7 +10,7 @@ import Image from "next/image";
 
 export function ServicesShowcase() {
   return (
-    <section className="relative z-20 overflow-hidden border-t border-white/10 bg-black py-20 sm:py-28">
+    <section className="relative z-20 overflow-hidden border-t border-white/10 bg-black py-16 sm:py-20 lg:py-24">
       <SectionGlow />
       <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <ScrollReveal direction="up">
@@ -19,11 +19,12 @@ export function ServicesShowcase() {
               label="Servicios"
               title="Producción integral para marcas y empresas"
               description="Eventos, contenido audiovisual y podcast con el mismo estándar de calidad de principio a fin."
+              className="mb-12 sm:mb-14"
             />
           </div>
         </ScrollReveal>
 
-        <div className="mt-16 grid gap-6 sm:mt-20 lg:grid-cols-2 lg:items-stretch">
+        <div className="grid gap-6 lg:grid-cols-2 lg:items-stretch">
           <ScrollReveal direction="left" delay={80} className="h-full">
             <ShowreelVideo />
           </ScrollReveal>

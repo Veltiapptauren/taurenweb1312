@@ -111,7 +111,7 @@ export function ServicesCarousel() {
 
   return (
     <>
-      <div className="relative mt-10 w-full sm:mt-12 lg:mt-14">
+      <div className="relative w-full">
         <div className="relative min-h-[220px] sm:min-h-[280px] lg:min-h-[340px]">
           <div
             className={cn("relative", hovering && "cursor-none")}

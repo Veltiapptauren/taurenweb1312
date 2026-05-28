@@ -2,6 +2,7 @@
 
 import { TaurenLogo } from "@/components/brand/tauren-logo";
 import type { SuccessCase } from "@/lib/success-cases";
+import { cn } from "@/lib/utils";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 import Image from "next/image";
@@ -12,51 +13,55 @@ type SuccessCaseModalProps = {
   onClose: () => void;
 };
 
-const SPLASH_MS = 750;
+type CurtainPhase = "idle" | "covered" | "opening" | "done";
+
+const LOGO_MS = 500;
+const OPEN_MS = 1800;
 
 export function SuccessCaseModal({ successCase, onClose }: SuccessCaseModalProps) {
-  const [showContent, setShowContent] = useState(false);
+  const [phase, setPhase] = useState<CurtainPhase>("idle");
 
   useEffect(() => {
     if (!successCase) {
-      setShowContent(false);
+      setPhase("idle");
       return;
     }
-    setShowContent(false);
+
+    setPhase("covered");
     document.body.style.overflow = "hidden";
-    const timer = setTimeout(() => setShowContent(true), SPLASH_MS);
+
+    const openTimer = setTimeout(() => setPhase("opening"), LOGO_MS);
+    const doneTimer = setTimeout(() => setPhase("done"), LOGO_MS + OPEN_MS);
+
     return () => {
-      clearTimeout(timer);
+      clearTimeout(openTimer);
+      clearTimeout(doneTimer);
       document.body.style.overflow = "";
     };
   }, [successCase]);
 
   const handleOpenChange = (open: boolean) => {
     if (!open) {
-      setShowContent(false);
+      setPhase("idle");
       onClose();
     }
   };
 
+  const showCurtain = phase === "covered" || phase === "opening";
+  const isOpen = !!successCase;
+
   return (
-    <Dialog.Root open={!!successCase} onOpenChange={handleOpenChange}>
+    <Dialog.Root open={isOpen} onOpenChange={handleOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-[80] bg-black data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
-        {successCase && !showContent ? (
-          <div className="fixed inset-0 z-[95] flex items-center justify-center bg-black">
-            <div className="animate-in zoom-in-95 fade-in duration-500 fill-mode-both">
-              <TaurenLogo href={undefined} imageClassName="h-14 sm:h-16" />
-            </div>
-          </div>
-        ) : null}
-        {successCase && showContent ? (
-          <Dialog.Content className="fixed inset-0 z-[90] flex flex-col overflow-y-auto bg-black text-white outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-bottom-4 duration-500">
+        {isOpen ? (
+          <Dialog.Content className="fixed inset-0 z-[90] flex flex-col overflow-y-auto bg-black text-white outline-none">
             <Dialog.Description className="sr-only">
               Detalle del caso de éxito
             </Dialog.Description>
             <div className="sticky top-0 z-10 flex items-center justify-center border-b border-white/10 bg-black px-6 py-6 sm:py-8">
               <Dialog.Title className="max-w-4xl text-center text-lg font-bold uppercase tracking-[0.1em] text-white sm:text-xl md:text-2xl">
-                {successCase.title}
+                {successCase!.title}
               </Dialog.Title>
               <Dialog.Close
                 className="absolute right-4 top-1/2 inline-flex size-10 -translate-y-1/2 items-center justify-center rounded-full text-white transition-opacity hover:opacity-70 sm:right-8"
@@ -68,8 +73,8 @@ export function SuccessCaseModal({ successCase, onClose }: SuccessCaseModalProps
 
             <div className="relative h-[38vh] min-h-[260px] w-full sm:min-h-[320px] lg:min-h-[380px]">
               <Image
-                src={successCase.image}
-                alt={successCase.company}
+                src={successCase!.image}
+                alt={successCase!.company}
                 fill
                 className="object-cover"
                 sizes="100vw"
@@ -85,10 +90,10 @@ export function SuccessCaseModal({ successCase, onClose }: SuccessCaseModalProps
                 </p>
                 <div className="text-center lg:text-left">
                   <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#00aeef]">
-                    {successCase.company}
+                    {successCase!.company}
                   </p>
                   <p className="mt-2 text-lg text-white/80 sm:text-xl">
-                    {successCase.subtitle}
+                    {successCase!.subtitle}
                   </p>
                 </div>
               </div>
@@ -98,7 +103,7 @@ export function SuccessCaseModal({ successCase, onClose }: SuccessCaseModalProps
                   Proyecto
                 </p>
                 <p className="text-center text-base leading-relaxed text-white/85 sm:text-lg sm:leading-loose lg:text-left">
-                  {successCase.description}
+                  {successCase!.description}
                 </p>
               </div>
 
@@ -108,7 +113,7 @@ export function SuccessCaseModal({ successCase, onClose }: SuccessCaseModalProps
                 </p>
                 <div className="rounded-2xl bg-neutral-900/90 px-6 py-8 sm:px-8 sm:py-10">
                   <ul className="flex flex-wrap justify-center gap-3 lg:justify-start">
-                    {successCase.services.map((service) => (
+                    {successCase!.services.map((service) => (
                       <li
                         key={service}
                         className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-white/90"
@@ -118,12 +123,24 @@ export function SuccessCaseModal({ successCase, onClose }: SuccessCaseModalProps
                     ))}
                   </ul>
                   <p className="mt-8 text-center text-sm font-semibold uppercase tracking-widest text-[#00aeef] lg:text-left">
-                    Año {successCase.year}
+                    Año {successCase!.year}
                   </p>
                 </div>
               </div>
             </div>
           </Dialog.Content>
+        ) : null}
+        {showCurtain ? (
+          <div className="pointer-events-none fixed inset-0 z-[100] overflow-hidden">
+            <div
+              className={cn(
+                "absolute inset-0 flex items-center justify-center bg-gradient-to-b from-[#0084be] via-[#00aeef] to-[#0077ad] will-change-transform",
+                phase === "opening" && "animate-curtain-open-up"
+              )}
+            >
+              <TaurenLogo href={undefined} imageClassName="h-14 sm:h-16" />
+            </div>
+          </div>
         ) : null}
       </Dialog.Portal>
     </Dialog.Root>

@@ -36,16 +36,17 @@ const steps = [
 
 export function Process() {
   return (
-    <section id="proceso" className="relative overflow-hidden border-t border-white/10 bg-black py-20 sm:py-28">
+    <section id="proceso" className="relative overflow-hidden border-t border-white/10 bg-black py-16 sm:py-20 lg:py-24">
       <SectionGlow />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <ScrollReveal direction="up">
           <SectionHeading
             title="Cómo trabajamos"
             description="Un proceso claro para eventos, video y podcast."
+            className="mb-12 sm:mb-14"
           />
         </ScrollReveal>
-        <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((item, index) => (
             <li key={item.step}>
               <ScrollReveal direction="up" delay={index * 100}>

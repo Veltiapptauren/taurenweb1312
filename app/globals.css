@@ -124,3 +124,16 @@
     transform: scaleX(1);
   }
 }
+
+@keyframes curtain-open-up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.animate-curtain-open-up {
+  animation: curtain-open-up 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}

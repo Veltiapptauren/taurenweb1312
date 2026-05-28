@@ -9,7 +9,7 @@ import Image from "next/image";
 
 export function Cta() {
   return (
-    <section id="contacto" className="relative border-t border-white/10 bg-black py-20 sm:py-28">
+    <section id="contacto" className="relative border-t border-white/10 bg-black py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <ScrollReveal direction="scale">
           <div className="relative min-h-[320px] overflow-hidden rounded-2xl border border-white/10 sm:min-h-[360px]">

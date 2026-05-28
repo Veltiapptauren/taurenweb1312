@@ -64,17 +64,16 @@ export function SuccessCollage() {
   );
 
   return (
-    <section id="proyectos" className="relative z-20 overflow-hidden border-t border-white/10 bg-black py-20 sm:py-28">
+    <section id="proyectos" className="relative z-20 overflow-hidden border-t border-white/10 bg-black py-16 sm:py-20 lg:py-24">
       <SectionGlow />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         <ScrollReveal direction="up">
-          <div className="mb-8 border-b border-white/10 pb-6 sm:mb-10">
-            <SectionHeading
-              title="Casos de éxito"
-              description="Pasa el cursor para explorar. Haz clic para ver el detalle completo."
-              badge="Proyectos destacados"
-            />
-          </div>
+          <SectionHeading
+            title="Casos de éxito"
+            description="Pasa el cursor para explorar. Haz clic para ver el detalle completo."
+            badge="Proyectos destacados"
+            className="mb-12 border-b border-white/10 pb-12 sm:mb-14 sm:pb-14"
+          />
         </ScrollReveal>
 
         <ScrollReveal direction="scale" delay={100}>
