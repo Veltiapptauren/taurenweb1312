@@ -13,6 +13,7 @@ export const siteConfig = {
     "planning de eventos",
     "Chile",
   ],
+  logo: "/images/logo-tauren-pro-eventos.png",
   ogImage: "/images/hero-bg.png",
   contactEmail: "contacto@taurenproeventos.cl",
   contactPhone: "+56 9 8501 3727",

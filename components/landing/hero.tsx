@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
+import { TaurenLogo } from "@/components/brand/tauren-logo";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
@@ -121,14 +122,7 @@ export function Hero() {
       <div className="relative z-10 flex min-h-[92dvh] flex-col">
         <header className="shrink-0">
           <div className="flex h-14 items-center justify-between px-4 sm:h-16 sm:px-8 lg:px-12">
-            <Link href="/" className="relative z-10 leading-tight text-white/90">
-              <span className="block text-lg font-semibold tracking-tight sm:text-xl">
-                Tauren
-              </span>
-              <span className="block text-[9px] font-normal uppercase tracking-[0.22em] text-white/65 sm:text-[10px]">
-                Pro Eventos
-              </span>
-            </Link>
+            <TaurenLogo href="/" priority className="relative z-10" />
 
             <nav
               aria-label="Principal"

@@ -1,5 +1,6 @@
 "use client";
 
+import { TaurenLogo } from "@/components/brand/tauren-logo";
 import { getWhatsAppUrl, siteConfig } from "@/lib/site";
 import Link from "next/link";
 
@@ -16,13 +17,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <Link
-              href="#tauren"
-              className="text-base font-semibold tracking-tight text-white transition-opacity hover:opacity-75"
-            >
-              Tauren
-              <span className="text-[#00aeef]"> Pro</span>
-            </Link>
+            <TaurenLogo href="#tauren" imageClassName="h-8 sm:h-9 sm:max-w-[240px]" />
             <p className="mt-2 text-xs leading-relaxed text-white/40">
               <a
                 href={`mailto:${siteConfig.contactEmail}`}

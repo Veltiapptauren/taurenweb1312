@@ -4,9 +4,9 @@ import { ParallaxFrame } from "@/components/motion/parallax-frame";
 import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { SectionGlow } from "@/components/motion/section-glow";
 import { TextReveal } from "@/components/motion/text-reveal";
+import { SuccessCaseModal } from "@/components/landing/success-case-modal";
 import { successCases, type SuccessCase } from "@/lib/success-cases";
-import * as Dialog from "@radix-ui/react-dialog";
-import { X } from "lucide-react";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useMemo, useState } from "react";
 
@@ -40,122 +40,85 @@ export function SuccessCollage() {
         </ScrollReveal>
 
         <ScrollReveal direction="scale" delay={120}>
-        <div className="relative overflow-hidden rounded-2xl border-2 border-black bg-black p-1 shadow-xl">
-          <div className="grid grid-cols-1 gap-1 sm:h-[520px] sm:grid-cols-3 sm:grid-rows-2 lg:h-[580px]">
-            {successCases.map((item) => {
-              const isHovered = hoveredId === item.id;
-              const isDimmed = hoveredId !== null && !isHovered;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onMouseEnter={() => setHoveredId(item.id)}
-                  onMouseLeave={() => setHoveredId(null)}
-                  onFocus={() => setHoveredId(item.id)}
-                  onBlur={() => setHoveredId(null)}
-                  onTouchStart={() => setHoveredId(item.id)}
-                  onClick={() => setSelected(item)}
-                  className={`group relative overflow-hidden bg-black text-left transition-all duration-300 ${item.gridClass} ${
-                    isDimmed ? "opacity-45" : "opacity-100"
-                  } ${isHovered ? "z-10 ring-2 ring-[#00aeef]" : ""}`}
-                >
-                  <ParallaxFrame
-                    className="absolute inset-0"
-                    innerClassName="relative h-full w-full"
-                    strength={isHovered ? 14 : 8}
-                    scale={isHovered ? 1.14 : 1.08}
+          <div className="overflow-hidden rounded-2xl border border-white/10 bg-black">
+            <div className="grid grid-cols-1 gap-px bg-white/10 sm:h-[520px] sm:grid-cols-3 sm:grid-rows-2 lg:h-[560px]">
+              {successCases.map((item) => {
+                const isHovered = hoveredId === item.id;
+                const isDimmed = hoveredId !== null && !isHovered;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onMouseEnter={() => setHoveredId(item.id)}
+                    onMouseLeave={() => setHoveredId(null)}
+                    onFocus={() => setHoveredId(item.id)}
+                    onBlur={() => setHoveredId(null)}
+                    onTouchStart={() => setHoveredId(item.id)}
+                    onClick={() => setSelected(item)}
+                    className={cn(
+                      "group relative min-h-[200px] overflow-hidden bg-black text-left transition-all duration-300 sm:min-h-0 sm:h-full",
+                      item.gridClass,
+                      isDimmed ? "opacity-50" : "opacity-100",
+                      isHovered && "z-10 ring-2 ring-inset ring-[#00aeef]"
+                    )}
                   >
-                    <Image
-                      src={item.image}
-                      alt={item.company}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover"
+                    <ParallaxFrame
+                      className="absolute inset-0"
+                      innerClassName="relative h-full w-full"
+                      strength={isHovered ? 12 : 6}
+                      scale={isHovered ? 1.1 : 1.05}
+                    >
+                      <Image
+                        src={item.image}
+                        alt={item.company}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover"
+                      />
+                    </ParallaxFrame>
+                    <div
+                      className={cn(
+                        "absolute inset-0 transition-colors duration-300",
+                        isHovered ? "bg-black/15" : "bg-black/30"
+                      )}
                     />
-                  </ParallaxFrame>
-                  <div
-                    className={`absolute inset-0 bg-black/25 transition-colors duration-300 ${
-                      isHovered ? "bg-black/10" : ""
-                    }`}
-                  />
-                  <div
-                    className={`absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-3 transition-opacity duration-300 sm:p-4 ${
-                      isHovered ? "opacity-100" : "opacity-0"
-                    }`}
-                  >
-                    <p className="text-xs font-semibold uppercase tracking-wider text-[#00aeef]">
-                      {item.company}
-                    </p>
-                    <p className="mt-1 text-sm font-bold text-white sm:text-base">
-                      {item.title}
-                    </p>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
+                    <div
+                      className={cn(
+                        "absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent px-3 pb-3 pt-10 transition-opacity duration-300 sm:px-4 sm:pb-4",
+                        isHovered ? "opacity-100" : "opacity-0 sm:opacity-0"
+                      )}
+                    >
+                      <p className="text-[10px] font-semibold uppercase tracking-wider text-[#00aeef] sm:text-xs">
+                        {item.company}
+                      </p>
+                      <p className="mt-1 line-clamp-2 text-sm font-semibold leading-snug text-white">
+                        {item.title}
+                      </p>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
 
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5 sm:p-8">
-            <p className="max-w-3xl text-lg font-bold leading-tight text-white sm:text-2xl lg:text-3xl">
-              {preview.title}
-            </p>
-            <p className="mt-1 text-sm text-white/85 sm:text-base">
-              {preview.subtitle}
-            </p>
+            <div className="border-t border-white/10 bg-black px-5 py-5 sm:px-7 sm:py-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#00aeef]">
+                {preview.company}
+              </p>
+              <p className="mt-2 line-clamp-2 text-lg font-bold leading-snug text-white sm:text-2xl">
+                {preview.title}
+              </p>
+              <p className="mt-1.5 text-sm text-white/65 sm:text-base">
+                {preview.subtitle}
+              </p>
+            </div>
           </div>
-        </div>
         </ScrollReveal>
       </div>
 
-      <Dialog.Root open={!!selected} onOpenChange={(open) => !open && setSelected(null)}>
-        <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 z-50 bg-black/70 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
-          <Dialog.Content className="fixed left-1/2 top-1/2 z-50 max-h-[90vh] w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl border border-white/10 bg-neutral-950 text-white shadow-2xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95">
-            {selected && (
-              <>
-                <div className="relative h-52 w-full sm:h-64">
-                  <Image
-                    src={selected.image}
-                    alt={selected.company}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 672px"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  <Dialog.Close className="absolute right-4 top-4 inline-flex size-9 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70">
-                    <X className="size-5" />
-                    <span className="sr-only">Cerrar</span>
-                  </Dialog.Close>
-                </div>
-                <div className="p-6 sm:p-8">
-                  <Dialog.Title className="text-2xl font-bold tracking-tight text-white">
-                    {selected.title}
-                  </Dialog.Title>
-                  <Dialog.Description className="mt-1 text-white/60">
-                    {selected.subtitle} · {selected.company}
-                  </Dialog.Description>
-                  <p className="mt-4 text-sm leading-relaxed text-white/80">
-                    {selected.description}
-                  </p>
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {selected.services.map((service) => (
-                      <span
-                        key={service}
-                        className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/85"
-                      >
-                        {service}
-                      </span>
-                    ))}
-                  </div>
-                  <p className="mt-6 text-sm font-semibold text-[#00aeef]">
-                    Año {selected.year}
-                  </p>
-                </div>
-              </>
-            )}
-          </Dialog.Content>
-        </Dialog.Portal>
-      </Dialog.Root>
+      <SuccessCaseModal
+        successCase={selected}
+        onClose={() => setSelected(null)}
+      />
     </section>
   );
 }
