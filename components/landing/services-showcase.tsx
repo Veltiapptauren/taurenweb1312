@@ -1,11 +1,11 @@
 "use client";
 
+import { SectionHeading } from "@/components/landing/section-heading";
 import { ShowreelVideo } from "@/components/landing/showreel-video";
 import { ParallaxFrame } from "@/components/motion/parallax-frame";
 import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { SectionGlow } from "@/components/motion/section-glow";
 import { ShineLink } from "@/components/motion/shine-link";
-import { TextReveal } from "@/components/motion/text-reveal";
 import Image from "next/image";
 
 export function ServicesShowcase() {
@@ -14,19 +14,12 @@ export function ServicesShowcase() {
       <SectionGlow />
       <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <ScrollReveal direction="up">
-          <div id="tauren" className="max-w-2xl scroll-mt-24">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00aeef]">
-              Servicios
-            </p>
-            <TextReveal
-              as="h2"
-              text="Producción integral para marcas y empresas"
-              className="mt-3 block text-3xl font-semibold tracking-tight text-white sm:text-4xl"
+          <div id="tauren" className="scroll-mt-24">
+            <SectionHeading
+              label="Servicios"
+              title="Producción integral para marcas y empresas"
+              description="Eventos, contenido audiovisual y podcast con el mismo estándar de calidad de principio a fin."
             />
-            <p className="mt-4 text-base text-white/60">
-              Eventos, contenido audiovisual y podcast con el mismo estándar de
-              calidad de principio a fin.
-            </p>
           </div>
         </ScrollReveal>
 

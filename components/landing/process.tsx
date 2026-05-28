@@ -3,7 +3,7 @@
 import { ParallaxFrame } from "@/components/motion/parallax-frame";
 import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { SectionGlow } from "@/components/motion/section-glow";
-import { TextReveal } from "@/components/motion/text-reveal";
+import { SectionHeading } from "@/components/landing/section-heading";
 import { TiltCard } from "@/components/motion/tilt-card";
 import Image from "next/image";
 
@@ -40,14 +40,10 @@ export function Process() {
       <SectionGlow />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <ScrollReveal direction="up">
-          <TextReveal
-            as="h2"
-            text="Cómo trabajamos"
-            className="block text-3xl font-semibold tracking-tight text-white sm:text-4xl"
+          <SectionHeading
+            title="Cómo trabajamos"
+            description="Un proceso claro para eventos, video y podcast."
           />
-          <p className="mt-4 max-w-xl text-white/60">
-            Un proceso claro para eventos, video y podcast.
-          </p>
         </ScrollReveal>
         <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((item, index) => (

@@ -28,17 +28,17 @@ export function Cta() {
               />
             </ParallaxFrame>
             <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/78 to-black/55" />
-            <div className="relative z-10 px-6 py-12 sm:px-10 sm:py-16">
+            <div className="relative z-10 px-6 py-12 text-center sm:px-10 sm:py-16">
               <TextReveal
                 as="h2"
                 text="¿Listo para tu próximo evento o producción?"
-                className="block max-w-xl text-3xl font-semibold tracking-tight text-white sm:text-4xl"
+                className="mx-auto block max-w-2xl text-3xl font-semibold tracking-tight text-white sm:text-4xl"
               />
-              <p className="mt-4 max-w-lg text-white/70">
+              <p className="mx-auto mt-4 max-w-lg text-white/70">
                 Cuéntanos tu proyecto y te respondemos con alcance, tiempos y
                 presupuesto.
               </p>
-              <ul className="mt-5 space-y-1.5 text-sm text-white/55">
+              <ul className="mx-auto mt-5 max-w-lg space-y-1.5 text-sm text-white/55">
                 <li>
                   <a
                     href={`tel:${siteConfig.contactPhoneTel}`}
@@ -49,7 +49,7 @@ export function Cta() {
                 </li>
                 <li>{siteConfig.contactAddress}</li>
               </ul>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
                 <ShineLink
                   href={`mailto:${siteConfig.contactEmail}`}
                   className="h-11 rounded-full bg-[#00aeef] px-6 text-sm font-medium text-black hover:opacity-90"
