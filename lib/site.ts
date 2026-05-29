@@ -22,6 +22,8 @@ export const siteConfig = {
   contactAddress: "Av. Providencia 1650, Providencia",
   whatsappMessage: "Hola Tauren Pro Eventos, quiero cotizar un proyecto",
   twitter: "@tauren",
+  instagram: "https://www.instagram.com/",
+  linkedin: "https://www.linkedin.com/",
 } as const;
 
 export function getWhatsAppUrl(
