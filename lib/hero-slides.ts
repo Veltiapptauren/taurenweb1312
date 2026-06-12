@@ -14,7 +14,7 @@ export const heroSlides: HeroSlide[] = [
     id: "01",
     tab: "Streaming",
     shortTab: "Streaming",
-    title: "Streaming",
+    title: "Streaming\nde Eventos",
     services:
       "EVENTOS CORPORATIVOS | CONGRESOS | SEMINARIOS | LANZAMIENTOS INSTITUCIONALES | CONFERENCIAS",
     ctaHref: "#servicios",
@@ -30,7 +30,7 @@ export const heroSlides: HeroSlide[] = [
     id: "02",
     tab: "Producción Integral",
     shortTab: "Producción",
-    title: "Producción Integral",
+    title: "Producción\nIntegral",
     services:
       "PLANIFICACIÓN | PRODUCCIÓN TÉCNICA | MOBILIARIO | CATERING | ESCENOGRAFÍA | COORDINACIÓN GENERAL",
     ctaHref: "#servicios",
@@ -46,7 +46,7 @@ export const heroSlides: HeroSlide[] = [
     id: "03",
     tab: "Media",
     shortTab: "Media",
-    title: "Media",
+    title: "Producción\nAudiovisual",
     services:
       "VIDEOS CORPORATIVOS | PIEZAS INSTITUCIONALES | TESTIMONIALES | CONTENIDO PROMOCIONAL | SPOTS PUBLICITARIOS",
     ctaHref: "#servicios",
@@ -62,7 +62,7 @@ export const heroSlides: HeroSlide[] = [
     id: "04",
     tab: "Diseño Web",
     shortTab: "Web",
-    title: "Diseño y Desarrollo Web",
+    title: "Diseño y\nDesarrollo Web",
     services:
       "APPS Y WEBS A MEDIDA | SITIOS CORPORATIVOS | LANDING PAGES | E-COMMERCE | UX/UI | DESARROLLO RESPONSIVE",
     ctaHref: "#servicios",

@@ -18,7 +18,8 @@ export function TextReveal({
   as: Tag = "span",
 }: TextRevealProps) {
   const ref = useRef<HTMLElement>(null);
-  const [shine, setShine] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [runId, setRunId] = useState(0);
   const reduced = usePrefersReducedMotion();
   const animId = useId().replace(/:/g, "");
   const words = text.split(" ");
@@ -30,8 +31,10 @@ export function TextReveal({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setShine(true);
-          observer.disconnect();
+          setVisible(true);
+          setRunId((id) => id + 1);
+        } else {
+          setVisible(false);
         }
       },
       { threshold: 0.2, rootMargin: "0px 0px -5% 0px" }
@@ -80,13 +83,13 @@ export function TextReveal({
       <Tag ref={ref as never} className={className}>
         {words.map((word, index) => (
           <span
-            key={`${word}-${index}`}
+            key={`${word}-${index}-${runId}`}
             className={cn(
               `${animId}-word mr-[0.25em] inline-block`,
-              shine && `${animId}-active`
+              visible && `${animId}-active`
             )}
             style={{
-              animationDelay: shine ? `${delay + index * 200}ms` : undefined,
+              animationDelay: visible ? `${delay + index * 200}ms` : undefined,
             }}
           >
             {word}
