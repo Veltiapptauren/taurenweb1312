@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const AUTO_MS = 9500;
+const IMAGE_CYCLE_MS = 3800;
 const TRANSITION_MS = 1200;
 const DRAG_THRESHOLD = 50;
 const DRAG_START = 14;
@@ -33,8 +34,10 @@ export function ServicesCarousel() {
   const [hovering, setHovering] = useState(false);
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [modalService, setModalService] = useState<Service | null>(null);
+  const [imageIndex, setImageIndex] = useState(0);
   const gesture = useRef<Gesture | null>(null);
   const total = services.length;
+  const activeService = services[active];
 
   const next = useCallback(() => {
     setActive((i) => (i + 1) % total);
@@ -52,10 +55,22 @@ export function ServicesCarousel() {
   }, []);
 
   useEffect(() => {
+    setImageIndex(0);
+  }, [active]);
+
+  useEffect(() => {
     if (modalService || dragging) return;
     const timer = setInterval(next, AUTO_MS);
     return () => clearInterval(timer);
   }, [next, modalService, dragging]);
+
+  useEffect(() => {
+    if (modalService || dragging || activeService.images.length <= 1) return;
+    const timer = setInterval(() => {
+      setImageIndex((i) => (i + 1) % activeService.images.length);
+    }, IMAGE_CYCLE_MS);
+    return () => clearInterval(timer);
+  }, [activeService, modalService, dragging]);
 
   useEffect(() => {
     const onMove = (e: PointerEvent) => {
@@ -185,7 +200,11 @@ export function ServicesCarousel() {
                     }}
                   >
                     <Image
-                      src={item.image}
+                      src={
+                        isActive
+                          ? item.images[imageIndex % item.images.length]
+                          : item.images[0]
+                      }
                       alt={item.title}
                       fill
                       sizes="(max-width: 768px) 94vw, 780px"
@@ -198,7 +217,7 @@ export function ServicesCarousel() {
                       style={{
                         transition: dragging
                           ? "none"
-                          : `filter ${TRANSITION_MS}ms ease`,
+                          : `filter ${TRANSITION_MS}ms ease, opacity ${TRANSITION_MS}ms ease`,
                       }}
                     />
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/5" />
@@ -214,12 +233,12 @@ export function ServicesCarousel() {
                       >
                         {item.title}
                       </h3>
-                      <p
+                      <div
                         className={cn(
-                          "mt-2 leading-relaxed text-white/75",
+                          "mt-3 flex flex-wrap gap-1.5 sm:gap-2",
                           isActive
-                            ? "line-clamp-2 text-sm opacity-100 sm:text-base"
-                            : "max-h-0 overflow-hidden text-sm opacity-0"
+                            ? "max-h-24 opacity-100 sm:max-h-28"
+                            : "max-h-0 overflow-hidden opacity-0"
                         )}
                         style={{
                           transition: dragging
@@ -227,8 +246,20 @@ export function ServicesCarousel() {
                             : `opacity ${TRANSITION_MS}ms ease, max-height ${TRANSITION_MS}ms ease`,
                         }}
                       >
-                        {item.description}
-                      </p>
+                        {item.tags.map((tag, tagIndex) => (
+                          <span
+                            key={tag}
+                            className={cn(
+                              "inline-flex items-center rounded-full border px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide sm:px-3 sm:text-[11px]",
+                              tagIndex === 0
+                                ? "border-[#00aeef]/50 bg-[#00aeef]/15 text-[#7ddfff]"
+                                : "border-white/15 bg-white/8 text-white/80"
+                            )}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </button>
                 );

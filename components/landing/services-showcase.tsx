@@ -13,16 +13,14 @@ export function ServicesShowcase() {
     <section className="relative z-20 overflow-hidden border-t border-white/10 bg-black py-16 sm:py-20 lg:py-24">
       <SectionGlow />
       <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
-        <ScrollReveal direction="up">
-          <div id="tauren" className="scroll-mt-24">
-            <SectionHeading
-              label="Servicios"
-              title="Producción integral para marcas y empresas"
-              description="Eventos, contenido audiovisual y podcast con el mismo estándar de calidad de principio a fin."
-              className="mb-12 sm:mb-14"
-            />
-          </div>
-        </ScrollReveal>
+        <div id="tauren" className="scroll-mt-24">
+          <SectionHeading
+            label="Servicios"
+            title="Producción integral para marcas y empresas"
+            description="Eventos, contenido audiovisual y podcast con el mismo estándar de calidad de principio a fin."
+            className="mb-12 sm:mb-14"
+          />
+        </div>
 
         <div className="grid gap-6 lg:grid-cols-2 lg:items-stretch">
           <ScrollReveal direction="left" delay={80} className="h-full">
@@ -37,7 +35,7 @@ export function ServicesShowcase() {
                 scale={1.08}
               >
                 <Image
-                  src="/images/hero-eventos.jpg"
+                  src="/images/servicios/produccion-integral/02.jpg"
                   alt="Evento corporativo Tauren Pro Eventos"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"

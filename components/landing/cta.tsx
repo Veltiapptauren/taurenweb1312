@@ -1,7 +1,6 @@
 "use client";
 
 import { ParallaxFrame } from "@/components/motion/parallax-frame";
-import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { ShineLink } from "@/components/motion/shine-link";
 import { TextReveal } from "@/components/motion/text-reveal";
 import { getWhatsAppUrl, siteConfig } from "@/lib/site";
@@ -11,8 +10,7 @@ export function Cta() {
   return (
     <section id="contacto" className="relative border-t border-white/10 bg-black py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <ScrollReveal direction="scale">
-          <div className="relative min-h-[320px] overflow-hidden rounded-2xl border border-white/10 sm:min-h-[360px]">
+        <div className="relative min-h-[320px] overflow-hidden rounded-2xl border border-white/10 sm:min-h-[360px]">
             <ParallaxFrame
               className="absolute inset-0"
               innerClassName="relative h-full min-h-[320px] sm:min-h-[360px]"
@@ -20,7 +18,7 @@ export function Cta() {
               scale={1.1}
             >
               <Image
-                src="/images/hero-planning.jpg"
+                src="/images/servicios/streaming/03.png"
                 alt=""
                 fill
                 sizes="(max-width: 768px) 100vw, 1152px"
@@ -66,7 +64,6 @@ export function Cta() {
               </div>
             </div>
           </div>
-        </ScrollReveal>
       </div>
     </section>
   );

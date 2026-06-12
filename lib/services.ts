@@ -2,8 +2,11 @@ export type Service = {
   id: string;
   number: string;
   title: string;
-  description: string;
-  image: string;
+  tags: string[];
+  images: string[];
+  modalTitle: string;
+  tagline: string;
+  headline: string;
   desafio: string;
   solucion: string;
   resultado: string;
@@ -14,9 +17,22 @@ export const services: Service[] = [
     id: "streaming",
     number: "01",
     title: "Streaming",
-    description:
-      "Eventos corporativos | Congresos | Seminarios | Lanzamientos institucionales | Conferencias",
-    image: "/images/hero-planning.jpg",
+    tags: [
+      "Eventos corporativos",
+      "Congresos",
+      "Seminarios",
+      "Lanzamientos institucionales",
+      "Conferencias",
+    ],
+    images: [
+      "/images/servicios/streaming/01.png",
+      "/images/servicios/streaming/02.png",
+      "/images/servicios/streaming/03.png",
+      "/images/servicios/streaming/04.png",
+    ],
+    modalTitle: "TRANSMISIÓN DE EVENTOS",
+    tagline: "Cuando no todos pueden asistir...",
+    headline: "CONECTA LO PRESENCIAL CON LO DIGITAL",
     desafio:
       "Llegar a audiencias presenciales y remotas al mismo tiempo, sin perder calidad técnica ni engagement en la transmisión.",
     solucion:
@@ -28,9 +44,23 @@ export const services: Service[] = [
     id: "produccion-integral",
     number: "02",
     title: "Producción Integral",
-    description:
-      "Planificación | Producción técnica | Mobiliario | Catering | Escenografía | Coordinación general",
-    image: "/images/hero-eventos.jpg",
+    tags: [
+      "Planificación",
+      "Producción técnica",
+      "Mobiliario",
+      "Catering",
+      "Escenografía",
+      "Coordinación general",
+    ],
+    images: [
+      "/images/servicios/produccion-integral/01.jpg",
+      "/images/servicios/produccion-integral/02.jpg",
+      "/images/servicios/produccion-integral/03.jpg",
+      "/images/servicios/produccion-integral/04.jpg",
+    ],
+    modalTitle: "PRODUCCIÓN INTEGRAL",
+    tagline: "Cuando cada detalle importa...",
+    headline: "UN EVENTO IMPECABLE DE PRINCIPIO A FIN",
     desafio:
       "Coordinar muchos proveedores, plazos y recursos sin una visión única que asegure coherencia en cada fase del evento.",
     solucion:
@@ -42,9 +72,22 @@ export const services: Service[] = [
     id: "media",
     number: "03",
     title: "Media",
-    description:
-      "Videos corporativos | Piezas institucionales | Testimoniales | Contenido promocional | Spots publicitarios",
-    image: "/images/hero-audiovisual.jpg",
+    tags: [
+      "Videos corporativos",
+      "Piezas institucionales",
+      "Testimoniales",
+      "Contenido promocional",
+      "Spots publicitarios",
+    ],
+    images: [
+      "/images/servicios/media/01.png",
+      "/images/servicios/media/02.png",
+      "/images/servicios/media/03.png",
+      "/images/servicios/media/04.jpg",
+    ],
+    modalTitle: "PRODUCCIÓN AUDIOVISUAL",
+    tagline: "Cuando tu marca necesita hablar con impacto...",
+    headline: "CONTENIDO QUE COMUNICA Y CONVIERTE",
     desafio:
       "Comunicar con impacto en múltiples canales cuando el equipo interno no alcanza a producir piezas con nivel profesional y consistencia visual.",
     solucion:
@@ -53,17 +96,31 @@ export const services: Service[] = [
       "Contenido audiovisual listo para publicar, alineado a tu marca y pensado para generar conversión y credibilidad.",
   },
   {
-    id: "podcast",
+    id: "diseno-web",
     number: "04",
-    title: "Podcast",
-    description:
-      "Grabación en estudio | Edición y mezcla | Distribución digital | Spotify y YouTube | Producción end to end",
-    image: "/images/hero-podcast.jpg",
+    title: "Diseño y Desarrollo Web",
+    tags: [
+      "Apps y webs a medida",
+      "Sitios corporativos",
+      "Landing pages",
+      "E-commerce",
+      "UX/UI",
+      "Desarrollo responsive",
+    ],
+    images: [
+      "/images/servicios/diseno-web/01.png",
+      "/images/servicios/diseno-web/02.jpg",
+      "/images/servicios/diseno-web/03.jpg",
+      "/images/servicios/diseno-web/04.jpg",
+    ],
+    modalTitle: "DISEÑO Y DESARROLLO WEB",
+    tagline: "Cuando tu presencia digital debe estar a la altura...",
+    headline: "SITIOS QUE REPRESENTAN TU MARCA",
     desafio:
-      "Tener una historia o marca que contar, pero sin estudio, formato ni proceso para sostener un podcast con calidad profesional.",
+      "Necesitar presencia digital profesional sin un sitio que represente la calidad de la marca ni se adapte a cada dispositivo.",
     solucion:
-      "Producción completa: asesoría de formato, grabación multipista, edición, mastering y publicación en plataformas digitales.",
+      "Diseño visual, desarrollo responsive y experiencia de usuario pensada para convertir visitas en oportunidades de negocio.",
     resultado:
-      "Un podcast con identidad clara, sonido premium y publicación constante que posiciona tu mensaje en el mercado.",
+      "Un sitio web moderno, rápido y alineado a tu identidad de marca, listo para crecer con tu empresa.",
   },
 ];

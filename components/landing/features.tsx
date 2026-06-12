@@ -3,7 +3,6 @@
 import { BrandIntro } from "@/components/landing/brand-intro";
 import { SectionHeading } from "@/components/landing/section-heading";
 import { ServicesCarousel } from "@/components/landing/services-carousel";
-import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { SectionGlow } from "@/components/motion/section-glow";
 
 export function Features() {
@@ -17,14 +16,12 @@ export function Features() {
         <BrandIntro className="pb-14 sm:pb-16 lg:pb-20" />
 
         <div className="border-t border-white/10 pt-14 sm:pt-16 lg:pt-20">
-          <ScrollReveal direction="up" delay={60}>
-            <SectionHeading
-              label="Nuestros servicios"
-              title="Donde la tecnología y la creatividad se encuentran"
-              titleClassName="text-2xl sm:text-3xl lg:text-4xl"
-              className="mb-10 sm:mb-12"
-            />
-          </ScrollReveal>
+          <SectionHeading
+            label="Nuestros servicios"
+            title="Donde la tecnología y la creatividad se encuentran"
+            titleClassName="text-2xl sm:text-3xl lg:text-4xl"
+            className="mb-10 sm:mb-12"
+          />
           <div className="pt-10 sm:pt-14 lg:pt-16">
             <ServicesCarousel />
           </div>

@@ -6,7 +6,7 @@ export function ShowreelVideo() {
   return (
     <div className="relative flex h-full min-h-[360px] w-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 sm:min-h-[400px]">
       <Image
-        src="/images/hero-audiovisual.jpg"
+        src="/images/servicios/media/04.jpg"
         alt="Producción audiovisual Tauren Pro Eventos"
         fill
         sizes="(max-width: 1024px) 100vw, 50vw"

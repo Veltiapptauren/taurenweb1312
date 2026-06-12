@@ -4,12 +4,15 @@ import { NavLinkFx } from "@/components/motion/nav-link-fx";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { heroSlides } from "@/lib/hero-slides";
 import { cn } from "@/lib/utils";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import { TaurenLogo } from "@/components/brand/tauren-logo";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+const DRAG_THRESHOLD = 50;
+const DRAG_START = 14;
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -50,10 +53,14 @@ function HeroTitle({ title }: { title: string }) {
 
 export function Hero() {
   const [active, setActive] = useState(0);
+  const [imageIndex, setImageIndex] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [dragging, setDragging] = useState(false);
   const reduced = usePrefersReducedMotion();
   const slide = heroSlides[active];
+  const gesture = useRef<{ x: number; dragged: boolean } | null>(null);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const goTo = useCallback((index: number) => {
     setActive(index);
@@ -63,10 +70,77 @@ export function Hero() {
     setActive((i) => (i + 1) % heroSlides.length);
   }, []);
 
+  const prev = useCallback(() => {
+    setActive((i) => (i - 1 + heroSlides.length) % heroSlides.length);
+  }, []);
+
   useEffect(() => {
+    setImageIndex(0);
+  }, [active]);
+
+  useEffect(() => {
+    if (dragging) return;
     const timer = setInterval(next, 9000);
     return () => clearInterval(timer);
-  }, [next]);
+  }, [next, dragging]);
+
+  useEffect(() => {
+    const onMove = (e: PointerEvent) => {
+      const g = gesture.current;
+      if (!g) return;
+      const delta = e.clientX - g.x;
+      if (!g.dragged && Math.abs(delta) > DRAG_START) g.dragged = true;
+      if (g.dragged) setDragging(true);
+    };
+
+    const onUp = (e: PointerEvent) => {
+      const g = gesture.current;
+      if (!g) return;
+      const delta = e.clientX - g.x;
+      gesture.current = null;
+      setDragging(false);
+      if (g.dragged && Math.abs(delta) >= DRAG_THRESHOLD) {
+        if (delta < 0) next();
+        else prev();
+      }
+    };
+
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
+    };
+  }, [next, prev]);
+
+  const onHeroPointerDown = (e: React.PointerEvent) => {
+    if (e.button !== 0) return;
+    const target = e.target as HTMLElement;
+    if (target.closest("a, button, nav, header")) return;
+    gesture.current = { x: e.clientX, dragged: false };
+  };
+
+  useEffect(() => {
+    if (dragging || slide.video || slide.images.length <= 1) return;
+    const timer = setInterval(() => {
+      setImageIndex((i) => (i + 1) % slide.images.length);
+    }, 3800);
+    return () => clearInterval(timer);
+  }, [slide, dragging]);
+
+  useEffect(() => {
+    videoRefs.current.forEach((video, index) => {
+      if (!video) return;
+      if (index === active && !reduced) {
+        video.currentTime = 0;
+        void video.play();
+      } else {
+        video.pause();
+      }
+    });
+  }, [active, reduced]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -93,30 +167,61 @@ export function Hero() {
 
   return (
     <section
-      className={`${montserrat.className} relative isolate min-h-[92dvh] overflow-hidden bg-neutral-950 text-white/95`}
+      className={cn(
+        montserrat.className,
+        "relative isolate min-h-[92dvh] overflow-hidden bg-neutral-950 text-white/95",
+        dragging ? "cursor-grabbing select-none" : "cursor-grab"
+      )}
+      onPointerDown={onHeroPointerDown}
     >
       <div className="pointer-events-none absolute inset-0 z-0">
         {heroSlides.map((item, index) => (
           <div
-            key={item.image}
+            key={item.id}
             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
               index === active ? "opacity-100" : "opacity-0"
             }`}
             aria-hidden={index !== active}
           >
-            <Image
-              src={item.image}
-              alt=""
-              fill
-              priority={index === 0}
-              sizes="100vw"
-              className="object-cover object-center brightness-[0.82] saturate-[0.85]"
-            />
+            {item.video && !reduced ? (
+              <video
+                ref={(node) => {
+                  videoRefs.current[index] = node;
+                }}
+                src={item.video}
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster={item.images[0]}
+                className="absolute inset-0 size-full object-cover object-center brightness-[0.96] saturate-[0.95]"
+              />
+            ) : (
+              item.images.map((src, imageIdx) => (
+                <div
+                  key={src}
+                  className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                    index === active && imageIdx === imageIndex % item.images.length
+                      ? "opacity-100"
+                      : "opacity-0"
+                  }`}
+                >
+                  <Image
+                    src={src}
+                    alt=""
+                    fill
+                    priority={index === 0 && imageIdx === 0}
+                    sizes="100vw"
+                    className="object-cover object-center brightness-[0.96] saturate-[0.95]"
+                  />
+                </div>
+              ))
+            )}
           </div>
         ))}
-        <div className="absolute inset-0 bg-black/45" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/15" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
       </div>
 
       <div className="relative z-10 flex min-h-[92dvh] flex-col">
@@ -200,29 +305,47 @@ export function Hero() {
           aria-label="Servicios del hero"
           className="shrink-0 px-4 pb-5 pt-2 sm:px-8 sm:pb-6 lg:px-12"
         >
-          <div className="flex max-w-full gap-1.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-2 [&::-webkit-scrollbar]:hidden">
-            {heroSlides.map((item, index) => {
-              const isActive = index === active;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => goTo(index)}
-                  aria-current={isActive ? "true" : undefined}
-                  className={cn(
-                    "shrink-0 rounded-full border px-2.5 py-1.5 text-[9px] font-medium tracking-wide transition-all duration-300 sm:px-3.5 sm:py-2 sm:text-[10px]",
-                    isActive
-                      ? "border-[#00aeef]/60 bg-[#00aeef]/10 text-white"
-                      : "border-white/10 bg-white/[0.04] text-white/40 hover:border-white/25 hover:text-white/65"
-                  )}
-                >
-                  <span className={isActive ? "text-[#00aeef]" : "text-white/35"}>
-                    {item.id}
-                  </span>
-                  <span className="ml-1.5">{item.shortTab}</span>
-                </button>
-              );
-            })}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <button
+              type="button"
+              onClick={prev}
+              aria-label="Slide anterior"
+              className="inline-flex size-9 shrink-0 cursor-pointer items-center justify-center text-white/70 transition-colors hover:text-white sm:size-10"
+            >
+              <ChevronLeft className="size-6 sm:size-7" strokeWidth={1.25} />
+            </button>
+            <div className="flex min-w-0 flex-1 gap-1.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-2 [&::-webkit-scrollbar]:hidden">
+              {heroSlides.map((item, index) => {
+                const isActive = index === active;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => goTo(index)}
+                    aria-current={isActive ? "true" : undefined}
+                    className={cn(
+                      "shrink-0 rounded-full border px-2.5 py-1.5 text-[9px] font-medium tracking-wide transition-all duration-300 sm:px-3.5 sm:py-2 sm:text-[10px]",
+                      isActive
+                        ? "border-[#00aeef]/60 bg-[#00aeef]/10 text-white"
+                        : "border-white/10 bg-white/[0.04] text-white/40 hover:border-white/25 hover:text-white/65"
+                    )}
+                  >
+                    <span className={isActive ? "text-[#00aeef]" : "text-white/35"}>
+                      {item.id}
+                    </span>
+                    <span className="ml-1.5">{item.shortTab}</span>
+                  </button>
+                );
+              })}
+            </div>
+            <button
+              type="button"
+              onClick={next}
+              aria-label="Slide siguiente"
+              className="inline-flex size-9 shrink-0 cursor-pointer items-center justify-center text-white/70 transition-colors hover:text-white sm:size-10"
+            >
+              <ChevronRight className="size-6 sm:size-7" strokeWidth={1.25} />
+            </button>
           </div>
         </nav>
       </div>

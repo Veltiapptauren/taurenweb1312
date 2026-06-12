@@ -2,7 +2,7 @@
 
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 type TextRevealProps = {
   text: string;
@@ -18,57 +18,81 @@ export function TextReveal({
   as: Tag = "span",
 }: TextRevealProps) {
   const ref = useRef<HTMLElement>(null);
-  const [mounted, setMounted] = useState(false);
-  const [visible, setVisible] = useState(false);
+  const [shine, setShine] = useState(false);
   const reduced = usePrefersReducedMotion();
+  const animId = useId().replace(/:/g, "");
   const words = text.split(" ");
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
-    if (reduced) {
-      setVisible(true);
-      return;
-    }
+    if (reduced) return;
     const node = ref.current;
     if (!node) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true);
+          setShine(true);
           observer.disconnect();
         }
       },
-      { threshold: 0.2, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.2, rootMargin: "0px 0px -5% 0px" }
     );
     observer.observe(node);
     return () => observer.disconnect();
-  }, [mounted, reduced]);
+  }, [reduced]);
 
-  if (!mounted || reduced) {
+  if (reduced) {
     return <Tag className={className}>{text}</Tag>;
   }
 
   return (
-    <Tag ref={ref as never} className={className}>
-      {words.map((word, index) => (
-        <span key={`${word}-${index}`} className="mr-[0.25em] inline-block overflow-hidden">
+    <>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            @keyframes ${animId}-shine {
+              0% { background-position: 140% center; }
+              100% { background-position: -40% center; }
+            }
+            .${animId}-word {
+              background-image: linear-gradient(
+                100deg,
+                #ffffff 0%,
+                #ffffff 36%,
+                #9ee8ff 42%,
+                #00aeef 50%,
+                #d4f6ff 54%,
+                #ffffff 60%,
+                #ffffff 100%
+              );
+              background-size: 300% 100%;
+              background-position: 140% center;
+              -webkit-background-clip: text;
+              background-clip: text;
+              color: transparent;
+              -webkit-text-fill-color: transparent;
+            }
+            .${animId}-word.${animId}-active {
+              animation: ${animId}-shine 2.8s cubic-bezier(0.33, 1, 0.45, 1) forwards;
+            }
+          `,
+        }}
+      />
+      <Tag ref={ref as never} className={className}>
+        {words.map((word, index) => (
           <span
+            key={`${word}-${index}`}
             className={cn(
-              "inline-block transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
-              visible
-                ? "translate-y-0 opacity-100 blur-0"
-                : "translate-y-[110%] opacity-0 blur-[2px]"
+              `${animId}-word mr-[0.25em] inline-block`,
+              shine && `${animId}-active`
             )}
-            style={{ transitionDelay: `${delay + index * 45}ms` }}
+            style={{
+              animationDelay: shine ? `${delay + index * 200}ms` : undefined,
+            }}
           >
             {word}
           </span>
-        </span>
-      ))}
-    </Tag>
+        ))}
+      </Tag>
+    </>
   );
 }

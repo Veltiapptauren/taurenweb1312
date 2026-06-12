@@ -5,7 +5,8 @@ export type HeroSlide = {
   title: string;
   services: string;
   ctaHref: string;
-  image: string;
+  video?: string;
+  images: string[];
 };
 
 export const heroSlides: HeroSlide[] = [
@@ -17,7 +18,13 @@ export const heroSlides: HeroSlide[] = [
     services:
       "EVENTOS CORPORATIVOS | CONGRESOS | SEMINARIOS | LANZAMIENTOS INSTITUCIONALES | CONFERENCIAS",
     ctaHref: "#servicios",
-    image: "/images/hero-planning.jpg",
+    video: "/videos/hero/streaming.mp4",
+    images: [
+      "/images/servicios/streaming/01.png",
+      "/images/servicios/streaming/02.png",
+      "/images/servicios/streaming/03.png",
+      "/images/servicios/streaming/04.png",
+    ],
   },
   {
     id: "02",
@@ -27,7 +34,13 @@ export const heroSlides: HeroSlide[] = [
     services:
       "PLANIFICACIÓN | PRODUCCIÓN TÉCNICA | MOBILIARIO | CATERING | ESCENOGRAFÍA | COORDINACIÓN GENERAL",
     ctaHref: "#servicios",
-    image: "/images/hero-eventos.jpg",
+    video: "/videos/hero/produccion-integral.mp4",
+    images: [
+      "/images/servicios/produccion-integral/01.jpg",
+      "/images/servicios/produccion-integral/02.jpg",
+      "/images/servicios/produccion-integral/03.jpg",
+      "/images/servicios/produccion-integral/04.jpg",
+    ],
   },
   {
     id: "03",
@@ -37,16 +50,27 @@ export const heroSlides: HeroSlide[] = [
     services:
       "VIDEOS CORPORATIVOS | PIEZAS INSTITUCIONALES | TESTIMONIALES | CONTENIDO PROMOCIONAL | SPOTS PUBLICITARIOS",
     ctaHref: "#servicios",
-    image: "/images/hero-audiovisual.jpg",
+    video: "/videos/hero/media.mp4",
+    images: [
+      "/images/servicios/media/01.png",
+      "/images/servicios/media/02.png",
+      "/images/servicios/media/03.png",
+      "/images/servicios/media/04.jpg",
+    ],
   },
   {
     id: "04",
-    tab: "Podcast",
-    shortTab: "Podcast",
-    title: "Podcast",
+    tab: "Diseño Web",
+    shortTab: "Web",
+    title: "Diseño y Desarrollo Web",
     services:
-      "GRABACIÓN EN ESTUDIO | EDICIÓN Y MEZCLA | DISTRIBUCIÓN DIGITAL | SPOTIFY & YOUTUBE | PRODUCCIÓN END TO END",
+      "APPS Y WEBS A MEDIDA | SITIOS CORPORATIVOS | LANDING PAGES | E-COMMERCE | UX/UI | DESARROLLO RESPONSIVE",
     ctaHref: "#servicios",
-    image: "/images/hero-podcast.jpg",
+    images: [
+      "/images/servicios/diseno-web/01.png",
+      "/images/servicios/diseno-web/02.jpg",
+      "/images/servicios/diseno-web/03.jpg",
+      "/images/servicios/diseno-web/04.jpg",
+    ],
   },
 ];
