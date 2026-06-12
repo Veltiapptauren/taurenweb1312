@@ -2,6 +2,8 @@
 
 import { brandIntroParagraphs } from "@/lib/brand-intro";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+import Link from "next/link";
 
 type BrandIntroProps = {
   className?: string;
@@ -9,32 +11,39 @@ type BrandIntroProps = {
 
 export function BrandIntro({ className }: BrandIntroProps) {
   return (
-    <div className={cn("relative mx-auto max-w-4xl", className)}>
-      <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-950/70 px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
-        <div className="pointer-events-none absolute -right-16 -top-16 size-48 rounded-full bg-[#00aeef]/12 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-20 -left-16 size-56 rounded-full bg-[#00aeef]/8 blur-3xl" />
+    <div className={cn("mx-auto max-w-6xl", className)}>
+      <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 sm:aspect-[16/11]">
+          <Image
+            src="/images/servicios/produccion-integral/02.jpg"
+            alt="Evento corporativo Tauren Pro Eventos"
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/20" />
+          <Link
+            href="#servicios"
+            className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/40 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-colors hover:border-[#00aeef]/60 hover:bg-[#00aeef]/15"
+          >
+            <span className="inline-flex size-5 items-center justify-center rounded-full bg-white/90 text-[10px] text-black">
+              ▶
+            </span>
+            Explorar
+          </Link>
+        </div>
 
-        <div className="relative text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#00aeef] sm:text-[11px]">
+        <div className="text-left">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#00aeef]">
             Tauren Pro Eventos
           </p>
-          <div className="mx-auto mt-4 flex items-center justify-center gap-3" aria-hidden>
-            <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#00aeef]/60 sm:w-14" />
-            <span className="size-1.5 rounded-full bg-[#00aeef]" />
-            <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#00aeef]/60 sm:w-14" />
-          </div>
-
-          <div className="mt-8 space-y-6 sm:mt-10 sm:space-y-7">
+          <div className="mt-5 space-y-5 sm:space-y-6">
             {brandIntroParagraphs.map((paragraph, index) => (
               <p
                 key={paragraph}
                 className={cn(
-                  "mx-auto max-w-3xl text-sm leading-relaxed sm:text-base sm:leading-8",
-                  index === 0
-                    ? "font-medium text-white/90"
-                    : index === 1
-                      ? "text-white/70"
-                      : "text-white/60"
+                  "text-sm leading-relaxed sm:text-base sm:leading-8",
+                  index === 0 ? "font-medium text-white/95" : "text-white/75"
                 )}
               >
                 {paragraph}

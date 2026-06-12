@@ -43,7 +43,7 @@ function PlatformIcons() {
   ];
 
   return (
-    <div className="flex items-center justify-center gap-6 border-t border-white/10 bg-black py-4 sm:gap-8 sm:py-5">
+    <div className="flex items-center justify-center gap-6 border-t border-white/10 bg-black px-6 py-4 sm:gap-8 sm:py-5">
       {icons.map((icon) => (
         <svg
           key={icon.label}
@@ -88,11 +88,35 @@ function InfoRow({
   );
 }
 
+function ModalImage({
+  src,
+  alt,
+  priority = false,
+}: {
+  src: string;
+  alt: string;
+  priority?: boolean;
+}) {
+  return (
+    <div className="w-full border-b border-white/10 bg-neutral-950 px-4 py-4 sm:px-8 sm:py-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-center">
+        <Image
+          src={src}
+          alt={alt}
+          width={1920}
+          height={1080}
+          priority={priority}
+          sizes="(max-width: 768px) 100vw, 1152px"
+          className="h-auto max-h-[min(72vh,820px)] w-full object-contain"
+        />
+      </div>
+    </div>
+  );
+}
+
 export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps) {
   const hero = service?.images[0];
-  const gridLeft = service?.images[1];
-  const gridRight = service?.images[2];
-  const bottom = service?.images[3];
+  const gallery = service?.images.slice(1) ?? [];
 
   return (
     <Dialog.Root open={!!service} onOpenChange={(open) => !open && onClose()}>
@@ -118,18 +142,7 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
                 </Dialog.Close>
               </div>
 
-              {hero ? (
-                <div className="relative aspect-[21/9] w-full min-h-[200px] sm:min-h-[280px] lg:min-h-[360px]">
-                  <Image
-                    src={hero}
-                    alt={service.title}
-                    fill
-                    sizes="100vw"
-                    priority
-                    className="object-cover"
-                  />
-                </div>
-              ) : null}
+              {hero ? <ModalImage src={hero} alt={service.title} priority /> : null}
 
               <div className="px-6 py-10 text-center sm:px-10 sm:py-14 lg:py-16">
                 <p className="text-sm text-white/70 sm:text-base">{service.tagline}</p>
@@ -146,41 +159,19 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
                 <InfoRow label="Resultado">{service.resultado}</InfoRow>
               </div>
 
-              {gridLeft && gridRight ? (
-                <div className="grid border-t border-white/10 lg:grid-cols-[1.35fr_1fr]">
-                  <div className="border-b border-white/10 lg:border-b-0 lg:border-r lg:border-white/10">
-                    <div className="relative aspect-[4/3] w-full sm:aspect-[16/11]">
-                      <Image
-                        src={gridLeft}
-                        alt={`${service.title} producción`}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 60vw"
-                        className="object-cover"
+              {gallery.length > 0 ? (
+                <div className="border-t border-white/10">
+                  {gallery.map((src, index) => (
+                    <div key={src}>
+                      <ModalImage
+                        src={src}
+                        alt={`${service.title} ${index + 2}`}
                       />
+                      {index === 0 && service.id === "streaming" ? (
+                        <PlatformIcons />
+                      ) : null}
                     </div>
-                    {service.id === "streaming" ? <PlatformIcons /> : null}
-                  </div>
-                  <div className="relative aspect-[4/3] w-full sm:aspect-[16/11] lg:aspect-auto lg:min-h-full">
-                    <Image
-                      src={gridRight}
-                      alt={`${service.title} experiencia`}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 40vw"
-                      className="object-cover"
-                    />
-                  </div>
-                </div>
-              ) : null}
-
-              {bottom ? (
-                <div className="relative aspect-[21/9] w-full min-h-[180px] border-t border-white/10 sm:min-h-[240px] lg:min-h-[300px]">
-                  <Image
-                    src={bottom}
-                    alt={`${service.title} experiencia`}
-                    fill
-                    sizes="100vw"
-                    className="object-cover"
-                  />
+                  ))}
                 </div>
               ) : null}
             </>
