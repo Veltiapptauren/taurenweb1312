@@ -3,7 +3,7 @@ export type HeroSlide = {
   tab: string;
   shortTab: string;
   title: string;
-  services: string;
+  tags: string[];
   ctaHref: string;
   video?: string;
   images: string[];
@@ -15,8 +15,13 @@ export const heroSlides: HeroSlide[] = [
     tab: "Streaming",
     shortTab: "Streaming",
     title: "Streaming\nde Eventos",
-    services:
-      "EVENTOS CORPORATIVOS | CONGRESOS | SEMINARIOS | LANZAMIENTOS INSTITUCIONALES | CONFERENCIAS",
+    tags: [
+      "EVENTOS CORPORATIVOS",
+      "CONGRESOS",
+      "SEMINARIOS",
+      "LANZAMIENTOS INSTITUCIONALES",
+      "CONFERENCIAS",
+    ],
     ctaHref: "#servicios",
     video: "/videos/hero/streaming.mp4",
     images: [
@@ -31,8 +36,14 @@ export const heroSlides: HeroSlide[] = [
     tab: "Producción Integral",
     shortTab: "Producción",
     title: "Producción\nIntegral",
-    services:
-      "PLANIFICACIÓN | PRODUCCIÓN TÉCNICA | MOBILIARIO | CATERING | ESCENOGRAFÍA | COORDINACIÓN GENERAL",
+    tags: [
+      "PLANIFICACIÓN",
+      "PRODUCCIÓN TÉCNICA",
+      "MOBILIARIO",
+      "CATERING",
+      "ESCENOGRAFÍA",
+      "COORDINACIÓN GENERAL",
+    ],
     ctaHref: "#servicios",
     video: "/videos/hero/produccion-integral.mp4",
     images: [
@@ -47,8 +58,13 @@ export const heroSlides: HeroSlide[] = [
     tab: "Media",
     shortTab: "Media",
     title: "Producción\nAudiovisual",
-    services:
-      "VIDEOS CORPORATIVOS | PIEZAS INSTITUCIONALES | TESTIMONIALES | CONTENIDO PROMOCIONAL | SPOTS PUBLICITARIOS",
+    tags: [
+      "VIDEOS CORPORATIVOS",
+      "PIEZAS INSTITUCIONALES",
+      "TESTIMONIALES",
+      "CONTENIDO PROMOCIONAL",
+      "SPOTS PUBLICITARIOS",
+    ],
     ctaHref: "#servicios",
     video: "/videos/hero/media.mp4",
     images: [
@@ -63,8 +79,14 @@ export const heroSlides: HeroSlide[] = [
     tab: "Diseño Web",
     shortTab: "Web",
     title: "Diseño y\nDesarrollo Web",
-    services:
-      "APPS Y WEBS A MEDIDA | SITIOS CORPORATIVOS | LANDING PAGES | E-COMMERCE | UX/UI | DESARROLLO RESPONSIVE",
+    tags: [
+      "APPS Y WEBS A MEDIDA",
+      "SITIOS CORPORATIVOS",
+      "LANDING PAGES",
+      "E-COMMERCE",
+      "UX/UI",
+      "DESARROLLO RESPONSIVE",
+    ],
     ctaHref: "#servicios",
     images: [
       "/images/servicios/diseno-web/01.png",

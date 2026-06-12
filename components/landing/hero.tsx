@@ -11,9 +11,6 @@ import { TaurenLogo } from "@/components/brand/tauren-logo";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const DRAG_THRESHOLD = 50;
-const DRAG_START = 14;
-
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -70,11 +67,9 @@ export function Hero() {
   const [imageIndex, setImageIndex] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
-  const [dragging, setDragging] = useState(false);
   const [mounted, setMounted] = useState(false);
   const reduced = usePrefersReducedMotion();
   const slide = heroSlides[active];
-  const gesture = useRef<{ x: number; dragged: boolean } | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const goTo = useCallback((index: number) => {
@@ -98,56 +93,17 @@ export function Hero() {
   }, [active]);
 
   useEffect(() => {
-    if (dragging) return;
     const timer = setInterval(next, 9000);
     return () => clearInterval(timer);
-  }, [next, dragging]);
+  }, [next]);
 
   useEffect(() => {
-    const onMove = (e: PointerEvent) => {
-      const g = gesture.current;
-      if (!g) return;
-      const delta = e.clientX - g.x;
-      if (!g.dragged && Math.abs(delta) > DRAG_START) g.dragged = true;
-      if (g.dragged) setDragging(true);
-    };
-
-    const onUp = (e: PointerEvent) => {
-      const g = gesture.current;
-      if (!g) return;
-      const delta = e.clientX - g.x;
-      gesture.current = null;
-      setDragging(false);
-      if (g.dragged && Math.abs(delta) >= DRAG_THRESHOLD) {
-        if (delta < 0) next();
-        else prev();
-      }
-    };
-
-    window.addEventListener("pointermove", onMove);
-    window.addEventListener("pointerup", onUp);
-    window.addEventListener("pointercancel", onUp);
-    return () => {
-      window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("pointerup", onUp);
-      window.removeEventListener("pointercancel", onUp);
-    };
-  }, [next, prev]);
-
-  const onHeroPointerDown = (e: React.PointerEvent) => {
-    if (e.button !== 0) return;
-    const target = e.target as HTMLElement;
-    if (target.closest("a, button, nav, header")) return;
-    gesture.current = { x: e.clientX, dragged: false };
-  };
-
-  useEffect(() => {
-    if (dragging || slide.video || slide.images.length <= 1) return;
+    if (slide.video || slide.images.length <= 1) return;
     const timer = setInterval(() => {
       setImageIndex((i) => (i + 1) % slide.images.length);
     }, 3800);
     return () => clearInterval(timer);
-  }, [slide, dragging]);
+  }, [slide]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -189,10 +145,8 @@ export function Hero() {
     <section
       className={cn(
         montserrat.className,
-        "relative isolate h-[100svh] min-h-[100svh] overflow-hidden bg-neutral-950 text-white/95",
-        dragging ? "cursor-grabbing select-none" : "max-sm:touch-pan-y sm:cursor-grab"
+        "relative isolate h-[100svh] min-h-[100svh] overflow-hidden bg-neutral-950 text-white/95"
       )}
-      onPointerDown={onHeroPointerDown}
     >
       <div className="pointer-events-none absolute inset-0 z-0">
         {heroSlides.map((item, index) => (
@@ -304,15 +258,22 @@ export function Hero() {
                   }
             }
           >
-            <h1 className="text-[2.75rem] font-semibold leading-[0.98] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.25rem]">
+            <h1 className="text-[2rem] font-semibold leading-[1.02] tracking-tight text-white sm:text-4xl md:text-[2.75rem] lg:text-5xl">
               <HeroTitle title={slide.title} />
             </h1>
-            <p className="mt-4 max-w-3xl text-[11px] font-medium uppercase leading-[1.7] tracking-[0.1em] text-white/80 sm:mt-6 sm:text-xs md:text-sm lg:text-base">
-              {slide.services}
-            </p>
+            <ul className="mt-3 flex max-w-md flex-col gap-1 sm:mt-4 sm:max-w-lg sm:gap-1.5">
+              {slide.tags.map((tag) => (
+                <li
+                  key={tag}
+                  className="text-[9px] font-normal uppercase leading-snug tracking-[0.12em] text-white/55 sm:text-[10px]"
+                >
+                  {tag}
+                </li>
+              ))}
+            </ul>
             <Link
               href={slide.ctaHref}
-              className="group mt-5 inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full border border-white/40 bg-white/10 px-6 text-xs font-semibold uppercase tracking-[0.14em] text-white shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-md transition-all duration-300 hover:border-[#00aeef]/80 hover:bg-[#00aeef]/15 hover:shadow-[0_0_28px_rgba(0,174,239,0.2)] sm:mt-8 sm:h-14 sm:px-8 sm:text-sm sm:w-auto sm:justify-start"
+              className="group mt-4 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-md transition-all duration-300 hover:border-[#00aeef]/80 hover:bg-[#00aeef]/15 hover:shadow-[0_0_28px_rgba(0,174,239,0.2)] sm:mt-6 sm:h-12 sm:w-auto sm:justify-start sm:px-7 sm:text-xs"
             >
               Ver servicio
               <ArrowRight
@@ -386,10 +347,6 @@ export function Hero() {
               <ChevronRight className="size-6" strokeWidth={1.25} />
             </button>
           </div>
-
-          <p className="mt-2 text-center text-[10px] uppercase tracking-[0.18em] text-white/40 sm:hidden">
-            Desliza para cambiar
-          </p>
         </nav>
       </div>
     </section>

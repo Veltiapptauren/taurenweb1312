@@ -1,9 +1,9 @@
 "use client";
 
+import { TaurenLogo } from "@/components/brand/tauren-logo";
 import { brandIntroParagraphs } from "@/lib/brand-intro";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Link from "next/link";
 
 type BrandIntroProps = {
   className?: string;
@@ -13,31 +13,32 @@ export function BrandIntro({ className }: BrandIntroProps) {
   return (
     <div className={cn("mx-auto max-w-6xl", className)}>
       <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 sm:aspect-[16/11]">
-          <Image
-            src="/images/servicios/produccion-integral/02.jpg"
-            alt="Evento corporativo Tauren Pro Eventos"
-            fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover object-center"
+        <div className="relative aspect-[5/4] overflow-hidden sm:aspect-[16/12] lg:min-h-[420px] lg:aspect-auto">
+          <div
+            className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_85%_75%_at_50%_58%,rgba(0,174,239,0.24),transparent_66%)]"
+            aria-hidden
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/20" />
-          <Link
-            href="#servicios"
-            className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/40 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-colors hover:border-[#00aeef]/60 hover:bg-[#00aeef]/15"
-          >
-            <span className="inline-flex size-5 items-center justify-center rounded-full bg-white/90 text-[10px] text-black">
-              ▶
-            </span>
-            Explorar
-          </Link>
+          <div
+            className="pointer-events-none absolute inset-[8%] z-0 rounded-full bg-[#00aeef]/10 blur-[80px]"
+            aria-hidden
+          />
+          <div className="absolute inset-0 z-10 [mask-image:radial-gradient(ellipse_94%_90%_at_50%_54%,#000_38%,transparent_100%)]">
+            <div className="absolute inset-0 scale-[1.14] sm:scale-[1.18] lg:scale-[1.22]">
+              <Image
+                src="/images/tauren-pro-eventos-hero.png"
+                alt="Tauren Pro Eventos producción integral de eventos"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+                className="object-cover object-[50%_56%]"
+              />
+            </div>
+          </div>
         </div>
 
         <div className="text-left">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#00aeef]">
-            Tauren Pro Eventos
-          </p>
-          <div className="mt-5 space-y-5 sm:space-y-6">
+          <TaurenLogo href="" imageClassName="h-9 w-auto max-w-[240px] sm:h-11 sm:max-w-[280px]" />
+          <div className="mt-5 space-y-5 sm:mt-6 sm:space-y-6">
             {brandIntroParagraphs.map((paragraph, index) => (
               <p
                 key={paragraph}

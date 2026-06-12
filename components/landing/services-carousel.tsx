@@ -242,18 +242,17 @@ export function ServicesCarousel() {
                             : `opacity ${TRANSITION_MS}ms ease, max-height ${TRANSITION_MS}ms ease`,
                         }}
                       >
-                        <div className="flex gap-1.5 overflow-x-auto pb-0.5 [-ms-overflow-style:none] [scrollbar-width:none] sm:flex-wrap sm:overflow-visible sm:pb-0 [&::-webkit-scrollbar]:hidden">
+                        <div className="mt-2 flex max-w-full flex-wrap items-center gap-x-1.5 gap-y-1 sm:mt-2.5 sm:gap-x-2 sm:gap-y-1.5">
                           {item.tags.map((tag, tagIndex) => (
-                            <span
-                              key={tag}
-                              className={cn(
-                                "inline-flex shrink-0 items-center rounded-full border px-2.5 py-1 text-[9px] font-medium uppercase tracking-wide sm:shrink sm:px-3 sm:text-[11px]",
-                                tagIndex === 0
-                                  ? "border-[#00aeef]/50 bg-[#00aeef]/15 text-[#7ddfff]"
-                                  : "border-white/15 bg-white/8 text-white/80"
-                              )}
-                            >
-                              {tag}
+                            <span key={tag} className="inline-flex max-w-full shrink-0 items-center">
+                              {tagIndex > 0 ? (
+                                <span aria-hidden className="mr-1.5 text-[9px] text-white/25 sm:mr-2 sm:text-[10px]">
+                                  |
+                                </span>
+                              ) : null}
+                              <span className="whitespace-normal text-[9px] font-normal uppercase leading-snug tracking-[0.12em] text-white/45 sm:whitespace-nowrap sm:text-[10px]">
+                                {tag}
+                              </span>
                             </span>
                           ))}
                         </div>

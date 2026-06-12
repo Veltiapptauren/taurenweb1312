@@ -18,7 +18,7 @@ type ServiceDetailModalProps = {
   onClose: () => void;
 };
 
-function PlatformIcons() {
+function PlatformIcons({ className }: { className?: string }) {
   const icons = [
     {
       label: "LinkedIn",
@@ -43,7 +43,9 @@ function PlatformIcons() {
   ];
 
   return (
-    <div className="flex items-center justify-center gap-6 border-t border-white/10 bg-black px-6 py-4 sm:gap-8 sm:py-5">
+    <div
+      className={`flex items-center justify-center gap-5 bg-black/70 px-4 py-3 sm:gap-7 sm:py-4 ${className ?? ""}`}
+    >
       {icons.map((icon) => (
         <svg
           key={icon.label}
@@ -114,9 +116,52 @@ function ModalImage({
   );
 }
 
+function GalleryTile({
+  src,
+  alt,
+  className,
+  children,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  children?: ReactNode;
+}) {
+  return (
+    <div className={`relative overflow-hidden rounded-2xl bg-neutral-950 ${className ?? ""}`}>
+      <Image src={src} alt={alt} fill sizes="(max-width: 768px) 50vw, 560px" className="object-cover object-center" />
+      {children}
+    </div>
+  );
+}
+
+function ServiceGallery({ service }: { service: Service }) {
+  const left = service.images[1];
+  const right = service.images[2];
+  const bottom = service.images[3];
+  if (!left || !right || !bottom) return null;
+
+  return (
+    <div className="border-t border-white/10 bg-black px-4 py-6 sm:px-8 sm:py-8">
+      <div className="mx-auto grid max-w-6xl gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4">
+          <GalleryTile src={left} alt={`${service.title} producción`} className="aspect-square">
+            {service.id === "streaming" ? (
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
+                <PlatformIcons />
+              </div>
+            ) : null}
+          </GalleryTile>
+          <GalleryTile src={right} alt={`${service.title} experiencia`} className="aspect-square" />
+        </div>
+        <GalleryTile src={bottom} alt={`${service.title} resultado`} className="aspect-[2/1] min-h-[160px] sm:min-h-[220px]" />
+      </div>
+    </div>
+  );
+}
+
 export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps) {
   const hero = service?.images[0];
-  const gallery = service?.images.slice(1) ?? [];
 
   return (
     <Dialog.Root open={!!service} onOpenChange={(open) => !open && onClose()}>
@@ -159,21 +204,7 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
                 <InfoRow label="Resultado">{service.resultado}</InfoRow>
               </div>
 
-              {gallery.length > 0 ? (
-                <div className="border-t border-white/10">
-                  {gallery.map((src, index) => (
-                    <div key={src}>
-                      <ModalImage
-                        src={src}
-                        alt={`${service.title} ${index + 2}`}
-                      />
-                      {index === 0 && service.id === "streaming" ? (
-                        <PlatformIcons />
-                      ) : null}
-                    </div>
-                  ))}
-                </div>
-              ) : null}
+              {service.images.length >= 4 ? <ServiceGallery service={service} /> : null}
             </>
           ) : null}
         </Dialog.Content>
