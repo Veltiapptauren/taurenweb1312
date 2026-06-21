@@ -10,6 +10,23 @@ type TaurenLogoProps = {
   priority?: boolean;
 };
 
+type TaurenWordmarkProps = {
+  className?: string;
+};
+
+export function TaurenWordmark({ className }: TaurenWordmarkProps) {
+  return (
+    <div className={cn("inline-flex flex-col gap-1", className)}>
+      <span className="text-2xl font-semibold leading-none tracking-tight text-white sm:text-[1.75rem]">
+        Tauren
+      </span>
+      <span className="text-[10px] font-medium uppercase tracking-[0.32em] text-[#00aeef] sm:text-[11px]">
+        Pro Eventos
+      </span>
+    </div>
+  );
+}
+
 export function TaurenLogo({
   href = "/",
   className,

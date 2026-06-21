@@ -17,7 +17,7 @@ export function ScrollReveal({
   className,
   delay = 0,
   direction = "up",
-  once = true,
+  once = false,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);

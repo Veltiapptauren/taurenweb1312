@@ -284,44 +284,6 @@ export function ServicesCarousel() {
             <ChevronRight className="size-5 sm:size-6 lg:size-7" />
           </button>
         </div>
-
-        <div className="mt-6 flex flex-col items-center gap-3 sm:mt-8">
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={prev}
-              aria-label="Anterior"
-              className="inline-flex size-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/80 sm:hidden"
-            >
-              <ChevronLeft className="size-5" />
-            </button>
-            <div className="flex justify-center gap-2">
-              {services.map((item, index) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => setActive(index)}
-                  aria-label={item.title}
-                  className={cn(
-                    "h-2 cursor-pointer rounded-full transition-all duration-500",
-                    index === active ? "w-8 bg-[#00aeef] sm:w-10" : "w-2 bg-white/30"
-                  )}
-                />
-              ))}
-            </div>
-            <button
-              type="button"
-              onClick={next}
-              aria-label="Siguiente"
-              className="inline-flex size-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/80 sm:hidden"
-            >
-              <ChevronRight className="size-5" />
-            </button>
-          </div>
-          <p className="text-[10px] uppercase tracking-[0.18em] text-white/40 sm:hidden">
-            Desliza o usa las flechas
-          </p>
-        </div>
       </div>
 
       <ServiceDetailModal

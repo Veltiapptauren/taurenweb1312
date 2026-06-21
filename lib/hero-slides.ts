@@ -76,16 +76,16 @@ export const heroSlides: HeroSlide[] = [
   },
   {
     id: "04",
-    tab: "Diseño Web",
-    shortTab: "Web",
-    title: "Diseño y\nDesarrollo Web",
+    tab: "Web y Apps",
+    shortTab: "Apps",
+    title: "Web y\nApps Móviles",
     tags: [
-      "APPS Y WEBS A MEDIDA",
+      "APPS IOS Y ANDROID",
       "SITIOS CORPORATIVOS",
       "LANDING PAGES",
       "E-COMMERCE",
       "UX/UI",
-      "DESARROLLO RESPONSIVE",
+      "DESARROLLO A MEDIDA",
     ],
     ctaHref: "#servicios",
     images: [

@@ -1,5 +1,11 @@
-export const brandIntroParagraphs = [
-  "Conectamos tecnología, diseño y storytelling para crear experiencias de alto impacto.",
-  "No solo producimos eventos: los planificamos de forma integral, coordinando cada fase, desde la puesta en escena hasta los contenidos.",
-  "Producimos encuentros corporativos y transmisiones en tiempo real que elevan tu posicionamiento, comunican con impacto y construyen vínculos significativos con tu audiencia.",
+export const brandIntroTagline = "Donde la tecnología y la creatividad se encuentran";
+
+export const brandIntroParagraph =
+  "Soluciones tecnológicas y digitales para eventos corporativos: streaming en vivo, producción audiovisual, desarrollo web, apps móviles y experiencias híbridas que potencian tu marca y conectan con tu audiencia.";
+
+export const brandIntroServiceLinks = [
+  { href: "#streaming", label: "Streaming en vivo" },
+  { href: "#produccion-integral", label: "Producción integral" },
+  { href: "#produccion-audiovisual", label: "Producción audiovisual" },
+  { href: "#diseno-web", label: "Web y apps móviles" },
 ] as const;

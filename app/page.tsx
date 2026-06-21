@@ -7,8 +7,8 @@ import { Hero } from "@/components/landing/hero";
 import { Process } from "@/components/landing/process";
 import { SuccessCollage } from "@/components/landing/success-collage";
 import { JsonLd } from "@/components/seo/json-ld";
+import { getAbsoluteUrl, siteConfig } from "@/lib/site";
 import type { Metadata } from "next";
-import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -16,6 +16,28 @@ export const metadata: Metadata = {
   keywords: [...siteConfig.keywords],
   alternates: {
     canonical: siteConfig.url,
+  },
+  openGraph: {
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    locale: "es-CL",
+    type: "website",
+    images: [
+      {
+        url: getAbsoluteUrl(siteConfig.ogImage),
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} — streaming y eventos corporativos`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [getAbsoluteUrl(siteConfig.ogImage)],
   },
 };
 

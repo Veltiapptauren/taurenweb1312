@@ -62,6 +62,39 @@ function HeroTitle({ title }: { title: string }) {
   );
 }
 
+function chunkHeroTags(tags: string[]): string[][] {
+  if (tags.length <= 3) return [tags];
+  if (tags.length === 4) return [tags.slice(0, 2), tags.slice(2)];
+  if (tags.length === 5) return [tags.slice(0, 3), tags.slice(3)];
+  const rows: string[][] = [];
+  for (let i = 0; i < tags.length; i += 3) rows.push(tags.slice(i, i + 3));
+  return rows;
+}
+
+function HeroTagRows({ tags }: { tags: string[] }) {
+  return (
+    <div className="mt-3 flex max-w-xl flex-col gap-1 sm:mt-4 sm:max-w-2xl sm:gap-1.5">
+      {chunkHeroTags(tags).map((row) => (
+        <p
+          key={row.join("|")}
+          className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[10px] font-medium uppercase leading-snug tracking-[0.1em] text-white/75 sm:gap-x-2 sm:text-[11px] md:text-xs"
+        >
+          {row.map((tag, tagIndex) => (
+            <span key={tag} className="inline-flex shrink-0 items-center whitespace-nowrap">
+              {tagIndex > 0 ? (
+                <span aria-hidden className="mr-1.5 text-white/35 sm:mr-2">
+                  |
+                </span>
+              ) : null}
+              {tag}
+            </span>
+          ))}
+        </p>
+      ))}
+    </div>
+  );
+}
+
 export function Hero() {
   const [active, setActive] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
@@ -261,16 +294,7 @@ export function Hero() {
             <h1 className="text-[2rem] font-semibold leading-[1.02] tracking-tight text-white sm:text-4xl md:text-[2.75rem] lg:text-5xl">
               <HeroTitle title={slide.title} />
             </h1>
-            <ul className="mt-3 flex max-w-md flex-col gap-1 sm:mt-4 sm:max-w-lg sm:gap-1.5">
-              {slide.tags.map((tag) => (
-                <li
-                  key={tag}
-                  className="text-[9px] font-normal uppercase leading-snug tracking-[0.12em] text-white/55 sm:text-[10px]"
-                >
-                  {tag}
-                </li>
-              ))}
-            </ul>
+            <HeroTagRows tags={slide.tags} />
             <Link
               href={slide.ctaHref}
               className="group mt-4 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-md transition-all duration-300 hover:border-[#00aeef]/80 hover:bg-[#00aeef]/15 hover:shadow-[0_0_28px_rgba(0,174,239,0.2)] sm:mt-6 sm:h-12 sm:w-auto sm:justify-start sm:px-7 sm:text-xs"

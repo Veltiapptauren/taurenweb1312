@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/lib/site";
 
-export const alt = siteConfig.name;
+export const alt = `${siteConfig.name} — streaming y eventos corporativos`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -14,23 +14,38 @@ export default function OpenGraphImage() {
           width: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
-          padding: 80,
-          background: "#0a0a0a",
+          justifyContent: "space-between",
+          padding: 72,
+          background: "linear-gradient(135deg, #020617 0%, #0a2744 55%, #020617 100%)",
           color: "#fafafa",
         }}
       >
-        <div style={{ fontSize: 28, opacity: 0.7 }}>{siteConfig.name}</div>
+        <div style={{ fontSize: 28, color: "#00aeef", letterSpacing: "0.08em" }}>
+          {siteConfig.name}
+        </div>
         <div
           style={{
-            marginTop: 24,
-            fontSize: 64,
-            fontWeight: 700,
-            lineHeight: 1.1,
-            maxWidth: 900,
+            display: "flex",
+            flexDirection: "column",
+            gap: 20,
+            maxWidth: 980,
           }}
         >
-          Producción audiovisual y eventos corporativos
+          <div
+            style={{
+              fontSize: 58,
+              fontWeight: 700,
+              lineHeight: 1.08,
+            }}
+          >
+            Streaming y eventos corporativos
+          </div>
+          <div style={{ fontSize: 28, lineHeight: 1.4, color: "rgba(255,255,255,0.78)" }}>
+            Transmisión en vivo, producción integral, videos corporativos, web y apps móviles
+          </div>
+        </div>
+        <div style={{ fontSize: 24, color: "rgba(255,255,255,0.55)" }}>
+          taurenproeventos.cl · Providencia, Chile
         </div>
       </div>
     ),

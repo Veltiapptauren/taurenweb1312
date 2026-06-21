@@ -19,7 +19,7 @@ export function Cta() {
             >
               <Image
                 src="/images/servicios/streaming/03.png"
-                alt=""
+                alt="Streaming y producción de eventos corporativos"
                 fill
                 sizes="(max-width: 768px) 100vw, 1152px"
                 className="object-cover brightness-[0.5]"
@@ -33,8 +33,8 @@ export function Cta() {
                 className="mx-auto block max-w-2xl text-3xl font-semibold tracking-tight text-white sm:text-4xl"
               />
               <p className="mx-auto mt-4 max-w-lg text-white/70">
-                Cuéntanos tu proyecto y te respondemos con alcance, tiempos y
-                presupuesto.
+                Cuéntanos tu proyecto y te respondemos con alcance,
+                tiempos y presupuesto.
               </p>
               <ul className="mx-auto mt-5 max-w-lg space-y-1.5 text-sm text-white/55">
                 <li>

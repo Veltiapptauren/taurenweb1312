@@ -98,9 +98,9 @@ export const services: Service[] = [
   {
     id: "diseno-web",
     number: "04",
-    title: "Diseño y Desarrollo Web",
+    title: "Desarrollo Web y Apps",
     tags: [
-      "Apps y webs a medida",
+      "Apps móviles iOS/Android",
       "Sitios corporativos",
       "Landing pages",
       "E-commerce",
@@ -113,14 +113,14 @@ export const services: Service[] = [
       "/images/servicios/diseno-web/03.jpg",
       "/images/servicios/diseno-web/04.jpg",
     ],
-    modalTitle: "DISEÑO Y DESARROLLO WEB",
+    modalTitle: "DESARROLLO WEB Y APPS MÓVILES",
     tagline: "Cuando tu presencia digital debe estar a la altura...",
-    headline: "SITIOS QUE REPRESENTAN TU MARCA",
+    headline: "WEB Y APPS QUE REPRESENTAN TU MARCA",
     desafio:
-      "Necesitar presencia digital profesional sin un sitio que represente la calidad de la marca ni se adapte a cada dispositivo.",
+      "Necesitar presencia digital profesional sin un sitio o app que represente la calidad de la marca ni se adapte a cada dispositivo.",
     solucion:
-      "Diseño visual, desarrollo responsive y experiencia de usuario pensada para convertir visitas en oportunidades de negocio.",
+      "Diseño visual, desarrollo web responsive y apps móviles a medida con experiencia de usuario pensada para convertir visitas en oportunidades de negocio.",
     resultado:
-      "Un sitio web moderno, rápido y alineado a tu identidad de marca, listo para crecer con tu empresa.",
+      "Sitios web y apps móviles modernos, rápidos y alineados a tu identidad de marca, listos para crecer con tu empresa.",
   },
 ];

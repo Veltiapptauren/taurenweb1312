@@ -6,9 +6,10 @@ import { Mail, MapPin, Phone, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 
 const serviceLinks = [
-  { href: "#servicios", label: "Streaming" },
-  { href: "#servicios", label: "Eventos corporativos" },
-  { href: "#servicios", label: "Producción Audiovisual" },
+  { href: "#streaming", label: "Streaming en vivo" },
+  { href: "#produccion-integral", label: "Producción integral" },
+  { href: "#produccion-audiovisual", label: "Producción audiovisual" },
+  { href: "#diseno-web", label: "Web y apps móviles" },
 ] as const;
 
 const navLinks = [
@@ -86,7 +87,7 @@ export function Footer() {
               Tauren <span className="text-[#00aeef]">Pro</span> Eventos
             </Link>
             <p className="mt-2 max-w-xs text-xs leading-relaxed text-white/45">
-              Donde la tecnología y la creatividad se encuentran
+              Streaming y eventos corporativos en Chile
             </p>
             <div className="mt-3 flex gap-2.5">
               <a

@@ -1,5 +1,5 @@
 import { Providers } from "@/components/providers";
-import { siteConfig } from "@/lib/site";
+import { getAbsoluteUrl, siteConfig } from "@/lib/site";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -34,6 +34,7 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
+  applicationName: siteConfig.name,
   formatDetection: {
     email: false,
     address: false,
@@ -46,12 +47,21 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: siteConfig.title,
     description: siteConfig.description,
+    images: [
+      {
+        url: getAbsoluteUrl(siteConfig.ogImage),
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} — streaming y eventos corporativos`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
     creator: siteConfig.twitter,
+    images: [getAbsoluteUrl(siteConfig.ogImage)],
   },
   robots: {
     index: true,
@@ -67,7 +77,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteConfig.url,
   },
-  category: "technology",
+  category: "business",
 };
 
 export default function RootLayout({
@@ -77,7 +87,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="es"
+      lang="es-CL"
       className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}
       suppressHydrationWarning
     >

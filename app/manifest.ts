@@ -3,8 +3,8 @@ import { siteConfig } from "@/lib/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: siteConfig.title,
-    short_name: siteConfig.name,
+    name: siteConfig.name,
+    short_name: "Tauren Pro",
     description: siteConfig.description,
     start_url: "/",
     display: "standalone",
@@ -17,6 +17,6 @@ export default function manifest(): MetadataRoute.Manifest {
         type: "image/png",
       },
     ],
-    lang: "es",
+    lang: "es-CL",
   };
 }
