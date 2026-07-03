@@ -76,7 +76,7 @@ function InfoRow({
 }) {
   return (
     <div
-      className={`grid gap-4 border-b border-white/10 px-6 py-8 sm:grid-cols-[180px_1fr] sm:gap-10 sm:px-10 sm:py-10 lg:px-16 lg:py-12 ${
+      className={`grid gap-4 border-b border-white/10 px-3 py-8 sm:grid-cols-[180px_1fr] sm:gap-10 sm:px-5 sm:py-10 lg:px-6 lg:py-12 ${
         highlighted ? "bg-neutral-900/80" : "bg-black"
       }`}
     >
@@ -90,29 +90,55 @@ function InfoRow({
   );
 }
 
-function ModalImage({
+function ModalHero({
   src,
   alt,
+  title,
+  tagline,
+  headline,
   priority = false,
 }: {
   src: string;
   alt: string;
+  title: string;
+  tagline: string;
+  headline: string;
   priority?: boolean;
 }) {
   return (
-    <div className="w-full border-b border-white/10 bg-neutral-950 px-4 py-4 sm:px-8 sm:py-6">
-      <div className="mx-auto flex max-w-6xl items-center justify-center">
-        <Image
-          src={src}
-          alt={alt}
-          width={1920}
-          height={1080}
-          priority={priority}
-          sizes="(max-width: 768px) 100vw, 1152px"
-          className="h-auto max-h-[min(72vh,820px)] w-full object-contain"
-        />
+    <>
+      <div className="sticky top-0 z-20 flex items-center justify-center bg-black px-6 py-5 sm:py-6">
+        <Dialog.Title className="text-center text-xs font-bold uppercase tracking-[0.2em] text-white sm:text-sm md:text-base">
+          {title}
+        </Dialog.Title>
+        <Dialog.Close
+          className="absolute right-4 top-1/2 inline-flex size-9 -translate-y-1/2 items-center justify-center text-white transition-opacity hover:opacity-70 sm:right-8"
+          aria-label="Cerrar"
+        >
+          <X className="size-7 sm:size-8" strokeWidth={1.25} />
+        </Dialog.Close>
       </div>
-    </div>
+
+      <div className="mx-auto w-full max-w-[min(100%,1380px)] px-3 sm:px-5 lg:px-6">
+        <div className="relative aspect-[2.35/1] overflow-hidden rounded-2xl sm:aspect-[2.5/1] lg:aspect-[2.65/1]">
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            priority={priority}
+            sizes="(max-width: 768px) 100vw, 1380px"
+            className="object-cover object-center"
+          />
+        </div>
+
+        <div className="px-1 py-8 text-center sm:py-10">
+          <p className="text-sm text-white/75 sm:text-base">{tagline}</p>
+          <h2 className="mx-auto mt-3 max-w-5xl text-xl font-extrabold uppercase leading-tight tracking-tight text-white sm:mt-4 sm:text-2xl md:text-3xl lg:text-[2.5rem] lg:leading-tight">
+            {headline}
+          </h2>
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -142,8 +168,8 @@ function ServiceGallery({ service }: { service: Service }) {
   if (!left || !right || !bottom) return null;
 
   return (
-    <div className="border-t border-white/10 bg-black px-4 py-6 sm:px-8 sm:py-8">
-      <div className="mx-auto grid max-w-6xl gap-3 sm:gap-4">
+    <div className="border-t border-white/10 bg-black px-3 py-6 sm:px-5 sm:py-8 lg:px-6">
+      <div className="mx-auto grid max-w-[min(100%,1380px)] gap-3 sm:gap-4">
         <div className="grid grid-cols-2 gap-3 sm:gap-4">
           <GalleryTile src={left} alt={`${service.title} producción`} className="aspect-square">
             {service.id === "streaming" ? (
@@ -175,26 +201,28 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
           </Dialog.Description>
           {service ? (
             <>
-              <div className="sticky top-0 z-10 flex items-center justify-center border-b border-white/10 bg-neutral-950 px-6 py-5 sm:py-6">
-                <Dialog.Title className="text-center text-sm font-bold uppercase tracking-[0.18em] text-white sm:text-base md:text-lg">
-                  {service.modalTitle}
-                </Dialog.Title>
-                <Dialog.Close
-                  className="absolute right-4 top-1/2 inline-flex size-9 -translate-y-1/2 items-center justify-center text-white transition-opacity hover:opacity-70 sm:right-8"
-                  aria-label="Cerrar"
-                >
-                  <X className="size-7 sm:size-8" strokeWidth={1.25} />
-                </Dialog.Close>
-              </div>
-
-              {hero ? <ModalImage src={hero} alt={service.title} priority /> : null}
-
-              <div className="px-6 py-10 text-center sm:px-10 sm:py-14 lg:py-16">
-                <p className="text-sm text-white/70 sm:text-base">{service.tagline}</p>
-                <h2 className="mx-auto mt-4 max-w-4xl text-2xl font-extrabold uppercase leading-tight tracking-tight text-white sm:mt-5 sm:text-3xl md:text-4xl lg:text-5xl">
-                  {service.headline}
-                </h2>
-              </div>
+              {hero ? (
+                <ModalHero
+                  src={hero}
+                  alt={service.title}
+                  title={service.modalTitle}
+                  tagline={service.tagline}
+                  headline={service.headline}
+                  priority
+                />
+              ) : (
+                <div className="relative flex items-center justify-center bg-black px-6 py-5 sm:py-6">
+                  <Dialog.Title className="text-center text-xs font-bold uppercase tracking-[0.2em] text-white sm:text-sm md:text-base">
+                    {service.modalTitle}
+                  </Dialog.Title>
+                  <Dialog.Close
+                    className="absolute right-4 top-1/2 inline-flex size-9 -translate-y-1/2 items-center justify-center text-white transition-opacity hover:opacity-70 sm:right-8"
+                    aria-label="Cerrar"
+                  >
+                    <X className="size-7 sm:size-8" strokeWidth={1.25} />
+                  </Dialog.Close>
+                </div>
+              )}
 
               <div className="border-t border-white/10">
                 <InfoRow label="Desafío">{service.desafio}</InfoRow>

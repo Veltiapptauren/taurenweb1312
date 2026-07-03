@@ -19,33 +19,38 @@ const CARD_STYLES = [
 const ICONS = [
   () => (
     <svg viewBox="0 0 64 64" fill="none" className="size-full">
-      <circle cx="32" cy="32" r="22" stroke="currentColor" strokeWidth="2" strokeDasharray="5 4" opacity="0.55" />
-      <circle cx="32" cy="32" r="10" fill="currentColor" opacity="0.25" />
-      <circle cx="32" cy="32" r="4" fill="currentColor" />
-      <path d="M32 8v6M32 50v6M8 32h6M50 32h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
+      <rect x="8" y="16" width="34" height="28" rx="4" stroke="currentColor" strokeWidth="2" opacity="0.7" />
+      <path d="M42 26l12-7v26l-12-7V26z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" opacity="0.7" />
+      <circle cx="18" cy="24" r="3" fill="currentColor" opacity="0.9" />
+      <path d="M14 48h20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.45" />
     </svg>
   ),
   () => (
     <svg viewBox="0 0 64 64" fill="none" className="size-full">
-      <rect x="12" y="22" width="40" height="28" rx="4" stroke="currentColor" strokeWidth="2" opacity="0.55" />
-      <path d="M22 22v-6a10 10 0 0120 0v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
-      <circle cx="32" cy="36" r="5" fill="currentColor" opacity="0.35" />
-      <path d="M32 38v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
+      <path d="M12 44V28l20-12 20 12v16" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" opacity="0.7" />
+      <path d="M20 44V34h24v10" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" opacity="0.55" />
+      <path d="M28 44v-6h8v6" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" opacity="0.7" />
+      <path d="M18 20l4-6h20l4 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
+      <circle cx="32" cy="26" r="3" fill="currentColor" opacity="0.85" />
     </svg>
   ),
   () => (
     <svg viewBox="0 0 64 64" fill="none" className="size-full">
-      <rect x="8" y="14" width="48" height="34" rx="4" stroke="currentColor" strokeWidth="2" opacity="0.55" />
-      <circle cx="22" cy="31" r="7" stroke="currentColor" strokeWidth="2" opacity="0.65" />
-      <path d="M26 34l18-5 3 10-5-3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.75" />
+      <rect x="10" y="18" width="32" height="24" rx="4" stroke="currentColor" strokeWidth="2" opacity="0.7" />
+      <circle cx="26" cy="30" r="7" stroke="currentColor" strokeWidth="2" opacity="0.65" />
+      <circle cx="26" cy="30" r="3" fill="currentColor" opacity="0.85" />
+      <path d="M42 26l12-6v20l-12-6V26z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" opacity="0.7" />
+      <path d="M16 48h24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.4" />
     </svg>
   ),
   () => (
     <svg viewBox="0 0 64 64" fill="none" className="size-full">
-      <rect x="10" y="10" width="44" height="34" rx="4" stroke="currentColor" strokeWidth="2" opacity="0.55" />
-      <path d="M18 22h12M18 30h18M18 38h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.65" />
-      <rect x="36" y="20" width="12" height="20" rx="2" stroke="currentColor" strokeWidth="2" opacity="0.55" />
-      <path d="M22 50h20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.5" />
+      <rect x="8" y="12" width="32" height="24" rx="3" stroke="currentColor" strokeWidth="2" opacity="0.7" />
+      <path d="M16 44h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.45" />
+      <path d="M20 36v8M28 36v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.45" />
+      <rect x="40" y="20" width="16" height="28" rx="3" stroke="currentColor" strokeWidth="2" opacity="0.7" />
+      <path d="M45 24h6M45 30h6M45 36h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" opacity="0.55" />
+      <circle cx="48" cy="42" r="1.5" fill="currentColor" opacity="0.8" />
     </svg>
   ),
 ];
