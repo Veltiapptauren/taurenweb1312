@@ -10,6 +10,7 @@ export type Service = {
   desafio: string;
   solucion: string;
   resultado: string;
+  modalCta: string;
 };
 
 export const services: Service[] = [
@@ -39,6 +40,7 @@ export const services: Service[] = [
       "Streaming multicámara, audio profesional, gráficos en vivo y operación técnica para que tu evento se vea y suene impecable en cualquier plataforma.",
     resultado:
       "Transmisiones estables, imagen de marca cuidada y una experiencia híbrida que conecta con quienes están en sala y online.",
+    modalCta: "¿Te gustaría aumentar tu audiencia?",
   },
   {
     id: "produccion-integral",
@@ -67,6 +69,7 @@ export const services: Service[] = [
       "Tauren Pro Eventos asume la producción llave en mano: planificación, técnica, mobiliario, catering, escenografía y coordinación general con un solo equipo responsable.",
     resultado:
       "Un evento ejecutado con control, timing preciso y una experiencia integral que refleja el estándar de tu marca.",
+    modalCta: "¿Quieres un evento impecable de principio a fin?",
   },
   {
     id: "media",
@@ -94,6 +97,7 @@ export const services: Service[] = [
       "Rodaje, dirección, postproducción y entregables optimizados para web, redes, presentaciones y campañas institucionales.",
     resultado:
       "Contenido audiovisual listo para publicar, alineado a tu marca y pensado para generar conversión y credibilidad.",
+    modalCta: "¿Necesitas contenido que comunique con impacto?",
   },
   {
     id: "diseno-web",
@@ -122,5 +126,6 @@ export const services: Service[] = [
       "Diseño visual, desarrollo web responsive y apps móviles a medida con experiencia de usuario pensada para convertir visitas en oportunidades de negocio.",
     resultado:
       "Sitios web y apps móviles modernos, rápidos y alineados a tu identidad de marca, listos para crecer con tu empresa.",
+    modalCta: "¿Listo para llevar tu marca al digital?",
   },
 ];
