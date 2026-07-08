@@ -4,10 +4,9 @@ import { NavLinkFx } from "@/components/motion/nav-link-fx";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { heroSlides } from "@/lib/hero-slides";
 import { cn } from "@/lib/utils";
-import { ArrowRight, ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
-import { TaurenLogo } from "@/components/brand/tauren-logo";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -16,13 +15,6 @@ const montserrat = Montserrat({
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
-
-const navLinks = [
-  { href: "#servicios", label: "SERVICIOS" },
-  { href: "#proyectos", label: "PROYECTOS" },
-  { href: "#tauren", label: "TAUREN" },
-  { href: "#contacto", label: "CONTACTO" },
-] as const;
 
 function HeroTitle({ title }: { title: string }) {
   if (title.includes("\n")) {
@@ -98,7 +90,6 @@ function HeroTagRows({ tags }: { tags: string[] }) {
 export function Hero() {
   const [active, setActive] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [mounted, setMounted] = useState(false);
   const reduced = usePrefersReducedMotion();
@@ -150,13 +141,6 @@ export function Hero() {
       }
     });
   }, [active, reduced, mounted]);
-
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
 
   useEffect(() => {
     if (reduced) return;
@@ -233,51 +217,6 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 flex h-full min-h-[100svh] flex-col">
-        <header className="shrink-0">
-          <div className="flex h-14 items-center justify-between px-4 sm:h-16 sm:px-8 lg:px-12">
-            <TaurenLogo href="/" priority className="relative z-10" />
-
-            <nav
-              aria-label="Principal"
-              className="relative z-10 hidden items-center gap-5 text-[10px] font-medium tracking-[0.14em] text-white/75 md:flex lg:gap-8 lg:text-[11px]"
-            >
-              {navLinks.map((link) => (
-                <NavLinkFx key={link.href} href={link.href}>
-                  {link.label}
-                </NavLinkFx>
-              ))}
-            </nav>
-
-            <button
-              type="button"
-              aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((o) => !o)}
-              className="relative z-10 inline-flex size-10 items-center justify-center rounded-lg border border-white/20 bg-black/30 text-white/90 backdrop-blur-sm md:hidden"
-            >
-              {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-            </button>
-          </div>
-
-          {menuOpen ? (
-            <nav className="border-t border-white/10 bg-black/90 px-4 py-5 backdrop-blur-md md:hidden">
-              <ul className="flex flex-col gap-1">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <NavLinkFx
-                      href={link.href}
-                      onClick={() => setMenuOpen(false)}
-                      className="flex min-h-11 items-center text-sm font-medium tracking-widest text-white/90"
-                    >
-                      {link.label}
-                    </NavLinkFx>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          ) : null}
-        </header>
-
         <div className="flex flex-1 flex-col justify-end px-4 pb-2 pt-8 sm:justify-center sm:px-10 sm:pb-0 sm:pt-10 lg:px-14 lg:pt-12">
           <div
             key={slide.id}

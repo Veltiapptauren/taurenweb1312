@@ -137,6 +137,10 @@ export function SuccessCollage() {
       <SuccessCaseModal
         successCase={selected}
         onClose={() => setSelected(null)}
+        onSelect={(next) => {
+          setActiveId(next.id);
+          setSelected(next);
+        }}
       />
     </section>
   );

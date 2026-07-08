@@ -6,6 +6,7 @@ import { Footer } from "@/components/landing/footer";
 import { Hero } from "@/components/landing/hero";
 import { Process } from "@/components/landing/process";
 import { SuccessCollage } from "@/components/landing/success-collage";
+import { FaqSection } from "@/components/landing/services-seo-section";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getAbsoluteUrl, siteConfig } from "@/lib/site";
 import type { Metadata } from "next";
@@ -50,6 +51,7 @@ export default function HomePage() {
         <Hero />
         <Features />
         <SuccessCollage />
+        <FaqSection />
         <ServicesShowcase />
         <Process />
         <Cta />

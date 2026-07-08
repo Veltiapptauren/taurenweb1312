@@ -1,4 +1,5 @@
 import { Providers } from "@/components/providers";
+import { SiteHeader } from "@/components/landing/site-header";
 import { getAbsoluteUrl, siteConfig } from "@/lib/site";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -95,7 +96,10 @@ export default function RootLayout({
         className="min-h-full flex flex-col bg-black font-sans text-white"
         suppressHydrationWarning
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <SiteHeader />
+          {children}
+        </Providers>
       </body>
     </html>
   );

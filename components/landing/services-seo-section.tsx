@@ -144,7 +144,7 @@ function ServiceCard({
   );
 }
 
-function FaqBlock() {
+export function FaqSection() {
   const { ref: wrapRef, visible, runId } = useInView(0.12);
   const reduced = usePrefersReducedMotion();
 
@@ -171,8 +171,8 @@ export function ServicesSeoSection() {
   return (
     <div className="border-t border-white/8 pt-16 sm:pt-20 lg:pt-24">
       <SectionHeading
-        label="Servicios"
-        title="Todo lo que necesitas para tu evento, en un solo equipo."
+        label="Áreas clave"
+        title="Lo que dominamos para que tu evento salga impecable."
         titleClassName="text-2xl sm:text-3xl lg:text-4xl"
         className="mb-10 sm:mb-12"
       />
@@ -195,8 +195,6 @@ export function ServicesSeoSection() {
           </div>
         ))}
       </div>
-
-      <FaqBlock />
     </div>
   );
 }
