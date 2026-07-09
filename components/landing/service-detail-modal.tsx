@@ -30,8 +30,8 @@ function SnapSection({
 }) {
   return (
     <section
-      className={`flex w-full snap-start flex-col ${
-        fill ? "min-h-[calc(100dvh-3.5rem)] sm:min-h-[calc(100dvh-4rem)]" : ""
+      className={`flex w-full flex-col ${
+        fill ? "min-h-[calc(100dvh-3rem)] sm:min-h-[calc(100dvh-3.5rem)]" : ""
       } ${className}`}
     >
       {children}
@@ -41,15 +41,15 @@ function SnapSection({
 
 function ModalHeader({ title }: { title: string }) {
   return (
-    <div className="fixed inset-x-0 top-0 z-30 flex h-14 items-center justify-center bg-[#1A1A1A] px-6 sm:h-16 relative">
-      <Dialog.Title className="text-center text-xs font-bold uppercase tracking-[0.2em] text-white sm:text-sm md:text-base">
+    <div className="fixed inset-x-0 top-0 z-30 flex h-12 items-center justify-center bg-black px-4 sm:h-14 sm:px-6">
+      <Dialog.Title className="text-center text-[11px] font-bold uppercase tracking-[0.18em] text-white sm:text-xs md:text-sm">
         {title}
       </Dialog.Title>
       <Dialog.Close
-        className="absolute right-4 top-1/2 inline-flex size-9 -translate-y-1/2 items-center justify-center text-white transition-opacity hover:opacity-70 sm:right-8"
+        className="absolute right-3 top-1/2 inline-flex size-8 -translate-y-1/2 items-center justify-center text-white transition-opacity hover:opacity-70 sm:right-6"
         aria-label="Cerrar"
       >
-        <X className="size-7 sm:size-8" strokeWidth={1.25} />
+        <X className="size-6 sm:size-7" strokeWidth={1.25} />
       </Dialog.Close>
     </div>
   );
@@ -94,28 +94,23 @@ function ModalHero({
   priority?: boolean;
 }) {
   return (
-    <div className="flex flex-1 flex-col justify-center">
-      <div className="px-4 sm:px-6">
-        <div className="overflow-hidden rounded-xl border border-white/12 bg-black p-1.5 sm:p-2">
-          <div className="relative overflow-hidden rounded-lg">
-            <Image
-              src={src}
-              alt={alt}
-              width={1895}
-              height={691}
-              priority={priority}
-              quality={100}
-              unoptimized
-              sizes="100vw"
-              className="block h-auto w-full"
-            />
-          </div>
-        </div>
+    <div className="flex h-[calc(100dvh-3rem)] w-full flex-col overflow-hidden px-4 sm:h-[calc(100dvh-3.5rem)] sm:px-6">
+      <div className="relative min-h-0 flex-1 overflow-hidden rounded-2xl">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          priority={priority}
+          quality={100}
+          unoptimized
+          sizes="100vw"
+          className="object-cover object-center"
+        />
       </div>
 
-      <div className="w-full px-6 py-6 text-center sm:px-8 sm:py-8">
-        <p className="text-sm text-white/80 sm:text-base">{tagline}</p>
-        <h2 className="mx-auto mt-3 max-w-4xl text-2xl font-extrabold uppercase leading-tight tracking-tight text-white sm:text-3xl md:text-4xl lg:text-[2.75rem] lg:leading-tight">
+      <div className="shrink-0 px-1 pb-2 pt-3 text-center sm:pb-3 sm:pt-4">
+        <p className="text-xs text-white/75 sm:text-sm">{tagline}</p>
+        <h2 className="mx-auto mt-1 max-w-4xl text-[1.5rem] font-extrabold uppercase leading-[1.05] tracking-tight text-white sm:text-3xl md:text-4xl">
           {headline}
         </h2>
       </div>
@@ -137,7 +132,7 @@ function GalleryTile({
   width: number;
   height: number;
   className?: string;
-  layout?: "cover" | "natural";
+  layout?: "cover" | "natural" | "contain";
   cropBottom?: boolean;
 }) {
   if (layout === "natural") {
@@ -157,6 +152,24 @@ function GalleryTile({
     );
   }
 
+  if (layout === "contain") {
+    return (
+      <div
+        className={`relative overflow-hidden rounded-2xl bg-neutral-950 ${className ?? ""}`}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          quality={100}
+          unoptimized
+          sizes="(max-width: 768px) 100vw, 1080px"
+          className="object-contain object-center"
+        />
+      </div>
+    );
+  }
+
   return (
     <div className={`relative overflow-hidden rounded-2xl bg-neutral-950 ${className ?? ""}`}>
       <Image
@@ -166,22 +179,36 @@ function GalleryTile({
         quality={100}
         unoptimized
         sizes="(max-width: 768px) 50vw, 1080px"
-        className={`object-cover object-center ${cropBottom ? "[clip-path:inset(0_0_13%_0)]" : ""}`}
+        className={`object-cover ${cropBottom ? "object-[center_35%]" : "object-center"}`}
       />
     </div>
   );
 }
 
-function ServiceCta({ service }: { service: Service }) {
+function ServiceCta({
+  service,
+  compact = false,
+}: {
+  service: Service;
+  compact?: boolean;
+}) {
   const subject = encodeURIComponent(`Consulta: ${service.title}`);
   const mailto = `mailto:${siteConfig.contactEmail}?subject=${subject}`;
 
   return (
-    <div className="px-6 pb-16 pt-6 text-center sm:px-8">
-      <p className="text-base text-white/80 sm:text-lg md:text-xl">{service.modalCta}</p>
+    <div
+      className={
+        compact
+          ? "px-4 pb-4 pt-0 text-center sm:pb-6"
+          : "px-6 pb-[max(3rem,env(safe-area-inset-bottom))] pt-6 text-center sm:px-10 sm:pt-8 lg:px-12"
+      }
+    >
+      <p className="text-base text-white/80 sm:text-lg md:text-xl">
+        {service.modalCta}
+      </p>
       <a
         href={mailto}
-        className="mt-5 inline-block text-3xl font-extrabold uppercase tracking-tight text-white transition-opacity hover:opacity-80 sm:mt-6 sm:text-4xl md:text-5xl lg:text-6xl"
+        className="mt-4 inline-block text-3xl font-extrabold uppercase tracking-tight text-white transition-opacity hover:opacity-80 sm:mt-5 sm:text-4xl md:text-5xl lg:text-6xl"
       >
         Conversemos
       </a>
@@ -189,39 +216,52 @@ function ServiceCta({ service }: { service: Service }) {
   );
 }
 
-function ServiceGallery({ service }: { service: Service }) {
+function ServiceGalleryGrid({ service }: { service: Service }) {
   const left = service.images[1];
   const right = service.images[2];
-  const bottom = service.images[3];
-  if (!left || !right || !bottom) return null;
+  if (!left || !right) return null;
 
   return (
     <div className="border-t border-white/10 bg-black px-6 py-6 sm:px-10 sm:py-8 lg:px-12">
-      <div className="grid gap-3 sm:gap-4">
-        <div className="grid grid-cols-2 gap-3 sm:gap-4">
-          <GalleryTile
-            src={left}
-            alt={`${service.title} producción`}
-            width={1080}
-            height={1080}
-            className="aspect-square"
-            cropBottom={service.id === "streaming"}
-          />
-          <GalleryTile
-            src={right}
-            alt={`${service.title} experiencia`}
-            width={1080}
-            height={1080}
-            className="aspect-square"
-          />
-        </div>
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-3 sm:gap-4">
         <GalleryTile
+          src={left}
+          alt={`${service.title} producción`}
+          width={1080}
+          height={1080}
+          className="aspect-square"
+        />
+        <GalleryTile
+          src={right}
+          alt={`${service.title} experiencia`}
+          width={1080}
+          height={1080}
+          className="aspect-square"
+        />
+      </div>
+    </div>
+  );
+}
+
+function ServiceClosing({ service }: { service: Service }) {
+  const bottom = service.images[3];
+  if (!bottom) return <ServiceCta service={service} />;
+
+  return (
+    <div className="flex h-[calc(100dvh-3rem)] w-full flex-col px-4 pb-8 pt-6 sm:h-[calc(100dvh-3.5rem)] sm:px-6 sm:pb-10 sm:pt-8">
+      <div className="relative min-h-0 flex-1 overflow-hidden rounded-xl sm:rounded-2xl">
+        <Image
           src={bottom}
           alt={`${service.title} resultado`}
-          width={1799}
-          height={771}
-          layout="natural"
+          fill
+          quality={100}
+          unoptimized
+          sizes="100vw"
+          className="object-cover object-[center_40%]"
         />
+      </div>
+      <div className="shrink-0 pt-6 sm:pt-8">
+        <ServiceCta service={service} compact />
       </div>
     </div>
   );
@@ -244,9 +284,9 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
           {service ? (
             <>
               <ModalHeader title={service.modalTitle} />
-              <div className="h-full snap-y snap-proximity overflow-y-auto scroll-smooth pt-14 sm:pt-16">
-                <div className="w-full bg-black pb-8">
-                  <SnapSection>
+              <div className="h-full overflow-y-auto scroll-smooth pt-12 sm:pt-14">
+                <div className="w-full bg-black">
+                  <SnapSection fill={false}>
                     {hero ? (
                       <ModalHero
                         src={hero}
@@ -267,14 +307,19 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
                   </SnapSection>
 
                   {hasGallery ? (
-                    <div className="border-t border-white/10">
-                      <ServiceGallery service={service} />
-                    </div>
+                    <>
+                      <ServiceGalleryGrid service={service} />
+                      <SnapSection className="border-t border-white/10" fill={false}>
+                        <ServiceClosing service={service} />
+                      </SnapSection>
+                    </>
                   ) : null}
 
-                  <SnapSection fill={false}>
-                    <ServiceCta service={service} />
-                  </SnapSection>
+                  {!hasGallery ? (
+                    <SnapSection className="border-t border-white/10" fill={false}>
+                      <ServiceCta service={service} />
+                    </SnapSection>
+                  ) : null}
                 </div>
               </div>
             </>
