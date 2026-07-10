@@ -222,7 +222,7 @@ export function ServicesCarousel() {
                       }}
                     />
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/10 sm:via-black/50 sm:to-black/5" />
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 p-4 pb-5 sm:p-7 sm:pb-8">
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 p-4 pb-5 text-center sm:p-7 sm:pb-8">
                       <h3
                         className={cn(
                           "font-semibold leading-tight text-white",
@@ -242,7 +242,7 @@ export function ServicesCarousel() {
                             : `opacity ${TRANSITION_MS}ms ease, max-height ${TRANSITION_MS}ms ease`,
                         }}
                       >
-                        <div className="mt-2 flex max-w-full flex-wrap items-center gap-x-1.5 gap-y-1 sm:mt-2.5 sm:gap-x-2 sm:gap-y-1.5">
+                        <div className="mt-2 flex max-w-full flex-wrap items-center justify-center gap-x-1.5 gap-y-1 sm:mt-2.5 sm:gap-x-2 sm:gap-y-1.5">
                           {item.tags.map((tag, tagIndex) => (
                             <span key={tag} className="inline-flex max-w-full shrink-0 items-center">
                               {tagIndex > 0 ? (

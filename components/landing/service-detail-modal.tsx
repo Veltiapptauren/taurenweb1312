@@ -94,8 +94,8 @@ function ModalHero({
   priority?: boolean;
 }) {
   return (
-    <div className="flex h-[calc(100dvh-3rem)] w-full flex-col overflow-hidden px-4 sm:h-[calc(100dvh-3.5rem)] sm:px-6">
-      <div className="relative min-h-0 flex-1 overflow-hidden rounded-2xl">
+    <div className="flex h-[calc(100dvh-3rem)] w-full flex-col gap-[clamp(0.75rem,2.2vh,1.25rem)] px-[clamp(1rem,5vw,3.5rem)] pb-[clamp(1.75rem,8vh,5rem)] pt-[clamp(0.5rem,1.8vh,1rem)] sm:h-[calc(100dvh-3.5rem)]">
+      <div className="relative min-h-0 w-full flex-1 overflow-hidden rounded-[clamp(0.75rem,1.5vw,1.25rem)]">
         <Image
           src={src}
           alt={alt}
@@ -108,9 +108,11 @@ function ModalHero({
         />
       </div>
 
-      <div className="shrink-0 px-1 pb-2 pt-3 text-center sm:pb-3 sm:pt-4">
-        <p className="text-xs text-white/75 sm:text-sm">{tagline}</p>
-        <h2 className="mx-auto mt-1 max-w-4xl text-[1.5rem] font-extrabold uppercase leading-[1.05] tracking-tight text-white sm:text-3xl md:text-4xl">
+      <div className="shrink-0 text-center">
+        <p className="text-[clamp(0.75rem,1.5vw,1rem)] text-white/75">
+          {tagline}
+        </p>
+        <h2 className="mx-auto mt-[clamp(0.25rem,0.8vh,0.5rem)] max-w-4xl text-[clamp(1.35rem,3.8vw,3rem)] font-extrabold uppercase leading-[1.05] tracking-tight text-white">
           {headline}
         </h2>
       </div>
@@ -248,8 +250,8 @@ function ServiceClosing({ service }: { service: Service }) {
   if (!bottom) return <ServiceCta service={service} />;
 
   return (
-    <div className="flex h-[calc(100dvh-3rem)] w-full flex-col px-4 pb-8 pt-6 sm:h-[calc(100dvh-3.5rem)] sm:px-6 sm:pb-10 sm:pt-8">
-      <div className="relative min-h-0 flex-1 overflow-hidden rounded-xl sm:rounded-2xl">
+    <div className="flex h-[calc(100dvh-3rem)] w-full flex-col gap-[clamp(0.75rem,2.2vh,1.25rem)] px-[clamp(1rem,5vw,3.5rem)] pb-[clamp(1.75rem,8vh,5rem)] pt-[clamp(0.5rem,1.8vh,1rem)] sm:h-[calc(100dvh-3.5rem)]">
+      <div className="relative min-h-0 w-full flex-1 overflow-hidden rounded-[clamp(0.75rem,1.5vw,1.25rem)]">
         <Image
           src={bottom}
           alt={`${service.title} resultado`}
@@ -260,7 +262,7 @@ function ServiceClosing({ service }: { service: Service }) {
           className="object-cover object-[center_40%]"
         />
       </div>
-      <div className="shrink-0 pt-6 sm:pt-8">
+      <div className="shrink-0">
         <ServiceCta service={service} compact />
       </div>
     </div>
