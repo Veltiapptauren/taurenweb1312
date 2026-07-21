@@ -48,7 +48,7 @@ export const successCases: SuccessCase[] = [
     company: "Gobierno de Chile",
     client: "Servicio Nacional de Protección a la Niñez y Adolescencia",
     location: "Auditorio de la Fiscalía Nacional",
-    image: "/images/cases/proteccion-ninez/hero.png",
+    image: "/images/cases/proteccion-ninez/hero.jpg",
     description:
       "El Seminario De la Protección a la Reparación fue un encuentro técnico organizado por el Servicio Nacional de Protección a la Niñez y Adolescencia para reunir a 300 especialistas en un espacio de reflexión, debate y actualización en torno a la protección de derechos de niños, niñas y adolescentes en Chile. Tauren Pro Eventos asumió la producción integral de la jornada: sonido profesional, transmisión en vivo, registro fotográfico y audiovisual, y servicio de catering para los 300 asistentes.",
     services: ["Streaming", "Sonido", "Fotografía", "Filmación", "Catering"],

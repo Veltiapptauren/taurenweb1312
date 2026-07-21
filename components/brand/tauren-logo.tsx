@@ -8,6 +8,7 @@ type TaurenLogoProps = {
   className?: string;
   imageClassName?: string;
   priority?: boolean;
+  onClick?: () => void;
 };
 
 type TaurenWordmarkProps = {
@@ -32,6 +33,7 @@ export function TaurenLogo({
   className,
   imageClassName,
   priority = false,
+  onClick,
 }: TaurenLogoProps) {
   const image = (
     <Image
@@ -49,6 +51,7 @@ export function TaurenLogo({
   return (
     <Link
       href={href}
+      onClick={onClick}
       className={cn(
         "relative z-10 inline-flex shrink-0 items-center transition-opacity hover:opacity-90",
         className

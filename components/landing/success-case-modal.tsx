@@ -264,7 +264,9 @@ export function SuccessCaseModal({ successCase, onClose, onSelect }: SuccessCase
                   src={successCase!.image}
                   alt={successCase!.company}
                   fill
-                  className="object-cover"
+                  quality={100}
+                  unoptimized
+                  className="object-cover object-center"
                   sizes="100vw"
                   priority
                 />
@@ -382,9 +384,11 @@ export function SuccessCaseModal({ successCase, onClose, onSelect }: SuccessCase
                       src={nextCase.image}
                       alt={nextCase.company}
                       fill
+                      quality={100}
+                      unoptimized
                       sizes="100vw"
                       priority={false}
-                      className="object-cover"
+                      className="object-cover object-center"
                     />
                     <div className="absolute inset-0 bg-black/35" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
