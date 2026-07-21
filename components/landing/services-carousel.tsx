@@ -129,8 +129,8 @@ export function ServicesCarousel() {
 
   return (
     <>
-      <div className="relative w-full">
-        <div className="relative min-h-[300px] sm:min-h-[280px] lg:min-h-[340px]">
+      <div className="relative w-full pt-4 sm:pt-6">
+        <div className="relative min-h-[460px] sm:min-h-[420px] lg:min-h-[500px]">
           <div
             className={cn("relative", canHover && hovering && "cursor-none")}
             onPointerEnter={() => setHovering(true)}
@@ -157,7 +157,7 @@ export function ServicesCarousel() {
             <div className="pointer-events-none absolute inset-y-0 right-0 z-20 hidden w-20 bg-gradient-to-l from-black via-black/80 to-transparent sm:block lg:w-28" />
 
             <div
-              className="relative flex min-h-[300px] select-none items-center justify-center py-2 sm:min-h-[280px] sm:py-8 lg:min-h-[340px]"
+              className="relative flex min-h-[460px] select-none items-center justify-center py-6 sm:min-h-[420px] sm:py-10 lg:min-h-[500px]"
               style={{ perspective: mobile ? undefined : "1800px" }}
             >
               {services.map((item, index) => {

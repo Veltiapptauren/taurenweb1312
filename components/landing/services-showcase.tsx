@@ -18,7 +18,7 @@ export function ServicesShowcase() {
             label="Servicios"
             title="Producción integral para marcas y empresas"
             description="Streaming, eventos corporativos y producción audiovisual con el mismo estándar de calidad de principio a fin."
-            className="mb-12 sm:mb-14"
+            className="mb-8 sm:mb-10"
           />
         </div>
 

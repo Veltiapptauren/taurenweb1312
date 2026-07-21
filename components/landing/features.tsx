@@ -3,7 +3,6 @@
 import { BrandIntro } from "@/components/landing/brand-intro";
 import { SectionHeading } from "@/components/landing/section-heading";
 import { ServicesCarousel } from "@/components/landing/services-carousel";
-import { ServicesSeoSection } from "@/components/landing/services-seo-section";
 import { SectionGlow } from "@/components/motion/section-glow";
 
 export function Features() {
@@ -16,20 +15,16 @@ export function Features() {
       <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <BrandIntro className="pb-10 sm:pb-14 lg:pb-16" />
 
-        <div className="border-t border-white/10 pt-10 sm:pt-16 lg:pt-20">
+        <div className="border-t border-white/10 pt-10 sm:pt-12 lg:pt-14">
           <SectionHeading
             label="Nuestros servicios"
             title="Soluciones para eventos corporativos"
             description="Streaming, producción integral, audiovisual, desarrollo web y apps móviles con un solo equipo."
             titleClassName="text-xl sm:text-3xl lg:text-4xl"
-            className="mb-6 px-1 sm:mb-12"
+            className="relative z-10 mb-10 px-1 sm:mb-12"
           />
-          <div className="pt-4 sm:pt-14 lg:pt-16">
-            <ServicesCarousel />
-          </div>
+          <ServicesCarousel />
         </div>
-
-        <ServicesSeoSection />
       </div>
     </section>
   );

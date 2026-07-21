@@ -71,7 +71,7 @@ export function SuccessCollage() {
           title="Casos de éxito"
           description="Pasa el cursor para explorar. Haz clic para ver el detalle completo."
           badge="Proyectos destacados"
-          className="mb-12 border-b border-white/10 pb-12 sm:mb-14 sm:pb-14"
+          className="mb-8 sm:mb-10"
         />
 
         <ScrollReveal direction="scale" delay={100}>
