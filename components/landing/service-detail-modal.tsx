@@ -224,22 +224,30 @@ function ServiceGalleryGrid({ service }: { service: Service }) {
   if (!left || !right) return null;
 
   return (
-    <div className="border-t border-white/10 bg-black px-6 py-6 sm:px-10 sm:py-8 lg:px-12">
-      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-3 sm:gap-4">
-        <GalleryTile
-          src={left}
-          alt={`${service.title} producción`}
-          width={1080}
-          height={1080}
-          className="aspect-square"
-        />
-        <GalleryTile
-          src={right}
-          alt={`${service.title} experiencia`}
-          width={1080}
-          height={1080}
-          className="aspect-square"
-        />
+    <div className="border-t border-white/10 bg-black">
+      <div className="grid grid-cols-1 gap-0 sm:grid-cols-2">
+        <div className="relative aspect-square w-full overflow-hidden bg-black">
+          <Image
+            src={left}
+            alt={`${service.title} producción`}
+            fill
+            quality={100}
+            unoptimized
+            sizes="(max-width: 640px) 100vw, 50vw"
+            className="object-cover object-center"
+          />
+        </div>
+        <div className="relative aspect-square w-full overflow-hidden bg-black">
+          <Image
+            src={right}
+            alt={`${service.title} experiencia`}
+            fill
+            quality={100}
+            unoptimized
+            sizes="(max-width: 640px) 100vw, 50vw"
+            className="object-cover object-center"
+          />
+        </div>
       </div>
     </div>
   );

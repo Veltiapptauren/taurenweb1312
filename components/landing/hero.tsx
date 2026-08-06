@@ -191,7 +191,7 @@ export function Hero() {
             ) : (
               item.images.map((src, imageIdx) => (
                 <div
-                  key={src}
+                  key={`${item.id}-${imageIdx}`}
                   className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
                     index === active && imageIdx === imageIndex % item.images.length
                       ? "opacity-100"

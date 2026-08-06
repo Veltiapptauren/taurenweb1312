@@ -27,67 +27,104 @@ export type SuccessCase = {
   titleLines?: string[];
 };
 
-function galleryFromHero(image: string): SuccessCaseGallery {
-  return {
-    wide: image,
-    left: image,
-    right: image,
-    smallLeft: image,
-    smallRight: image,
-    device: image,
-  };
-}
-
 export const successCases: SuccessCase[] = [
   {
-    id: "proteccion-ninez",
-    title: "Seminario de la Protección a la Reparación",
-    titleLines: ["Seminario de la", "Protección a la Reparación"],
+    id: "ministerio-publico",
+    title: "Cuenta Pública Ministerio Público 2025",
+    titleLines: ["Cuenta Pública", "Ministerio Público 2025"],
     subtitle:
-      "Conectar lo presencial con lo digital, sin perder una sola palabra.",
-    company: "Servicio Nacional de Protección a la Niñez y Adolescencia",
-    client: "Servicio Nacional de Protección a la Niñez y Adolescencia",
-    location: "Auditorio de la Fiscalía Nacional",
-    image: "/images/cases/proteccion-ninez/hero.jpg",
+      "Señal en vivo sin margen de error para la Fiscalía de Chile.",
+    company: "Ministerio Público de Chile",
+    client: "Ministerio Público de Chile",
+    location: "Auditorio de la Fiscalía Nacional, Santiago",
+    image: "/images/cases/ministerio-publico/hero.jpg",
     description:
-      "El Seminario De la Protección a la Reparación fue un encuentro técnico organizado por el Servicio Nacional de Protección a la Niñez y Adolescencia para reunir a 300 especialistas en un espacio de reflexión, debate y actualización en torno a la protección de derechos de niños, niñas y adolescentes en Chile. Tauren Pro Eventos asumió la producción integral de la jornada: sonido profesional, transmisión en vivo, registro fotográfico y audiovisual, y servicio de catering para los 300 asistentes.",
-    services: ["Streaming", "Sonido", "Fotografía", "Filmación", "Catering"],
+      "La Cuenta Pública del Ministerio Público 2025 reunió en el Auditorio de la Fiscalía Nacional a 300 autoridades del orden público, representantes de Carabineros, PDI y el Ministerio de Justicia, para la presentación de los resultados institucionales del año. La jornada fue presidida por Ángel Valencia Vásquez, Fiscal Nacional, con la participación de Xavier Almendáriz, Fiscal Metropolitano Centro Norte, y Lorena Parra, a cargo de la Fiscalía Regional Metropolitana Oriente. Tauren Pro Eventos produjo la transmisión en vivo al canal de YouTube de la Fiscalía de Chile, con redundancia eléctrica total garantizada mediante generador propio.",
+    services: [
+      "Streaming",
+      "Pantalla LED",
+      "Internet satelital",
+      "Amplificación",
+      "Iluminación",
+      "Generador eléctrico",
+      "Intérprete en lengua de señas",
+    ],
     year: "2025",
-    indexTotal: 5,
+    indexTotal: 4,
     stats: [
       { value: "300", label: "asistentes presenciales" },
-      { value: "1500+", label: "asistentes virtuales y un chat muy activo" },
+      { value: "700", label: "personas conectadas a lo largo de todo Chile" },
     ],
     desafio:
-      "El Servicio Nacional de Protección a la Niñez y Adolescencia necesitaba llevar a cabo un seminario de alto nivel técnico con la exigencia de no dejar a nadie fuera. La audiencia era doble: 300 profesionales presentes en el Auditorio de la Fiscalía Nacional y una comunidad de especialistas conectados desde distintos puntos del país a través de internet. Coordinar ambas experiencias, garantizando la misma calidad de audio, imagen y contenido tanto en la sala como en la pantalla, requería una operación técnica precisa, equipamiento profesional y un equipo capaz de anticipar cada variable sin interrumpir el flujo de la jornada. A esto se sumaba la necesidad de gestionar el catering para 300 asistentes con la misma atención al detalle que el resto de la producción.",
+      "Este evento no admitía márgenes de error. La Cuenta Pública del Ministerio Público es un acto protocolar con las principales autoridades del sistema de justicia del país y con transmisión en vivo al canal oficial de la Fiscalía de Chile. Un corte de señal o una falla eléctrica no era una opción. El Auditorio de la Fiscalía Nacional no contaba con la autonomía energética necesaria para garantizar continuidad absoluta durante toda la jornada, por lo que la solución debía contemplarse desde la etapa de montaje y no dejar ningún punto crítico expuesto al azar.",
     solucion:
-      "Tauren Pro Eventos diseñó e implementó una producción híbrida integral para responder a las dos dimensiones del evento. Desplegamos un sistema de sonido con mesa de 16 canales y microfonía profesional que garantizó una experiencia acústica impecable en sala. Para la transmisión en vivo, operamos tres cámaras robóticas en simultáneo, cubriendo el escenario, el auditorio y los momentos de interacción con una dinámica visual ágil y sin interrupciones. En paralelo, nuestro equipo de registro fotográfico documentó cada momento de la jornada y el filmmaker estuvo presente desde el inicio para la posterior edición del video resumen del seminario. Cerramos la experiencia con un servicio de catering para los 300 asistentes, cuidando cada detalle logístico para que el equipo organizador pudiera enfocarse en el contenido.",
+      "Instalamos un generador eléctrico en el frontis del primer piso del edificio de la Fiscalía que alimentó de forma continua la iluminación, la amplificación y las cámaras de transmisión durante toda la jornada. Para la conectividad, operamos con internet satelital como fuente principal, eliminando la dependencia de la red del edificio. La pantalla LED de 4 x 2,5 metros y el servicio de intérprete en lengua de señas completaron una producción diseñada para no dejar ningún detalle al margen. El resultado fue una transmisión ininterrumpida que llegó en vivo a 305 espectadores y que acumula 690 visualizaciones en el canal de YouTube de la Fiscalía de Chile.",
     reflexiones:
-      "El Seminario De la Protección a la Reparación demostró que un evento institucional puede tener la precisión técnica de una producción de alto nivel sin sacrificar la calidez del encuentro humano. En una jornada que conectó lo presencial con lo digital, Tauren Pro Eventos entregó cada servicio comprometido: streaming, sonido, fotografía, filmmaking y catering, a tiempo, sin imprevistos y con la calidad que el Servicio Nacional de Protección a la Niñez y Adolescencia merecía. El resultado habló por sí solo: un cliente que confió, quedó conforme y recomendó.",
+      "Primera vez que el Ministerio Público trabajó con Tauren Pro Eventos. El cliente valoró la disposición del equipo ante imprevistos de último momento y el cumplimiento de cada ítem contratado. La señal nunca se cayó.",
     gallery: {
-      wide: "/images/cases/proteccion-ninez/wide.jpg",
-      left: "/images/cases/proteccion-ninez/left.jpg",
-      right: "/images/cases/proteccion-ninez/right.jpg",
-      smallLeft: "/images/cases/proteccion-ninez/small-left.jpg",
-      smallRight: "/images/cases/proteccion-ninez/small-right.jpg",
-      device: "/images/cases/proteccion-ninez/device.jpg",
+      wide: "/images/cases/ministerio-publico/wide.jpg",
+      left: "/images/cases/ministerio-publico/left.jpg",
+      right: "/images/cases/ministerio-publico/right.jpg",
+      smallLeft: "/images/cases/ministerio-publico/small-left.jpg",
+      smallRight: "/images/cases/ministerio-publico/small-right.jpg",
+      device: "/images/cases/ministerio-publico/device.jpg",
+    },
+  },
+  {
+    id: "snpnea-noviembre",
+    title: "Charla Magistral: Principios Teóricos de Evidencia C.A.R.E.",
+    titleLines: ["Charla Magistral:", "Principios Teóricos de Evidencia C.A.R.E."],
+    subtitle:
+      "Traducción simultánea y transmisión en vivo en el Aula Magna de la UC.",
+    company: "Servicio Nacional de Protección a la Niñez y Adolescencia",
+    client: "Servicio Nacional de Protección a la Niñez y Adolescencia",
+    location: "Aula Magna, Pontificia Universidad Católica de Chile",
+    image: "/images/cases/snpnea-noviembre/hero.jpg",
+    description:
+      "250 asistentes se reunieron en el Aula Magna de la Pontificia Universidad Católica de Chile para escuchar a Martha Holden y Andrea Turnbull, directora y codirectora del Centro de Investigación sobre Cuidado Residencial de la Universidad de Cornell, Nueva York. La jornada incluyó un conversatorio moderado por María Pía Santelices, directora ejecutiva del Centro Cuida de la UC, con la participación del director del Servicio, Claudio Castillo. Tauren Pro Eventos asumió la producción técnica integral: transmisión en vivo, traducción simultánea en tiempo real, cobertura audiovisual y fotográfica, generación de contenido y coffee break para los asistentes.",
+    services: [
+      "Streaming",
+      "Traducción simultánea",
+      "Fotografía",
+      "Filmación",
+      "Coffee break",
+    ],
+    year: "2023",
+    indexTotal: 4,
+    stats: [
+      { value: "250", label: "asistentes presenciales" },
+      { value: "1000+", label: "asistentes virtuales y un chat muy activo" },
+    ],
+    desafio:
+      "El Aula Magna de la UC es un espacio patrimonial con características técnicas particulares. Durante la etapa de montaje y ensayos previos al evento, identificamos interferencias entre los transmisores de las cabinas de traducción simultánea y el equipo de sonido, así como condiciones de conectividad que requerían una solución a medida. Anticipar estos puntos antes del inicio de la jornada nos permitió llegar al evento con todo resuelto.",
+    solucion:
+      "Implementamos un balanceador de red que operó en paralelo sobre el cable interno de la universidad y un chip de datos 4G, garantizando estabilidad en la transmisión sin depender de una sola fuente. Las interferencias de audio detectadas en los ensayos fueron corregidas antes del inicio, asegurando una experiencia limpia tanto en sala como para la audiencia online. En paralelo, el equipo audiovisual registró la jornada completa y generó contenido para el cliente, desde las palabras de bienvenida del prorector Francisco Gallego hasta el cierre del conversatorio.",
+    reflexiones:
+      "Un edificio antiguo, dos ponentes internacionales y 250 personas entre sala y pantalla. Tauren Pro Eventos resolvió cada variable técnica en silencio para que el contenido fuera lo único que se notara. El Servicio Nacional de Protección Especializada a la Niñez y Adolescencia recibió un evento sin contratiempos y el registro completo para comunicarlo.",
+    gallery: {
+      wide: "/images/cases/snpnea-noviembre/wide.jpg",
+      left: "/images/cases/snpnea-noviembre/left.jpg",
+      right: "/images/cases/snpnea-noviembre/right.jpg",
+      smallLeft: "/images/cases/snpnea-noviembre/small-left.jpg",
+      smallRight: "/images/cases/snpnea-noviembre/small-right.jpg",
+      device: "/images/cases/snpnea-noviembre/device.jpg",
     },
   },
   {
     id: "sernatur-50",
-    title: "50 Años SERNATUR",
-    titleLines: ["50 Años", "SERNATUR"],
+    title: "Conversatorio de los 50 Años de SERNATUR",
+    titleLines: ["Conversatorio de los", "50 Años de SERNATUR"],
     subtitle:
-      "Celebrar medio siglo de turismo en Chile con imagen, sabor y relato.",
+      "Cincuenta años de historia turística de Chile, reunidos en una sola tarde.",
     company: "SERNATUR",
     client: "Servicio Nacional de Turismo",
     location: "Santiago, Chile",
-    image: "/images/cases/sernatur-50/hero.jpg",
+    image: "/images/cases/sernatur/hero.jpg",
     description:
-      "La celebración de los 50 años de SERNATUR reunió a equipos, autoridades y colaboradores en una jornada institucional de alto valor simbólico. Tauren Pro Eventos asumió la producción integral del encuentro: registro fotográfico oficial, filmación de testimoniales, postproducción audiovisual y un servicio de catering diseñado para acompañar la experiencia con el mismo nivel de cuidado que el resto de la operación.",
+      "El Conversatorio de los 50 Años de SERNATUR reunió a equipos, autoridades y colaboradores en una jornada institucional de alto valor simbólico. Tauren Pro Eventos asumió la producción integral del encuentro: registro fotográfico oficial, filmación de testimoniales, postproducción audiovisual y un servicio de catering diseñado para acompañar la experiencia con el mismo nivel de cuidado que el resto de la operación.",
     services: ["Fotografía", "Filmación", "Testimoniales", "Catering"],
     year: "2025",
-    indexTotal: 5,
+    indexTotal: 4,
     stats: [
       { value: "50", label: "años de historia institucional" },
       { value: "4", label: "frentes de producción coordinados" },
@@ -99,87 +136,46 @@ export const successCases: SuccessCase[] = [
     reflexiones:
       "Los 50 años de SERNATUR demostraron que un hito institucional se construye con narrativa, precisión técnica y hospitalidad. Tauren Pro Eventos entregó fotografía, filmación, testimoniales y catering en una sola operación coherente: imagen limpia, relatos con identidad y una experiencia que honró el legado del Servicio Nacional de Turismo.",
     gallery: {
-      wide: "/images/cases/sernatur-50/wide.jpg",
-      left: "/images/cases/sernatur-50/left.jpg",
-      right: "/images/cases/sernatur-50/right.jpg",
-      smallLeft: "/images/cases/sernatur-50/small-left.jpg",
-      smallRight: "/images/cases/sernatur-50/small-right.jpg",
-      device: "/images/cases/sernatur-50/device.png",
+      wide: "/images/cases/sernatur/wide.jpg",
+      left: "/images/cases/sernatur/left.jpg",
+      right: "/images/cases/sernatur/right.jpg",
+      smallLeft: "/images/cases/sernatur/small-left.jpg",
+      smallRight: "/images/cases/sernatur/small-right.jpg",
+      device: "/images/cases/sernatur/device.png",
     },
   },
   {
-    id: "banco-innovacion",
-    title: "Cumbre de Innovación",
-    subtitle: "Sector Financiero",
-    company: "Banco Regional",
-    client: "Banco Regional",
-    location: "Hotel W Santiago",
-    image: "/images/cases/case-3.jpg",
+    id: "proteccion-ninez",
+    title: "Seminario de la Protección a la Reparación",
+    titleLines: ["Seminario de la", "Protección a la Reparación"],
+    subtitle:
+      "Conectar lo presencial con lo digital, sin perder una sola palabra.",
+    company: "Servicio Nacional de Protección a la Niñez y Adolescencia",
+    client: "Servicio Nacional de Protección a la Niñez y Adolescencia",
+    location: "Auditorio de la Fiscalía Nacional",
+    image: "/images/cases/snpnea/hero.jpg",
     description:
-      "Producción de conferencia con paneles, entrevistas a ejecutivos y entrega de highlights en 48 horas. Tauren Pro Eventos gestionó la operación técnica completa: sonido, iluminación, registro multicámara, entrevistas en backstage y edición acelerada de piezas para comunicación interna y externa.",
-    services: ["Conferencia", "Entrevistas", "Highlights"],
-    year: "2024",
-    indexTotal: 5,
+      "El Seminario De la Protección a la Reparación fue un encuentro técnico organizado por el Servicio Nacional de Protección a la Niñez y Adolescencia para reunir a 300 especialistas en un espacio de reflexión, debate y actualización en torno a la protección de derechos de niños, niñas y adolescentes en Chile. Tauren Pro Eventos asumió la producción integral de la jornada: sonido profesional, transmisión en vivo, registro fotográfico y audiovisual, y servicio de catering para los 300 asistentes.",
+    services: ["Streaming", "Sonido", "Fotografía", "Filmación", "Catering"],
+    year: "2025",
+    indexTotal: 4,
     stats: [
-      { value: "280", label: "ejecutivos y invitados" },
-      { value: "48", label: "horas para entrega de highlights" },
+      { value: "300", label: "asistentes presenciales" },
+      { value: "1500+", label: "asistentes virtuales y un chat muy activo" },
     ],
     desafio:
-      "El banco requería una cumbre de innovación con múltiples paneles, entrevistas a líderes del sector y contenido audiovisual listo en un plazo exigente. La operación debía mantener estándares corporativos de imagen y sonido mientras se capturaban momentos espontáneos en backstage y en sala.",
+      "El Servicio Nacional de Protección a la Niñez y Adolescencia necesitaba llevar a cabo un seminario de alto nivel técnico con la exigencia de no dejar a nadie fuera. La audiencia era doble: 300 profesionales presentes en el Auditorio de la Fiscalía Nacional y una comunidad de especialistas conectados desde distintos puntos del país a través de internet. Coordinar ambas experiencias, garantizando la misma calidad de audio, imagen y contenido tanto en la sala como en la pantalla, requería una operación técnica precisa, equipamiento profesional y un equipo capaz de anticipar cada variable sin interrumpir el flujo de la jornada. A esto se sumaba la necesidad de gestionar el catering para 300 asistentes con la misma atención al detalle que el resto de la producción.",
     solucion:
-      "Implementamos un esquema de producción con tres cámaras en sala, estación de entrevistas dedicada y editor en sitio para acelerar la postproducción. Definimos un pipeline de entrega con piezas cortas para redes y un resumen ejecutivo entregado en 48 horas.",
+      "Tauren Pro Eventos diseñó e implementó una producción híbrida integral para responder a las dos dimensiones del evento. Desplegamos un sistema de sonido con mesa de 16 canales y microfonía profesional que garantizó una experiencia acústica impecable en sala. Para la transmisión en vivo, operamos tres cámaras robóticas en simultáneo, cubriendo el escenario, el auditorio y los momentos de interacción con una dinámica visual ágil y sin interrupciones. En paralelo, nuestro equipo de registro fotográfico documentó cada momento de la jornada y el filmmaker estuvo presente desde el inicio para la posterior edición del video resumen del seminario. Cerramos la experiencia con un servicio de catering para los 300 asistentes, cuidando cada detalle logístico para que el equipo organizador pudiera enfocarse en el contenido.",
     reflexiones:
-      "La cumbre demostró que la velocidad de entrega no tiene por qué comprometer la calidad. El cliente recibió material listo para difundir mientras el evento aún generaba conversación en el sector financiero.",
-    gallery: galleryFromHero("/images/cases/case-3.jpg"),
-  },
-  {
-    id: "retail-expansion",
-    title: "Activación de Marca",
-    subtitle: "Retail Nacional",
-    company: "Cadena Retail X",
-    client: "Cadena Retail X",
-    location: "Mall Plaza Vespucio, Santiago",
-    image: "/images/cases/case-4.jpg",
-    description:
-      "Activación en mall con cobertura audiovisual, contenido para redes y reporte de asistencia para el cliente. Tauren Pro Eventos produjo la experiencia en terreno: montaje de activación, registro fotográfico y audiovisual, piezas para Instagram y TikTok, y consolidación de métricas de asistencia y engagement.",
-    services: ["Activación", "Contenido RRSS", "Reporte KPI"],
-    year: "2023",
-    indexTotal: 5,
-    stats: [
-      { value: "1200+", label: "personas impactadas en el mall" },
-      { value: "15", label: "piezas de contenido entregadas" },
-    ],
-    desafio:
-      "La cadena retail necesitaba una activación de alto tráfico en un mall con restricciones de horario, generación de contenido en tiempo real para redes y un reporte cuantitativo de resultados para justificar la inversión comercial.",
-    solucion:
-      "Montamos la activación con flujo optimizado para captura continua, equipo de contenido dedicado a redes y un sistema de conteo de asistencia integrado al cierre del evento. Entregamos un reporte con KPIs, material editado y fotografías listas para campaña.",
-    reflexiones:
-      "La activación mostró cómo combinar experiencia presencial y contenido digital en una sola operación. El cliente obtuvo visibilidad inmediata en redes y datos concretos para medir el retorno de la activación.",
-    gallery: galleryFromHero("/images/cases/case-4.jpg"),
-  },
-  {
-    id: "universidad-aniversario",
-    title: "Aniversario Institucional",
-    subtitle: "Educación Superior",
-    company: "Universidad Austral",
-    client: "Universidad Austral",
-    location: "Campus Peñalolén, Santiago",
-    image: "/images/cases/case-5.jpg",
-    description:
-      "Gala de aniversario con gala dinner, show en vivo, transmisión híbrida y documental de cierre de campaña. Tauren Pro Eventos asumió la producción integral: escenario, sonido e iluminación para el show, transmisión para alumni internacional, registro cinematográfico y producción de un documental de cierre.",
-    services: ["Gala", "Show en vivo", "Documental"],
-    year: "2023",
-    indexTotal: 5,
-    stats: [
-      { value: "600", label: "invitados en gala dinner" },
-      { value: "2000+", label: "espectadores en transmisión" },
-    ],
-    desafio:
-      "La universidad celebraba un aniversario institucional con gala dinner, show artístico en vivo y una audiencia híbrida que incluía alumni en el extranjero. El reto era mantener la elegancia del formato presencial mientras se capturaba material de alto valor para un documental conmemorativo.",
-    solucion:
-      "Diseñamos una producción escénica completa con iluminación de gala, audio profesional para show en vivo y transmisión multicámara para audiencia remota. Un equipo de filmmaking documentó la jornada con enfoque cinematográfico para la pieza conmemorativa final.",
-    reflexiones:
-      "El aniversario reafirmó que los hitos institucionales merecen una producción a la altura de su significado. La combinación de gala presencial, streaming global y documental de cierre entregó un legado audiovisual que trasciende la noche del evento.",
-    gallery: galleryFromHero("/images/cases/case-5.jpg"),
+      "El Seminario De la Protección a la Reparación demostró que un evento institucional puede tener la precisión técnica de una producción de alto nivel sin sacrificar la calidez del encuentro humano. En una jornada que conectó lo presencial con lo digital, Tauren Pro Eventos entregó cada servicio comprometido: streaming, sonido, fotografía, filmmaking y catering, a tiempo, sin imprevistos y con la calidad que el Servicio Nacional de Protección a la Niñez y Adolescencia merecía. El resultado habló por sí solo: un cliente que confió, quedó conforme y recomendó.",
+    gallery: {
+      wide: "/images/cases/snpnea/wide.jpg",
+      left: "/images/cases/snpnea/left.jpg",
+      right: "/images/cases/snpnea/right.jpg",
+      smallLeft: "/images/cases/snpnea/small-left.jpg",
+      smallRight: "/images/cases/snpnea/small-right.jpg",
+      device: "/images/cases/snpnea/device.jpg",
+    },
   },
 ];
