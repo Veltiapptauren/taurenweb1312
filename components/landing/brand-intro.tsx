@@ -17,7 +17,7 @@ type BrandIntroProps = {
 
 export function BrandIntro({ className }: BrandIntroProps) {
   return (
-    <div className={cn("mx-auto max-w-6xl", className)}>
+    <div id="tauren" className={cn("mx-auto max-w-6xl scroll-mt-24", className)}>
       <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
         <div className="relative flex items-center justify-center overflow-hidden sm:min-h-[420px]">
           <div

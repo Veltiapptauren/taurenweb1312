@@ -5,9 +5,32 @@ import { ShineLink } from "@/components/motion/shine-link";
 import { SectionGlow } from "@/components/motion/section-glow";
 import { useInView } from "@/hooks/use-in-view";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
-import { seoServiceProfiles } from "@/lib/seo-services";
 import { getWhatsAppUrl } from "@/lib/site";
 import { cn } from "@/lib/utils";
+
+const PILLARS = [
+  {
+    id: "streaming",
+    title: "Un sólo equipo",
+    description:
+      "Streaming, producción, vídeo y desarrollo bajo un mismo techo.",
+  },
+  {
+    id: "produccion-integral",
+    title: "Asesoría de inicio a fin",
+    description: "Contigo desde el brief hasta la entrega final.",
+  },
+  {
+    id: "media",
+    title: "Estándar profesional",
+    description: "Equipo, multicámara y postproducción de nivel broadcast",
+  },
+  {
+    id: "diseno-web",
+    title: "Foco en resultados",
+    description: "Cada proyecto se mide y se optimiza, no solo se entrega.",
+  },
+] as const;
 
 const CARD_STYLES = [
   { bg: "bg-[#8b2e2e]", icon: "text-white" },
@@ -55,13 +78,13 @@ const ICONS = [
   ),
 ];
 
-function ServiceCard({
-  profile,
+function PillarCard({
+  pillar,
   index,
   active,
   runId,
 }: {
-  profile: (typeof seoServiceProfiles)[number];
+  pillar: (typeof PILLARS)[number];
   index: number;
   active: boolean;
   runId: number;
@@ -75,10 +98,7 @@ function ServiceCard({
   const copyDelay = cardDelay + 420;
 
   return (
-    <article
-      id={profile.anchor}
-      className="scroll-mt-24 flex flex-col lg:max-w-[240px]"
-    >
+    <article id={pillar.id} className="scroll-mt-24 flex flex-col lg:max-w-[240px]">
       <div
         key={`card-${index}-${runId}`}
         className={cn(
@@ -98,20 +118,17 @@ function ServiceCard({
 
       <div
         key={`copy-${index}-${runId}`}
-        className={cn("mt-5 opacity-0 sm:mt-6", show && runId > 0 && "animate-service-copy-rise")}
+        className={cn("mt-5 text-center opacity-0 sm:mt-6", show && runId > 0 && "animate-service-copy-rise")}
         style={show && !reduced ? { animationDelay: `${copyDelay}ms` } : show ? { opacity: 1 } : undefined}
       >
-        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#00aeef]">
-          {String(index + 1).padStart(2, "0")}
-        </p>
-        <h3 className="mt-2 text-base font-semibold leading-snug text-white sm:text-lg">
-          {profile.name}
+        <h3 className="text-base font-semibold leading-snug text-white sm:text-lg">
+          {pillar.title}
         </h3>
         <p className="mt-2 text-sm leading-relaxed text-white/55">
-          {profile.bullets[0]}
+          {pillar.description}
         </p>
         <ShineLink
-          href={getWhatsAppUrl(`Hola, quiero cotizar ${profile.name.toLowerCase()}`)}
+          href={getWhatsAppUrl(`Hola, quiero cotizar: ${pillar.title}`)}
           external
           className="mt-5 h-10 rounded-full border border-[#00aeef]/30 bg-[#00aeef]/10 px-5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#00aeef] transition-all hover:border-[#00aeef] hover:bg-[#00aeef] hover:text-black sm:text-xs"
         >
@@ -150,9 +167,9 @@ export function Process() {
           ref={gridRef}
           className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6 lg:flex lg:items-end lg:justify-between lg:gap-5"
         >
-          {seoServiceProfiles.map((profile, index) => (
+          {PILLARS.map((pillar, index) => (
             <div
-              key={profile.id}
+              key={pillar.id}
               className={cn(
                 "lg:flex-1",
                 index === 1 && "lg:mt-7",
@@ -160,8 +177,8 @@ export function Process() {
                 index === 3 && "lg:mt-[84px]"
               )}
             >
-              <ServiceCard
-                profile={profile}
+              <PillarCard
+                pillar={pillar}
                 index={index}
                 active={gridVisible || reduced}
                 runId={gridRunId}

@@ -224,9 +224,9 @@ function ServiceGalleryGrid({ service }: { service: Service }) {
   if (!left || !right) return null;
 
   return (
-    <div className="border-t border-white/10 bg-black">
-      <div className="grid grid-cols-1 gap-0 sm:grid-cols-2">
-        <div className="relative aspect-square w-full overflow-hidden bg-black">
+    <div className="border-t border-white/10 bg-black px-[clamp(1rem,5vw,3.5rem)] py-[clamp(1rem,3vh,2rem)]">
+      <div className="grid grid-cols-1 gap-[clamp(0.75rem,2vw,1.25rem)] sm:grid-cols-2">
+        <div className="relative aspect-square w-full overflow-hidden rounded-[clamp(0.75rem,1.5vw,1.25rem)] bg-black">
           <Image
             src={left}
             alt={`${service.title} producción`}
@@ -237,7 +237,7 @@ function ServiceGalleryGrid({ service }: { service: Service }) {
             className="object-cover object-center"
           />
         </div>
-        <div className="relative aspect-square w-full overflow-hidden bg-black">
+        <div className="relative aspect-square w-full overflow-hidden rounded-[clamp(0.75rem,1.5vw,1.25rem)] bg-black">
           <Image
             src={right}
             alt={`${service.title} experiencia`}
