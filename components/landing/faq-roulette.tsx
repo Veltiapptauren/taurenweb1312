@@ -51,7 +51,7 @@ export function FaqRoulette({
             Explora las preguntas
           </p>
           <div
-            className="flex gap-2 overflow-x-auto pb-2 lg:h-[360px] lg:flex-col lg:gap-2 lg:overflow-y-auto lg:overflow-x-hidden lg:pr-2"
+            className="flex gap-2 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] lg:h-[360px] lg:flex-col lg:gap-2 lg:overflow-y-auto lg:overflow-x-hidden lg:pr-2 lg:[-ms-overflow-style:auto] lg:[scrollbar-width:auto] [&::-webkit-scrollbar]:hidden lg:[&::-webkit-scrollbar]:block"
             role="tablist"
             aria-label="Preguntas frecuentes"
           >
@@ -65,7 +65,7 @@ export function FaqRoulette({
                   aria-selected={isActive}
                   onClick={() => goTo(index)}
                   className={cn(
-                    "group flex min-w-[13rem] items-center gap-3 border px-4 py-3 text-left transition-colors lg:min-h-[76px] lg:min-w-0 lg:px-5",
+                    "group flex w-[min(78vw,18rem)] shrink-0 items-center gap-3 border px-4 py-3 text-left transition-colors sm:w-[16rem] lg:min-h-[76px] lg:w-auto lg:min-w-0 lg:px-5",
                     isActive
                       ? "border-[#00aeef]/60 bg-[#00aeef]/10 text-white"
                       : "border-white/[0.08] bg-white/[0.02] text-white/55 hover:border-white/20 hover:text-white"

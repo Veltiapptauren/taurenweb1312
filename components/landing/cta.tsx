@@ -47,10 +47,10 @@ export function Cta() {
                 </li>
                 <li>{siteConfig.contactAddress}</li>
               </ul>
-              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
+              <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 <ShineLink
                   href={`mailto:${siteConfig.contactEmail}`}
-                  className="h-11 rounded-full bg-[#00aeef] px-6 text-sm font-medium text-black hover:opacity-90"
+                  className="h-auto min-h-11 max-w-full break-all rounded-full bg-[#00aeef] px-5 py-3 text-sm font-medium text-black hover:opacity-90 sm:break-normal sm:px-6"
                 >
                   {siteConfig.contactEmail}
                 </ShineLink>

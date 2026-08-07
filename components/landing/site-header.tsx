@@ -94,10 +94,10 @@ export function SiteHeader() {
   }, [menuOpen]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-[70] bg-transparent">
+    <header className="fixed inset-x-0 top-0 z-[70] bg-transparent pt-[env(safe-area-inset-top)]">
       <div
         className={cn(
-          "mx-auto flex h-14 items-center justify-between px-4 sm:h-16 sm:px-8 lg:px-12",
+          "mx-auto flex h-14 items-center justify-between gap-3 px-4 sm:h-16 sm:px-8 lg:px-12",
           menuOpen && "pointer-events-none opacity-0"
         )}
       >
@@ -132,7 +132,7 @@ export function SiteHeader() {
           </aside>
 
           <div className="relative flex min-h-0 min-w-0 flex-1 flex-col lg:border-l lg:border-white/[0.08]">
-            <div className="flex shrink-0 items-center justify-between px-5 py-4 sm:px-8 lg:absolute lg:inset-x-0 lg:top-0 lg:z-20 lg:justify-end lg:px-10 lg:py-8">
+            <div className="flex shrink-0 items-center justify-between gap-3 px-5 pb-4 pt-[max(1rem,env(safe-area-inset-top))] sm:px-8 lg:absolute lg:inset-x-0 lg:top-0 lg:z-20 lg:justify-end lg:px-10 lg:pb-8 lg:pt-8">
               <TaurenLogo
                 href="/"
                 onClick={() => setMenuOpen(false)}
@@ -143,7 +143,7 @@ export function SiteHeader() {
                 type="button"
                 aria-label="Cerrar menú"
                 onClick={() => setMenuOpen(false)}
-                className="inline-flex size-11 items-center justify-center text-white transition-opacity hover:opacity-70"
+                className="inline-flex size-11 shrink-0 items-center justify-center text-white transition-opacity hover:opacity-70"
               >
                 <X className="size-7" strokeWidth={1.25} />
               </button>

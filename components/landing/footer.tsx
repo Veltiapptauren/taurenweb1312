@@ -55,7 +55,7 @@ function ContactRow({
       <span className="flex size-9 shrink-0 items-center justify-center rounded-md bg-[#0a2744] text-[#00aeef] transition-colors group-hover:bg-[#0d3056]">
         <Icon className="size-4" strokeWidth={1.75} />
       </span>
-      <span className="pt-1.5 leading-snug">{children}</span>
+      <span className="min-w-0 break-words pt-1.5 leading-snug">{children}</span>
     </>
   );
 

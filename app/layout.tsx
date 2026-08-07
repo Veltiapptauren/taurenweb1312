@@ -22,6 +22,7 @@ export const viewport: Viewport = {
   ],
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 };
 
 export const metadata: Metadata = {
@@ -114,7 +115,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className="min-h-full flex flex-col bg-black font-sans text-white"
+        className="flex min-h-full flex-col overflow-x-clip bg-black font-sans text-white"
         suppressHydrationWarning
       >
         <Providers>

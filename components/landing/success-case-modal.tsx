@@ -14,7 +14,7 @@ function MetaItem({ label, value }: { label: string; value: string }) {
       <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/45">
         {label}
       </p>
-      <p className="mt-1.5 text-sm font-medium leading-snug text-white/90 sm:text-[15px]">
+      <p className="mt-1.5 break-words text-sm font-medium leading-snug text-white/90 sm:text-[15px]">
         {value}
       </p>
     </div>
@@ -153,9 +153,9 @@ function HeroOverlay({
               {indexLabel}
             </span>
           ) : null}
-          <Dialog.Title className="mt-3 text-[1.35rem] font-black uppercase leading-[0.9] tracking-[-0.02em] text-white sm:mt-4 sm:text-[2.35rem] md:text-[2.75rem] lg:text-[3.05rem]">
+          <Dialog.Title className="mt-3 text-[1.35rem] font-black uppercase leading-[0.95] tracking-[-0.02em] text-white sm:mt-4 sm:text-[2.35rem] md:text-[2.75rem] lg:text-[3.05rem]">
             {lines.map((line) => (
-              <span key={line} className="block sm:whitespace-nowrap">
+              <span key={line} className="block break-words">
                 {line}
               </span>
             ))}
@@ -180,7 +180,7 @@ function BackPill({ onClose }: { onClose: () => void }) {
   return (
     <Dialog.Close
       onClick={onClose}
-      className="fixed left-4 top-20 z-[95] inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.26em] text-white/75 transition-opacity hover:opacity-85 sm:left-8"
+      className="fixed left-4 top-[max(5rem,calc(env(safe-area-inset-top)+4.5rem))] z-[95] inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.26em] text-white/75 transition-opacity hover:opacity-85 sm:left-8"
       aria-label="Volver a casos de éxito"
     >
       <span className="inline-flex size-8 items-center justify-center rounded-full border border-white/15 bg-black/30 backdrop-blur">
@@ -259,7 +259,7 @@ export function SuccessCaseModal({ successCase, onClose, onSelect }: SuccessCase
             <BackPill onClose={onClose} />
 
             <div className="w-full">
-              <div className="relative h-screen min-h-[560px] w-full">
+              <div className="relative h-[100dvh] min-h-0 w-full">
                 <Image
                   src={successCase!.image}
                   alt={successCase!.company}
@@ -287,7 +287,7 @@ export function SuccessCaseModal({ successCase, onClose, onSelect }: SuccessCase
                   <MetaItem label="Ubicación" value={successCase!.location} />
                   <MetaItem
                     label="Soluciones"
-                    value={successCase!.services.join("-")}
+                    value={successCase!.services.join(" · ")}
                   />
                 </div>
               </div>
@@ -379,7 +379,7 @@ export function SuccessCaseModal({ successCase, onClose, onSelect }: SuccessCase
                   className="group relative block w-full overflow-hidden bg-black text-left"
                   aria-label="Abrir siguiente caso de éxito"
                 >
-                  <div className="relative h-[62vh] min-h-[420px] w-full">
+                  <div className="relative h-[48vh] min-h-[280px] w-full sm:h-[62vh] sm:min-h-[420px]">
                     <Image
                       src={nextCase.image}
                       alt={nextCase.company}
@@ -392,11 +392,11 @@ export function SuccessCaseModal({ successCase, onClose, onSelect }: SuccessCase
                     />
                     <div className="absolute inset-0 bg-black/35" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                    <div className="absolute bottom-16 left-4 sm:bottom-20 sm:left-8 lg:bottom-24 lg:left-14">
+                    <div className="absolute bottom-10 left-4 right-12 sm:bottom-20 sm:left-8 sm:right-auto lg:bottom-24 lg:left-14">
                       <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/65">
                         Siguiente proyecto
                       </p>
-                      <p className="mt-3 max-w-3xl text-[1.5rem] font-black uppercase leading-[0.92] tracking-[-0.02em] text-white sm:text-[2.2rem] md:text-[2.55rem] lg:text-[2.85rem]">
+                      <p className="mt-3 max-w-3xl break-words text-[1.35rem] font-black uppercase leading-[0.95] tracking-[-0.02em] text-white sm:text-[2.2rem] md:text-[2.55rem] lg:text-[2.85rem]">
                         {nextCase.title}
                       </p>
                       <p className="mt-3 max-w-2xl text-sm font-semibold leading-snug text-white/70 sm:text-base lg:text-lg">

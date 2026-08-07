@@ -54,25 +54,37 @@ function HeroTitle({ title }: { title: string }) {
   );
 }
 
-function chunkHeroTags(tags: string[]): string[][] {
-  if (tags.length <= 3) return [tags];
-  if (tags.length === 4) return [tags.slice(0, 2), tags.slice(2)];
-  if (tags.length === 5) return [tags.slice(0, 3), tags.slice(3)];
+function chunkHeroTags(tags: string[], mobile: boolean): string[][] {
+  const size = mobile ? 2 : 3;
+  if (!mobile) {
+    if (tags.length <= 3) return [tags];
+    if (tags.length === 4) return [tags.slice(0, 2), tags.slice(2)];
+    if (tags.length === 5) return [tags.slice(0, 3), tags.slice(3)];
+  }
   const rows: string[][] = [];
-  for (let i = 0; i < tags.length; i += 3) rows.push(tags.slice(i, i + 3));
+  for (let i = 0; i < tags.length; i += size) rows.push(tags.slice(i, i + size));
   return rows;
 }
 
 function HeroTagRows({ tags }: { tags: string[] }) {
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    const update = () => setMobile(window.innerWidth < 640);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
   return (
     <div className="mt-3 flex max-w-xl flex-col gap-1 sm:mt-4 sm:max-w-2xl sm:gap-1.5">
-      {chunkHeroTags(tags).map((row) => (
+      {chunkHeroTags(tags, mobile).map((row) => (
         <p
           key={row.join("|")}
-          className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[10px] font-medium uppercase leading-snug tracking-[0.1em] text-white/75 sm:gap-x-2 sm:text-[11px] md:text-xs"
+          className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[11px] font-medium uppercase leading-snug tracking-[0.1em] text-white/75 sm:gap-x-2 sm:text-[11px] md:text-xs"
         >
           {row.map((tag, tagIndex) => (
-            <span key={tag} className="inline-flex shrink-0 items-center whitespace-nowrap">
+            <span key={tag} className="inline-flex max-w-full items-center whitespace-normal sm:shrink-0 sm:whitespace-nowrap">
               {tagIndex > 0 ? (
                 <span aria-hidden className="mr-1.5 text-white/35 sm:mr-2">
                   |
@@ -162,7 +174,7 @@ export function Hero() {
     <section
       className={cn(
         montserrat.className,
-        "relative isolate h-[100svh] min-h-[100svh] overflow-hidden bg-neutral-950 text-white/95"
+        "relative isolate h-[100dvh] min-h-[100svh] overflow-hidden bg-neutral-950 text-white/95"
       )}
     >
       <div className="pointer-events-none absolute inset-0 z-0">
@@ -217,7 +229,7 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 flex h-full min-h-[100svh] flex-col">
-        <div className="flex flex-1 flex-col justify-end px-4 pb-2 pt-8 sm:justify-center sm:px-10 sm:pb-0 sm:pt-10 lg:px-14 lg:pt-12">
+        <div className="flex flex-1 flex-col justify-end px-4 pb-2 pt-[max(2rem,calc(env(safe-area-inset-top)+3.5rem))] sm:justify-center sm:px-10 sm:pb-0 sm:pt-10 lg:px-14 lg:pt-12">
           <div
             key={slide.id}
             className="w-full max-w-4xl animate-in fade-in duration-700 fill-mode-both will-change-transform"
@@ -225,8 +237,8 @@ export function Hero() {
               reduced
                 ? undefined
                 : {
-                    transform: `translateY(${Math.min(scrollY * 0.1, 60)}px)`,
-                    opacity: 1 - Math.min(scrollY / 700, 0.3),
+                    transform: `translateY(${Math.min(scrollY * 0.06, 36)}px)`,
+                    opacity: 1 - Math.min(scrollY / 900, 0.22),
                   }
             }
           >

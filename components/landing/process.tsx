@@ -102,7 +102,7 @@ function PillarCard({
       <div
         key={`card-${index}-${runId}`}
         className={cn(
-          "relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-[2rem] opacity-0",
+          "relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-[2rem] opacity-0 sm:aspect-square",
           style.bg,
           show && runId > 0 && "animate-service-card-drop"
         )}

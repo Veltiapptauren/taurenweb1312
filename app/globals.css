@@ -87,6 +87,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -97,7 +98,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-black text-foreground antialiased;
+    @apply overflow-x-clip bg-black text-foreground antialiased;
   }
 }
 

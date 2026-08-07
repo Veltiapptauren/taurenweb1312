@@ -129,10 +129,10 @@ export function ServicesCarousel() {
 
   return (
     <>
-      <div className="relative w-full pt-4 sm:pt-6">
-        <div className="relative min-h-[460px] sm:min-h-[420px] lg:min-h-[500px]">
+      <div className="relative w-full overflow-x-clip pt-4 sm:pt-6">
+        <div className="relative min-h-[380px] sm:min-h-[420px] lg:min-h-[500px]">
           <div
-            className={cn("relative", canHover && hovering && "cursor-none")}
+            className={cn("relative overflow-x-clip", canHover && hovering && "cursor-none")}
             onPointerEnter={() => setHovering(true)}
             onPointerLeave={() => {
               setHovering(false);
@@ -157,7 +157,7 @@ export function ServicesCarousel() {
             <div className="pointer-events-none absolute inset-y-0 right-0 z-20 hidden w-20 bg-gradient-to-l from-black via-black/80 to-transparent sm:block lg:w-28" />
 
             <div
-              className="relative flex min-h-[460px] select-none items-center justify-center py-6 sm:min-h-[420px] sm:py-10 lg:min-h-[500px]"
+              className="relative flex min-h-[380px] select-none items-center justify-center py-6 sm:min-h-[420px] sm:py-10 lg:min-h-[500px]"
               style={{ perspective: mobile ? undefined : "1800px" }}
             >
               {services.map((item, index) => {
@@ -185,13 +185,13 @@ export function ServicesCarousel() {
                     }}
                     aria-current={isActive ? "true" : undefined}
                     className={cn(
-                      "absolute left-1/2 top-1/2 aspect-[4/5] overflow-hidden rounded-2xl border bg-neutral-950 ease-[cubic-bezier(0.22,1,0.36,1)] sm:aspect-[16/9]",
+                      "absolute left-1/2 top-1/2 aspect-[3/4] overflow-hidden rounded-2xl border bg-neutral-950 ease-[cubic-bezier(0.22,1,0.36,1)] sm:aspect-[16/9]",
                       canHover && hovering ? "cursor-none" : "cursor-pointer",
                       isActive
-                        ? "z-30 w-[calc(100vw-2rem)] max-w-[780px] border-[#00aeef]/55 shadow-[0_0_60px_rgba(0,174,239,0.2)] sm:w-[min(94vw,780px)] sm:shadow-[0_0_80px_rgba(0,174,239,0.22)]"
+                        ? "z-30 w-[min(100%,calc(100%-5.5rem))] max-w-[780px] border-[#00aeef]/55 shadow-[0_0_60px_rgba(0,174,239,0.2)] sm:w-[min(94vw,780px)] sm:shadow-[0_0_80px_rgba(0,174,239,0.22)]"
                         : isSide
-                          ? "z-20 w-[min(82vw,560px)] border-white/20"
-                          : "z-10 w-[min(72vw,460px)] border-white/10"
+                          ? "z-20 w-[min(100%,560px)] border-white/20"
+                          : "z-10 w-[min(100%,460px)] border-white/10"
                     )}
                     style={{
                       transition: dragging
@@ -250,7 +250,7 @@ export function ServicesCarousel() {
                                   |
                                 </span>
                               ) : null}
-                              <span className="whitespace-normal text-[9px] font-normal uppercase leading-snug tracking-[0.12em] text-white/45 sm:whitespace-nowrap sm:text-[10px]">
+                              <span className="whitespace-normal text-[11px] font-normal uppercase leading-snug tracking-[0.12em] text-white/45 sm:whitespace-nowrap sm:text-xs">
                                 {tag}
                               </span>
                             </span>
@@ -271,7 +271,7 @@ export function ServicesCarousel() {
             type="button"
             onClick={prev}
             aria-label="Anterior"
-            className="absolute left-0 top-1/2 z-40 flex size-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-black/75 text-white backdrop-blur-md transition-colors active:scale-95 sm:left-3 sm:size-12 lg:size-14"
+            className="absolute left-1 top-1/2 z-40 flex size-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-black/75 text-white backdrop-blur-md transition-colors active:scale-95 sm:left-3 sm:size-12 lg:size-14"
           >
             <ChevronLeft className="size-5 sm:size-6 lg:size-7" />
           </button>
@@ -279,7 +279,7 @@ export function ServicesCarousel() {
             type="button"
             onClick={next}
             aria-label="Siguiente"
-            className="absolute right-0 top-1/2 z-40 flex size-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-black/75 text-white backdrop-blur-md transition-colors active:scale-95 sm:right-3 sm:size-12 lg:size-14"
+            className="absolute right-1 top-1/2 z-40 flex size-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-black/75 text-white backdrop-blur-md transition-colors active:scale-95 sm:right-3 sm:size-12 lg:size-14"
           >
             <ChevronRight className="size-5 sm:size-6 lg:size-7" />
           </button>

@@ -69,7 +69,7 @@ export function SuccessCollage() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         <SectionHeading
           title="Casos de éxito"
-          description="Pasa el cursor para explorar. Haz clic para ver el detalle completo."
+          description="Toca un proyecto para ver el detalle completo."
           badge="Proyectos destacados"
           className="mb-8 sm:mb-10"
         />
@@ -81,10 +81,10 @@ export function SuccessCollage() {
               onClick={() => setSelected(featured)}
               className="group relative block w-full overflow-hidden rounded-2xl border border-white/10 text-left transition-colors hover:border-[#00aeef]/40"
             >
-              <div className="relative min-h-[300px] sm:min-h-[420px] lg:min-h-[540px]">
+              <div className="relative min-h-[260px] sm:min-h-[420px] lg:min-h-[540px]">
                 <ParallaxFrame
                   className="absolute inset-0"
-                  innerClassName="relative h-full min-h-[300px] sm:min-h-[420px] lg:min-h-[540px]"
+                  innerClassName="relative h-full min-h-[260px] sm:min-h-[420px] lg:min-h-[540px]"
                   strength={16}
                   scale={1.06}
                 >
@@ -99,24 +99,24 @@ export function SuccessCollage() {
                   />
                 </ParallaxFrame>
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-6 sm:p-10 lg:p-12">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00aeef]">
+                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-10 lg:p-12">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#00aeef] sm:text-xs">
                     {featured.company}
                   </p>
-                  <p className="mt-3 max-w-4xl text-2xl font-bold leading-tight text-white sm:text-3xl lg:text-4xl">
+                  <p className="mt-2 max-w-4xl text-xl font-bold leading-tight text-white sm:mt-3 sm:text-3xl lg:text-4xl">
                     {featured.title}
                   </p>
-                  <p className="mt-2 text-sm text-white/70 sm:text-base lg:text-lg">
+                  <p className="mt-2 line-clamp-2 text-sm text-white/70 sm:line-clamp-none sm:text-base lg:text-lg">
                     {featured.subtitle}
                   </p>
-                  <span className="mt-5 inline-flex text-xs font-medium uppercase tracking-widest text-white/50 transition-colors group-hover:text-[#00aeef]">
+                  <span className="mt-4 inline-flex text-xs font-medium uppercase tracking-widest text-white/50 transition-colors group-hover:text-[#00aeef] sm:mt-5">
                     Ver proyecto →
                   </span>
                 </div>
               </div>
             </button>
 
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 lg:grid-cols-5">
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 sm:gap-3 md:grid-cols-4">
               {successCases.map((item) => (
                 <CaseThumb
                   key={item.id}

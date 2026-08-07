@@ -41,12 +41,12 @@ function SnapSection({
 
 function ModalHeader({ title }: { title: string }) {
   return (
-    <div className="fixed inset-x-0 top-0 z-30 flex h-12 items-center justify-center bg-black px-4 sm:h-14 sm:px-6">
-      <Dialog.Title className="text-center text-[11px] font-bold uppercase tracking-[0.18em] text-white sm:text-xs md:text-sm">
+    <div className="fixed inset-x-0 top-0 z-30 flex h-[calc(3rem+env(safe-area-inset-top))] items-end justify-center bg-black px-12 pb-2.5 sm:h-[calc(3.5rem+env(safe-area-inset-top))] sm:px-14 sm:pb-3">
+      <Dialog.Title className="line-clamp-2 max-w-[min(100%,28rem)] px-2 text-center text-[11px] font-bold uppercase leading-tight tracking-[0.18em] text-white sm:line-clamp-1 sm:text-xs md:text-sm">
         {title}
       </Dialog.Title>
       <Dialog.Close
-        className="absolute right-3 top-1/2 inline-flex size-8 -translate-y-1/2 items-center justify-center text-white transition-opacity hover:opacity-70 sm:right-6"
+        className="absolute bottom-1.5 right-3 inline-flex size-8 items-center justify-center text-white transition-opacity hover:opacity-70 sm:bottom-2 sm:right-6"
         aria-label="Cerrar"
       >
         <X className="size-6 sm:size-7" strokeWidth={1.25} />
@@ -94,8 +94,8 @@ function ModalHero({
   priority?: boolean;
 }) {
   return (
-    <div className="flex h-[calc(100dvh-3rem)] w-full flex-col gap-[clamp(0.75rem,2.2vh,1.25rem)] px-[clamp(1rem,5vw,3.5rem)] pb-[clamp(1.75rem,8vh,5rem)] pt-[clamp(0.5rem,1.8vh,1rem)] sm:h-[calc(100dvh-3.5rem)]">
-      <div className="relative min-h-0 w-full flex-1 overflow-hidden rounded-[clamp(0.75rem,1.5vw,1.25rem)]">
+    <div className="flex min-h-[70dvh] w-full flex-col gap-[clamp(0.75rem,2.2vh,1.25rem)] px-[clamp(1rem,5vw,3.5rem)] pb-[clamp(1.75rem,8vh,5rem)] pt-[clamp(0.5rem,1.8vh,1rem)] sm:h-[calc(100dvh-3.5rem)] sm:min-h-0">
+      <div className="relative min-h-[220px] w-full flex-1 overflow-hidden rounded-[clamp(0.75rem,1.5vw,1.25rem)] sm:min-h-0">
         <Image
           src={src}
           alt={alt}
@@ -112,7 +112,7 @@ function ModalHero({
         <p className="text-[clamp(0.75rem,1.5vw,1rem)] text-white/75">
           {tagline}
         </p>
-        <h2 className="mx-auto mt-[clamp(0.25rem,0.8vh,0.5rem)] max-w-4xl text-[clamp(1.35rem,3.8vw,3rem)] font-extrabold uppercase leading-[1.05] tracking-tight text-white">
+        <h2 className="mx-auto mt-[clamp(0.25rem,0.8vh,0.5rem)] max-w-4xl break-words text-[clamp(1.25rem,3.8vw,3rem)] font-extrabold uppercase leading-[1.1] tracking-tight text-white">
           {headline}
         </h2>
       </div>
@@ -258,8 +258,8 @@ function ServiceClosing({ service }: { service: Service }) {
   if (!bottom) return <ServiceCta service={service} />;
 
   return (
-    <div className="flex h-[calc(100dvh-3rem)] w-full flex-col gap-[clamp(0.75rem,2.2vh,1.25rem)] px-[clamp(1rem,5vw,3.5rem)] pb-[clamp(1.75rem,8vh,5rem)] pt-[clamp(0.5rem,1.8vh,1rem)] sm:h-[calc(100dvh-3.5rem)]">
-      <div className="relative min-h-0 w-full flex-1 overflow-hidden rounded-[clamp(0.75rem,1.5vw,1.25rem)]">
+    <div className="flex min-h-[70dvh] w-full flex-col gap-[clamp(0.75rem,2.2vh,1.25rem)] px-[clamp(1rem,5vw,3.5rem)] pb-[max(clamp(1.75rem,8vh,5rem),env(safe-area-inset-bottom))] pt-[clamp(0.5rem,1.8vh,1rem)] sm:h-[calc(100dvh-3.5rem)] sm:min-h-0">
+      <div className="relative min-h-[220px] w-full flex-1 overflow-hidden rounded-[clamp(0.75rem,1.5vw,1.25rem)] sm:min-h-0">
         <Image
           src={bottom}
           alt={`${service.title} resultado`}
@@ -294,7 +294,7 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
           {service ? (
             <>
               <ModalHeader title={service.modalTitle} />
-              <div className="h-full overflow-y-auto scroll-smooth pt-12 sm:pt-14">
+              <div className="h-full overflow-y-auto scroll-smooth pt-[calc(3rem+env(safe-area-inset-top))] sm:pt-[calc(3.5rem+env(safe-area-inset-top))]">
                 <div className="w-full bg-black">
                   <SnapSection fill={false}>
                     {hero ? (

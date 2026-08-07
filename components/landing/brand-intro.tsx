@@ -51,12 +51,12 @@ export function BrandIntro({ className }: BrandIntroProps) {
           <p className="mt-4 text-sm leading-relaxed text-white/65 sm:mt-5 sm:text-base sm:leading-7">
             {brandIntroParagraph}
           </p>
-          <div className="mt-4 flex flex-wrap gap-1.5 sm:mt-5">
+          <div className="mt-4 flex flex-wrap gap-2 sm:mt-5">
             {brandIntroServiceLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-full border border-white/10 px-2.5 py-1 text-[9px] font-medium uppercase tracking-wide text-white/45 transition-colors hover:border-white/20 hover:text-white/70 sm:text-[10px]"
+                className="rounded-full border border-white/10 px-3 py-1.5 text-[11px] font-medium uppercase tracking-wide text-white/45 transition-colors hover:border-white/20 hover:text-white/70 sm:text-xs"
               >
                 {link.label}
               </Link>
