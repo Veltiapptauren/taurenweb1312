@@ -10,8 +10,8 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 
 function MetaItem({ label, value }: { label: string; value: string }) {
   return (
-    <div className="px-6 py-5 sm:px-8 sm:py-6 lg:px-10">
-      <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/45">
+    <div className="px-4 py-4 sm:px-8 sm:py-6 lg:px-10">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/45">
         {label}
       </p>
       <p className="mt-1.5 break-words text-sm font-medium leading-snug text-white/90 sm:text-[15px]">
@@ -29,7 +29,7 @@ function RichSection({
   children: ReactNode;
 }) {
   return (
-    <div className="border-t border-white/10 bg-black px-6 py-10 sm:px-10 sm:py-12">
+    <div className="border-t border-white/10 bg-black px-4 py-8 sm:px-10 sm:py-12">
       <div className="mx-auto w-full max-w-6xl">
         <p className="text-xs font-semibold uppercase tracking-[0.26em] text-white/55">
           {title}
@@ -103,14 +103,14 @@ function CaseGallery({
   title: string;
 }) {
   return (
-    <div className="border-t border-white/10 bg-black px-6 py-8 sm:px-10 sm:py-10 lg:px-12">
-      <div className="mx-auto grid max-w-6xl gap-3 sm:gap-4">
+    <div className="border-t border-white/10 bg-black px-4 py-6 sm:px-10 sm:py-10 lg:px-12">
+      <div className="mx-auto grid max-w-6xl gap-2.5 sm:gap-4">
         <GalleryFill src={gallery.wide} alt={`${title} - panel y audiencia`} aspect="aspect-[1024/439]" />
-        <div className="grid grid-cols-1 gap-3 sm:gap-4 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-2.5 sm:gap-4 lg:grid-cols-2">
           <GalleryFill src={gallery.left} alt={`${title} - coffee break`} aspect="aspect-[1024/682]" />
           <GalleryFill src={gallery.right} alt={`${title} - conversatorio`} aspect="aspect-[1024/682]" />
         </div>
-        <div className="grid grid-cols-1 gap-3 sm:gap-4 lg:grid-cols-[1369fr_676fr]">
+        <div className="grid grid-cols-1 gap-2.5 sm:gap-4 lg:grid-cols-[1369fr_676fr]">
           <GalleryFill src={gallery.smallLeft} alt={`${title} - ponente`} aspect="aspect-[1369/630]" />
           <GalleryFill src={gallery.smallRight} alt={`${title} - transmisión`} aspect="aspect-[676/630]" />
         </div>
@@ -146,28 +146,28 @@ function HeroOverlay({
 
   return (
     <>
-      <div className="absolute bottom-20 left-4 sm:bottom-24 sm:left-8 lg:bottom-28 lg:left-14">
+      <div className="absolute bottom-[max(5.5rem,calc(env(safe-area-inset-bottom)+4.5rem))] left-4 right-4 sm:bottom-24 sm:left-8 sm:right-auto lg:bottom-28 lg:left-14">
         <div className="max-w-[56rem] drop-shadow-[0_10px_35px_rgba(0,0,0,0.85)]">
           {indexLabel ? (
-            <span className="inline-block text-[11px] font-semibold uppercase tracking-[0.22em] text-white/75">
+            <span className="inline-block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/75">
               {indexLabel}
             </span>
           ) : null}
-          <Dialog.Title className="mt-3 text-[1.35rem] font-black uppercase leading-[0.95] tracking-[-0.02em] text-white sm:mt-4 sm:text-[2.35rem] md:text-[2.75rem] lg:text-[3.05rem]">
+          <Dialog.Title className="mt-2 text-[clamp(1.25rem,6.5vw,1.5rem)] font-black uppercase leading-[0.98] tracking-[-0.02em] text-white sm:mt-4 sm:text-[2.35rem] md:text-[2.75rem] lg:text-[3.05rem]">
             {lines.map((line) => (
               <span key={line} className="block break-words">
                 {line}
               </span>
             ))}
           </Dialog.Title>
-          <p className="mt-3 max-w-3xl text-sm font-semibold leading-snug text-white/75 sm:mt-4 sm:text-base lg:text-lg">
+          <p className="mt-2.5 max-w-3xl text-sm font-semibold leading-snug text-white/75 sm:mt-4 sm:text-base lg:text-lg">
             {subtitle}
           </p>
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-10 flex flex-col items-center gap-1 text-white/70">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.28em]">
+      <div className="pointer-events-none absolute inset-x-0 bottom-[max(1.25rem,env(safe-area-inset-bottom))] flex flex-col items-center gap-1 text-white/70">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.2em]">
           Desliza
         </span>
         <span className="text-sm">↓</span>
@@ -180,10 +180,10 @@ function BackPill({ onClose }: { onClose: () => void }) {
   return (
     <Dialog.Close
       onClick={onClose}
-      className="fixed left-4 top-[max(5rem,calc(env(safe-area-inset-top)+4.5rem))] z-[95] inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.26em] text-white/75 transition-opacity hover:opacity-85 sm:left-8"
+      className="fixed left-3 top-[max(4.5rem,calc(env(safe-area-inset-top)+3.5rem))] z-[95] inline-flex min-h-11 items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/75 transition-opacity hover:opacity-85 sm:left-8"
       aria-label="Volver a casos de éxito"
     >
-      <span className="inline-flex size-8 items-center justify-center rounded-full border border-white/15 bg-black/30 backdrop-blur">
+      <span className="inline-flex size-11 items-center justify-center rounded-full border border-white/15 bg-black/30 backdrop-blur">
         <ArrowLeft className="size-4" strokeWidth={2} />
       </span>
       Casos de éxito
@@ -251,7 +251,7 @@ export function SuccessCaseModal({ successCase, onClose, onSelect }: SuccessCase
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-[80] bg-black data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
         {isOpen ? (
-          <Dialog.Content ref={contentRef} className="fixed inset-0 z-[90] flex flex-col overflow-y-auto bg-black text-white outline-none">
+          <Dialog.Content ref={contentRef} className="fixed inset-0 z-[90] flex flex-col overflow-y-auto overscroll-contain bg-black pb-[env(safe-area-inset-bottom)] text-white outline-none">
             <Dialog.Description className="sr-only">
               Detalle del caso de éxito
             </Dialog.Description>
@@ -293,22 +293,22 @@ export function SuccessCaseModal({ successCase, onClose, onSelect }: SuccessCase
               </div>
             </div>
 
-            <div className="mx-auto w-full max-w-6xl px-6 py-8 sm:px-10 sm:py-10">
-              <div className="grid gap-10 py-10 lg:grid-cols-[1fr_320px] lg:items-start">
+            <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-10 sm:py-10">
+              <div className="grid gap-8 py-6 sm:gap-10 sm:py-10 lg:grid-cols-[1fr_320px] lg:items-start">
                 <p className="max-w-3xl text-sm leading-relaxed text-white/85 sm:text-base sm:leading-loose lg:text-lg">
                   {successCase!.description}
                 </p>
-                <div className="space-y-10 lg:pt-1">
+                <div className="grid grid-cols-2 gap-6 sm:gap-8 lg:grid-cols-1 lg:space-y-0 lg:gap-10 lg:pt-1">
                   {successCase!.stats.map((stat) => {
                       const plus = stat.value.endsWith("+");
                       const base = plus ? stat.value.slice(0, -1) : stat.value;
                       return (
                         <div key={stat.label}>
-                          <p className="text-5xl font-extrabold leading-none text-white sm:text-6xl">
+                          <p className="text-4xl font-extrabold leading-none text-white sm:text-6xl">
                             {base}
                             {plus ? <span className="text-[#ff3b30]">+</span> : null}
                           </p>
-                          <p className="mt-3 max-w-[240px] text-xs leading-snug text-white/60 sm:text-sm">
+                          <p className="mt-2 max-w-[240px] text-xs leading-snug text-white/60 sm:mt-3 sm:text-sm">
                             {stat.label}
                           </p>
                         </div>
@@ -343,7 +343,7 @@ export function SuccessCaseModal({ successCase, onClose, onSelect }: SuccessCase
 
             <div className="border-t border-white/10 bg-black">
               {successCase!.gallery.device ? (
-                <div className="px-6 py-10 sm:px-10 sm:py-12 lg:px-12">
+                <div className="px-4 py-8 sm:px-10 sm:py-12 lg:px-12">
                   <div className="mx-auto w-full max-w-6xl">
                     <GalleryImage
                       src={successCase!.gallery.device}
@@ -355,9 +355,9 @@ export function SuccessCaseModal({ successCase, onClose, onSelect }: SuccessCase
                 </div>
               ) : null}
 
-              <div className="px-6 pb-12 sm:px-10 sm:pb-14 lg:px-12">
+              <div className="px-4 pb-10 sm:px-10 sm:pb-14 lg:px-12">
                 <div className="mx-auto w-full max-w-6xl">
-                  <div className="grid gap-10 border-t border-white/10 pt-10 sm:pt-12 lg:grid-cols-[220px_1fr] lg:gap-14">
+                  <div className="grid gap-6 border-t border-white/10 pt-8 sm:gap-10 sm:pt-12 lg:grid-cols-[220px_1fr] lg:gap-14">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.26em] text-white/55">
                         REFLEXIONES FINALES
@@ -379,7 +379,7 @@ export function SuccessCaseModal({ successCase, onClose, onSelect }: SuccessCase
                   className="group relative block w-full overflow-hidden bg-black text-left"
                   aria-label="Abrir siguiente caso de éxito"
                 >
-                  <div className="relative h-[48vh] min-h-[280px] w-full sm:h-[62vh] sm:min-h-[420px]">
+                  <div className="relative h-[42vh] min-h-[260px] w-full sm:h-[62vh] sm:min-h-[420px]">
                     <Image
                       src={nextCase.image}
                       alt={nextCase.company}
@@ -392,24 +392,24 @@ export function SuccessCaseModal({ successCase, onClose, onSelect }: SuccessCase
                     />
                     <div className="absolute inset-0 bg-black/35" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                    <div className="absolute bottom-10 left-4 right-12 sm:bottom-20 sm:left-8 sm:right-auto lg:bottom-24 lg:left-14">
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/65">
+                    <div className="absolute bottom-[max(2.5rem,env(safe-area-inset-bottom))] left-4 right-16 sm:bottom-20 sm:left-8 sm:right-auto lg:bottom-24 lg:left-14">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/65">
                         Siguiente proyecto
                       </p>
-                      <p className="mt-3 max-w-3xl break-words text-[1.35rem] font-black uppercase leading-[0.95] tracking-[-0.02em] text-white sm:text-[2.2rem] md:text-[2.55rem] lg:text-[2.85rem]">
+                      <p className="mt-2 max-w-3xl break-words text-[clamp(1.2rem,5.5vw,1.45rem)] font-black uppercase leading-[0.98] tracking-[-0.02em] text-white sm:mt-3 sm:text-[2.2rem] md:text-[2.55rem] lg:text-[2.85rem]">
                         {nextCase.title}
                       </p>
-                      <p className="mt-3 max-w-2xl text-sm font-semibold leading-snug text-white/70 sm:text-base lg:text-lg">
+                      <p className="mt-2 max-w-2xl text-sm font-semibold leading-snug text-white/70 sm:mt-3 sm:text-base lg:text-lg">
                         {nextCase.subtitle}
                       </p>
                       {nextIndexLabel ? (
-                        <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/55">
+                        <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/55 sm:mt-4">
                           {nextIndexLabel}
                         </p>
                       ) : null}
                     </div>
 
-                    <span className="absolute right-4 top-1/2 inline-flex size-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/25 text-white/90 backdrop-blur-sm transition-transform duration-300 group-hover:scale-[1.04] sm:right-8 lg:right-14">
+                    <span className="absolute right-3 top-1/2 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/25 text-white/90 backdrop-blur-sm transition-transform duration-300 group-hover:scale-[1.04] sm:right-8 sm:size-12 lg:right-14">
                       <ArrowUpRight className="size-5" strokeWidth={2} />
                     </span>
                   </div>

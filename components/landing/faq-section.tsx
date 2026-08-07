@@ -12,7 +12,7 @@ export function FaqSection() {
   return (
     <section
       ref={ref}
-      className="relative border-t border-white/10 bg-black py-16 sm:py-20 lg:py-24"
+      className="relative overflow-x-clip border-t border-white/10 bg-black py-12 sm:py-20 lg:py-24"
     >
       <div
         key={runId}

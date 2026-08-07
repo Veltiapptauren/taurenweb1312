@@ -1,6 +1,5 @@
 "use client";
 
-import { NavLinkFx } from "@/components/motion/nav-link-fx";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { heroSlides } from "@/lib/hero-slides";
 import { cn } from "@/lib/utils";
@@ -77,14 +76,17 @@ function HeroTagRows({ tags }: { tags: string[] }) {
   }, []);
 
   return (
-    <div className="mt-3 flex max-w-xl flex-col gap-1 sm:mt-4 sm:max-w-2xl sm:gap-1.5">
+    <div className="mt-2.5 flex max-w-xl flex-col gap-1.5 sm:mt-4 sm:max-w-2xl sm:gap-1.5">
       {chunkHeroTags(tags, mobile).map((row) => (
         <p
           key={row.join("|")}
-          className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[11px] font-medium uppercase leading-snug tracking-[0.1em] text-white/75 sm:gap-x-2 sm:text-[11px] md:text-xs"
+          className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-xs font-medium uppercase leading-snug tracking-[0.08em] text-white/75 sm:gap-x-2 sm:text-xs md:text-sm"
         >
           {row.map((tag, tagIndex) => (
-            <span key={tag} className="inline-flex max-w-full items-center whitespace-normal sm:shrink-0 sm:whitespace-nowrap">
+            <span
+              key={tag}
+              className="inline-flex max-w-full items-center whitespace-normal sm:shrink-0 sm:whitespace-nowrap"
+            >
               {tagIndex > 0 ? (
                 <span aria-hidden className="mr-1.5 text-white/35 sm:mr-2">
                   |
@@ -174,10 +176,10 @@ export function Hero() {
     <section
       className={cn(
         montserrat.className,
-        "relative isolate h-[100dvh] min-h-[100svh] overflow-hidden bg-neutral-950 text-white/95"
+        "relative isolate min-h-[100svh] overflow-x-clip bg-neutral-950 text-white/95 max-sm:h-auto max-sm:min-h-[100dvh] sm:h-[100dvh] sm:overflow-hidden"
       )}
     >
-      <div className="pointer-events-none absolute inset-0 z-0">
+      <div className="pointer-events-none absolute inset-0 z-0 min-h-full">
         {heroSlides.map((item, index) => (
           <div
             key={item.id}
@@ -223,13 +225,13 @@ export function Hero() {
             )}
           </div>
         ))}
-        <div className="absolute inset-0 bg-black/25 sm:bg-black/20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/35 to-black/10 sm:from-black/50 sm:via-black/20 sm:to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent sm:from-black/35 sm:via-transparent" />
+        <div className="absolute inset-0 bg-black/30 sm:bg-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/15 sm:from-black/50 sm:via-black/20 sm:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent sm:from-black/35 sm:via-transparent" />
       </div>
 
-      <div className="relative z-10 flex h-full min-h-[100svh] flex-col">
-        <div className="flex flex-1 flex-col justify-end px-4 pb-2 pt-[max(2rem,calc(env(safe-area-inset-top)+3.5rem))] sm:justify-center sm:px-10 sm:pb-0 sm:pt-10 lg:px-14 lg:pt-12">
+      <div className="relative z-10 flex min-h-[100svh] flex-col sm:h-full">
+        <div className="flex flex-1 flex-col justify-end px-4 pb-3 pt-[max(2.75rem,calc(env(safe-area-inset-top)+3.75rem))] sm:justify-center sm:px-10 sm:pb-0 sm:pt-10 lg:px-14 lg:pt-12">
           <div
             key={slide.id}
             className="w-full max-w-4xl animate-in fade-in duration-700 fill-mode-both will-change-transform"
@@ -242,13 +244,13 @@ export function Hero() {
                   }
             }
           >
-            <h1 className="text-[2rem] font-semibold leading-[1.02] tracking-tight text-white sm:text-4xl md:text-[2.75rem] lg:text-5xl">
+            <h1 className="text-[clamp(1.7rem,7.5vw,2rem)] font-semibold leading-[1.06] tracking-tight text-white sm:text-4xl sm:leading-[1.02] md:text-[2.75rem] lg:text-5xl">
               <HeroTitle title={slide.title} />
             </h1>
             <HeroTagRows tags={slide.tags} />
             <Link
               href={slide.ctaHref}
-              className="group mt-4 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-md transition-all duration-300 hover:border-[#00aeef]/80 hover:bg-[#00aeef]/15 hover:shadow-[0_0_28px_rgba(0,174,239,0.2)] sm:mt-6 sm:h-12 sm:w-auto sm:justify-start sm:px-7 sm:text-xs"
+              className="group mt-4 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-5 text-xs font-semibold uppercase tracking-[0.12em] text-white shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-md transition-all duration-300 hover:border-[#00aeef]/80 hover:bg-[#00aeef]/15 hover:shadow-[0_0_28px_rgba(0,174,239,0.2)] sm:mt-6 sm:h-12 sm:w-auto sm:justify-start sm:px-7"
             >
               Ver servicio
               <ArrowRight
@@ -261,20 +263,24 @@ export function Hero() {
 
         <nav
           aria-label="Servicios del hero"
-          className="shrink-0 px-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-3 sm:px-10 sm:pb-8 sm:pt-4 lg:px-14"
+          className="shrink-0 px-4 pb-[max(1.5rem,calc(env(safe-area-inset-bottom)+0.5rem))] pt-2 sm:px-10 sm:pb-8 sm:pt-4 lg:px-14"
         >
-          <div className="mb-2 flex items-center justify-center gap-1.5 sm:hidden">
+          <div className="mb-3 flex items-center justify-center gap-1 sm:hidden">
             {heroSlides.map((item, index) => (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => goTo(index)}
                 aria-label={item.tab}
-                className={cn(
-                  "h-1.5 rounded-full transition-all duration-300",
-                  index === active ? "w-6 bg-[#00aeef]" : "w-1.5 bg-white/35"
-                )}
-              />
+                className="inline-flex min-h-11 min-w-11 items-center justify-center p-0"
+              >
+                <span
+                  className={cn(
+                    "block h-1.5 rounded-full transition-all duration-300",
+                    index === active ? "w-6 bg-[#00aeef]" : "w-1.5 bg-white/35"
+                  )}
+                />
+              </button>
             ))}
           </div>
 
@@ -283,12 +289,12 @@ export function Hero() {
               type="button"
               onClick={prev}
               aria-label="Slide anterior"
-              className="hidden size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/40 text-white/80 backdrop-blur-sm transition-colors hover:text-white sm:inline-flex"
+              className="hidden size-11 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/40 text-white/80 backdrop-blur-sm transition-colors hover:text-white sm:inline-flex"
             >
               <ChevronLeft className="size-6" strokeWidth={1.25} />
             </button>
 
-            <div className="flex min-w-0 flex-1 gap-2 overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-2 [&::-webkit-scrollbar]:hidden">
+            <div className="flex min-w-0 flex-1 snap-x snap-mandatory gap-2 overflow-x-auto scroll-smooth px-0.5 [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-2 [&::-webkit-scrollbar]:hidden">
               {heroSlides.map((item, index) => {
                 const isActive = index === active;
                 return (
@@ -298,7 +304,7 @@ export function Hero() {
                     onClick={() => goTo(index)}
                     aria-current={isActive ? "true" : undefined}
                     className={cn(
-                      "shrink-0 snap-center rounded-full border px-3.5 py-2.5 text-[10px] font-medium tracking-wide transition-all duration-300 sm:px-3.5 sm:py-2 sm:text-[10px]",
+                      "min-h-11 shrink-0 snap-center rounded-full border px-4 py-3 text-[11px] font-medium tracking-wide transition-all duration-300 sm:min-h-10 sm:px-3.5 sm:py-2 sm:text-xs",
                       isActive
                         ? "border-[#00aeef]/60 bg-[#00aeef]/15 text-white shadow-[0_0_20px_rgba(0,174,239,0.15)]"
                         : "border-white/15 bg-black/30 text-white/55"
@@ -317,7 +323,7 @@ export function Hero() {
               type="button"
               onClick={next}
               aria-label="Slide siguiente"
-              className="hidden size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/40 text-white/80 backdrop-blur-sm transition-colors hover:text-white sm:inline-flex"
+              className="hidden size-11 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-black/40 text-white/80 backdrop-blur-sm transition-colors hover:text-white sm:inline-flex"
             >
               <ChevronRight className="size-6" strokeWidth={1.25} />
             </button>

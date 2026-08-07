@@ -98,18 +98,18 @@ function PillarCard({
   const copyDelay = cardDelay + 420;
 
   return (
-    <article id={pillar.id} className="scroll-mt-24 flex flex-col lg:max-w-[240px]">
+    <article id={pillar.id} className="flex scroll-mt-20 flex-col lg:max-w-[240px]">
       <div
         key={`card-${index}-${runId}`}
         className={cn(
-          "relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-[2rem] opacity-0 sm:aspect-square",
+          "relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-[1.75rem] opacity-0 sm:aspect-square sm:rounded-[2rem]",
           style.bg,
           show && runId > 0 && "animate-service-card-drop"
         )}
         style={show && !reduced ? { animationDelay: `${cardDelay}ms` } : show ? { opacity: 1 } : undefined}
       >
         <div
-          className={cn("size-[72px] sm:size-20", style.icon, show && runId > 0 && "animate-service-icon-dance")}
+          className={cn("size-16 sm:size-20", style.icon, show && runId > 0 && "animate-service-icon-dance")}
           style={show && !reduced ? { animationDelay: `${iconDelay}ms` } : undefined}
         >
           <Icon />
@@ -118,7 +118,7 @@ function PillarCard({
 
       <div
         key={`copy-${index}-${runId}`}
-        className={cn("mt-5 text-center opacity-0 sm:mt-6", show && runId > 0 && "animate-service-copy-rise")}
+        className={cn("mt-4 px-1 text-center opacity-0 sm:mt-6", show && runId > 0 && "animate-service-copy-rise")}
         style={show && !reduced ? { animationDelay: `${copyDelay}ms` } : show ? { opacity: 1 } : undefined}
       >
         <h3 className="text-base font-semibold leading-snug text-white sm:text-lg">
@@ -130,9 +130,9 @@ function PillarCard({
         <ShineLink
           href={getWhatsAppUrl(`Hola, quiero cotizar: ${pillar.title}`)}
           external
-          className="mt-5 h-10 rounded-full border border-[#00aeef]/30 bg-[#00aeef]/10 px-5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#00aeef] transition-all hover:border-[#00aeef] hover:bg-[#00aeef] hover:text-black sm:text-xs"
+          className="mt-5 h-12 w-full rounded-full border border-[#00aeef]/30 bg-[#00aeef]/10 px-5 text-xs font-semibold uppercase tracking-[0.12em] text-[#00aeef] transition-all hover:border-[#00aeef] hover:bg-[#00aeef] hover:text-black sm:h-11 sm:w-auto"
         >
-          <span className="flex items-center gap-2">
+          <span className="flex items-center justify-center gap-2">
             Cotizar
             <svg viewBox="0 0 16 16" fill="none" className="size-3.5" aria-hidden>
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -151,21 +151,21 @@ export function Process() {
   return (
     <section
       id="proceso"
-      className="relative overflow-hidden border-t border-white/10 bg-black py-16 sm:py-20 lg:py-24"
+      className="relative scroll-mt-20 overflow-hidden border-t border-white/10 bg-black py-12 sm:scroll-mt-24 sm:py-20 lg:py-24"
     >
       <SectionGlow />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-10">
         <SectionHeading
           label="Cómo trabajamos"
           title="Lo que dominamos para que tu evento salga impecable."
-          description="Un proceso claro en cada área: brief, producción, entrega y seguimiento."
-          titleClassName="text-2xl sm:text-3xl lg:text-4xl"
+          description="Un estándar claro en cada área: brief, producción, entrega y seguimiento."
+          titleClassName="text-xl sm:text-3xl lg:text-4xl"
           className="mb-8 sm:mb-10"
         />
 
         <div
           ref={gridRef}
-          className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6 lg:flex lg:items-end lg:justify-between lg:gap-5"
+          className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-6 lg:flex lg:items-end lg:justify-between lg:gap-5"
         >
           {PILLARS.map((pillar, index) => (
             <div

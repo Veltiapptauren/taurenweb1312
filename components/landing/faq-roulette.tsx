@@ -47,11 +47,11 @@ export function FaqRoulette({
 
       <div className="mx-auto grid w-full max-w-6xl gap-5 lg:grid-cols-[minmax(15rem,0.85fr)_minmax(0,1.55fr)] lg:gap-8">
         <div className="order-2 lg:order-1">
-          <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/35">
+          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/35">
             Explora las preguntas
           </p>
           <div
-            className="flex gap-2 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] lg:h-[360px] lg:flex-col lg:gap-2 lg:overflow-y-auto lg:overflow-x-hidden lg:pr-2 lg:[-ms-overflow-style:auto] lg:[scrollbar-width:auto] [&::-webkit-scrollbar]:hidden lg:[&::-webkit-scrollbar]:block"
+            className="-mx-1 flex snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain px-1 pb-3 [-ms-overflow-style:none] [scrollbar-width:none] lg:mx-0 lg:h-[360px] lg:snap-none lg:flex-col lg:gap-2 lg:overflow-y-auto lg:overflow-x-hidden lg:px-0 lg:pr-2 lg:pb-2 lg:[-ms-overflow-style:auto] lg:[scrollbar-width:auto] [&::-webkit-scrollbar]:hidden lg:[&::-webkit-scrollbar]:block"
             role="tablist"
             aria-label="Preguntas frecuentes"
           >
@@ -65,7 +65,7 @@ export function FaqRoulette({
                   aria-selected={isActive}
                   onClick={() => goTo(index)}
                   className={cn(
-                    "group flex w-[min(78vw,18rem)] shrink-0 items-center gap-3 border px-4 py-3 text-left transition-colors sm:w-[16rem] lg:min-h-[76px] lg:w-auto lg:min-w-0 lg:px-5",
+                    "group flex min-h-14 w-[min(85vw,19rem)] shrink-0 snap-start items-center gap-3 border px-4 py-3.5 text-left transition-colors sm:w-[16rem] lg:min-h-[76px] lg:w-auto lg:min-w-0 lg:snap-none lg:px-5",
                     isActive
                       ? "border-[#00aeef]/60 bg-[#00aeef]/10 text-white"
                       : "border-white/[0.08] bg-white/[0.02] text-white/55 hover:border-white/20 hover:text-white"
@@ -73,7 +73,7 @@ export function FaqRoulette({
                 >
                   <span
                     className={cn(
-                      "text-[10px] font-semibold tracking-[0.2em]",
+                      "text-[11px] font-semibold tracking-[0.16em]",
                       isActive ? "text-[#00aeef]" : "text-white/30"
                     )}
                   >
@@ -98,7 +98,7 @@ export function FaqRoulette({
 
         <div className="order-1 lg:order-2">
           <div className="overflow-hidden border border-white/[0.1]">
-            <div className="relative min-h-[180px] sm:min-h-[210px]">
+            <div className="relative min-h-[160px] sm:min-h-[210px]">
               <Image
                 src="/images/hero-eventos.jpg"
                 alt=""
@@ -108,17 +108,17 @@ export function FaqRoulette({
                 aria-hidden
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/30" />
-              <div className="relative z-10 px-6 py-8 sm:px-10 sm:py-10 lg:px-12">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#00aeef]">
+              <div className="relative z-10 px-4 py-6 sm:px-10 sm:py-10 lg:px-12">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#00aeef]">
                   Pregunta
                 </p>
-                <h3 className="mt-3 max-w-2xl text-xl font-semibold leading-snug text-white sm:text-2xl">
+                <h3 className="mt-3 max-w-2xl text-lg font-semibold leading-snug text-white sm:text-2xl">
                   {faq.question}
                 </h3>
               </div>
             </div>
-            <div className="border-t border-white/[0.08] bg-black px-6 py-7 sm:px-10 sm:py-8 lg:px-12">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/40">
+            <div className="border-t border-white/[0.08] bg-black px-4 py-6 sm:px-10 sm:py-8 lg:px-12">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
                 Respuesta
               </p>
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/65 sm:text-[15px] sm:leading-8">
@@ -128,13 +128,13 @@ export function FaqRoulette({
           </div>
 
           <div className="mt-4 flex items-center justify-end gap-2">
-            <span className="mr-auto text-[10px] font-medium uppercase tracking-[0.2em] text-white/35">
+            <span className="mr-auto text-[11px] font-medium uppercase tracking-[0.16em] text-white/35">
               {String(active + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
             </span>
             <button
               type="button"
               onClick={() => goTo(active - 1)}
-              className="flex size-10 items-center justify-center border border-white/10 text-white/60 transition-colors hover:border-[#00aeef]/50 hover:text-[#00aeef]"
+              className="flex size-11 items-center justify-center border border-white/10 text-white/60 transition-colors hover:border-[#00aeef]/50 hover:text-[#00aeef]"
               aria-label="Pregunta anterior"
             >
               <ChevronLeft className="size-5" />
@@ -142,7 +142,7 @@ export function FaqRoulette({
             <button
               type="button"
               onClick={() => goTo(active + 1)}
-              className="flex size-10 items-center justify-center border border-white/10 text-white/60 transition-colors hover:border-[#00aeef]/50 hover:text-[#00aeef]"
+              className="flex size-11 items-center justify-center border border-white/10 text-white/60 transition-colors hover:border-[#00aeef]/50 hover:text-[#00aeef]"
               aria-label="Siguiente pregunta"
             >
               <ChevronRight className="size-5" />

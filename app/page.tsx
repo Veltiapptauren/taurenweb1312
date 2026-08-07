@@ -23,7 +23,7 @@ export default function HomePage() {
     <>
       <JsonLd />
       <PageEffects />
-      <main>
+      <main className="overflow-x-clip">
         <Hero />
         <Features />
         <SuccessCollage />

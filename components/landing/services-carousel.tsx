@@ -129,8 +129,8 @@ export function ServicesCarousel() {
 
   return (
     <>
-      <div className="relative w-full overflow-x-clip pt-4 sm:pt-6">
-        <div className="relative min-h-[380px] sm:min-h-[420px] lg:min-h-[500px]">
+      <div className="relative w-full overflow-x-clip pt-2 sm:pt-6">
+        <div className="relative min-h-[320px] sm:min-h-[420px] lg:min-h-[500px]">
           <div
             className={cn("relative overflow-x-clip", canHover && hovering && "cursor-none")}
             onPointerEnter={() => setHovering(true)}
@@ -157,7 +157,7 @@ export function ServicesCarousel() {
             <div className="pointer-events-none absolute inset-y-0 right-0 z-20 hidden w-20 bg-gradient-to-l from-black via-black/80 to-transparent sm:block lg:w-28" />
 
             <div
-              className="relative flex min-h-[380px] select-none items-center justify-center py-6 sm:min-h-[420px] sm:py-10 lg:min-h-[500px]"
+              className="relative flex min-h-[320px] touch-pan-y select-none items-center justify-center py-4 sm:min-h-[420px] sm:py-10 lg:min-h-[500px]"
               style={{ perspective: mobile ? undefined : "1800px" }}
             >
               {services.map((item, index) => {
@@ -188,7 +188,7 @@ export function ServicesCarousel() {
                       "absolute left-1/2 top-1/2 aspect-[3/4] overflow-hidden rounded-2xl border bg-neutral-950 ease-[cubic-bezier(0.22,1,0.36,1)] sm:aspect-[16/9]",
                       canHover && hovering ? "cursor-none" : "cursor-pointer",
                       isActive
-                        ? "z-30 w-[min(100%,calc(100%-5.5rem))] max-w-[780px] border-[#00aeef]/55 shadow-[0_0_60px_rgba(0,174,239,0.2)] sm:w-[min(94vw,780px)] sm:shadow-[0_0_80px_rgba(0,174,239,0.22)]"
+                        ? "z-30 w-[min(100%,calc(100%-6.5rem))] max-w-[780px] border-[#00aeef]/55 shadow-[0_0_60px_rgba(0,174,239,0.2)] sm:w-[min(94vw,780px)] sm:shadow-[0_0_80px_rgba(0,174,239,0.22)]"
                         : isSide
                           ? "z-20 w-[min(100%,560px)] border-white/20"
                           : "z-10 w-[min(100%,460px)] border-white/10"
@@ -222,18 +222,18 @@ export function ServicesCarousel() {
                       }}
                     />
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/10 sm:via-black/50 sm:to-black/5" />
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 p-4 pb-5 text-center sm:p-7 sm:pb-8">
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 p-3.5 pb-4 text-center sm:p-7 sm:pb-8">
                       <h3
                         className={cn(
                           "font-semibold leading-tight text-white",
-                          isActive ? "text-lg sm:text-2xl lg:text-3xl" : "text-base sm:text-lg"
+                          isActive ? "text-base sm:text-2xl lg:text-3xl" : "text-sm sm:text-lg"
                         )}
                       >
                         {item.title}
                       </h3>
                       <div
                         className={cn(
-                          "mt-2.5 sm:mt-3",
+                          "mt-2 sm:mt-3",
                           isActive ? "opacity-100" : "max-h-0 overflow-hidden opacity-0"
                         )}
                         style={{
@@ -242,21 +242,21 @@ export function ServicesCarousel() {
                             : `opacity ${TRANSITION_MS}ms ease, max-height ${TRANSITION_MS}ms ease`,
                         }}
                       >
-                        <div className="mt-2 flex max-w-full flex-wrap items-center justify-center gap-x-1.5 gap-y-1 sm:mt-2.5 sm:gap-x-2 sm:gap-y-1.5">
+                        <div className="mt-1.5 flex max-w-full flex-wrap items-center justify-center gap-x-1.5 gap-y-1 sm:mt-2.5 sm:gap-x-2 sm:gap-y-1.5">
                           {item.tags.map((tag, tagIndex) => (
-                            <span key={tag} className="inline-flex max-w-full shrink-0 items-center">
+                            <span key={tag} className="inline-flex max-w-full items-center">
                               {tagIndex > 0 ? (
-                                <span aria-hidden className="mr-1.5 text-[9px] text-white/25 sm:mr-2 sm:text-[10px]">
+                                <span aria-hidden className="mr-1.5 text-[11px] text-white/25 sm:mr-2 sm:text-xs">
                                   |
                                 </span>
                               ) : null}
-                              <span className="whitespace-normal text-[11px] font-normal uppercase leading-snug tracking-[0.12em] text-white/45 sm:whitespace-nowrap sm:text-xs">
+                              <span className="whitespace-normal text-xs font-normal uppercase leading-snug tracking-[0.1em] text-white/50 sm:whitespace-nowrap">
                                 {tag}
                               </span>
                             </span>
                           ))}
                         </div>
-                        <p className="mt-2 text-[10px] font-medium uppercase tracking-[0.16em] text-white/50 sm:hidden">
+                        <p className="mt-2.5 text-[11px] font-medium uppercase tracking-[0.12em] text-white/55 sm:hidden">
                           Toca para ver detalle
                         </p>
                       </div>
@@ -271,7 +271,7 @@ export function ServicesCarousel() {
             type="button"
             onClick={prev}
             aria-label="Anterior"
-            className="absolute left-1 top-1/2 z-40 flex size-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-black/75 text-white backdrop-blur-md transition-colors active:scale-95 sm:left-3 sm:size-12 lg:size-14"
+            className="absolute left-0.5 top-1/2 z-40 flex size-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-black/80 text-white backdrop-blur-md transition-colors active:scale-95 sm:left-3 sm:size-12 lg:size-14"
           >
             <ChevronLeft className="size-5 sm:size-6 lg:size-7" />
           </button>
@@ -279,7 +279,7 @@ export function ServicesCarousel() {
             type="button"
             onClick={next}
             aria-label="Siguiente"
-            className="absolute right-1 top-1/2 z-40 flex size-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-black/75 text-white backdrop-blur-md transition-colors active:scale-95 sm:right-3 sm:size-12 lg:size-14"
+            className="absolute right-0.5 top-1/2 z-40 flex size-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-black/80 text-white backdrop-blur-md transition-colors active:scale-95 sm:right-3 sm:size-12 lg:size-14"
           >
             <ChevronRight className="size-5 sm:size-6 lg:size-7" />
           </button>

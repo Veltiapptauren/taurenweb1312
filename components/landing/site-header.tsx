@@ -43,10 +43,10 @@ const socialLinks = [
 function SocialConnect({ className }: { className?: string }) {
   return (
     <div className={className}>
-      <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-white/40">
+      <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/40">
         Conéctate
       </p>
-      <ul className="mt-5 flex flex-col gap-3.5">
+      <ul className="mt-5 flex flex-col gap-2">
         {socialLinks.map((item) => {
           const Icon = item.icon;
           return (
@@ -56,10 +56,10 @@ function SocialConnect({ className }: { className?: string }) {
                 {...(item.external
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
-                className="group flex min-w-0 items-center gap-3 text-[13px] text-white/45 transition-colors hover:text-white"
+                className="group flex min-h-11 min-w-0 items-center gap-3 text-[13px] text-white/45 transition-colors hover:text-white"
               >
                 <Icon className="size-4 shrink-0" />
-                <span className="truncate">
+                <span className="min-w-0 break-all sm:truncate">
                   <span className="text-white/70 group-hover:text-white">
                     {item.label}
                   </span>
@@ -108,7 +108,7 @@ export function SiteHeader() {
           aria-label="Abrir menú"
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen(true)}
-          className="relative z-10 inline-flex size-10 items-center justify-center text-white/90"
+          className="relative z-10 inline-flex size-11 items-center justify-center text-white/90"
         >
           <Menu className="size-5" />
         </button>
@@ -162,7 +162,7 @@ export function SiteHeader() {
                     <Link
                       href={link.href}
                       onClick={() => setMenuOpen(false)}
-                      className="group relative flex w-full items-center justify-between gap-4 overflow-hidden px-5 py-5 sm:px-10 sm:py-6 lg:px-16 lg:py-0 xl:px-20"
+                      className="group relative flex w-full items-center justify-between gap-3 overflow-hidden px-4 py-4 sm:gap-4 sm:px-10 sm:py-6 lg:px-16 lg:py-0 xl:px-20"
                     >
                       <span
                         className="absolute inset-y-0 left-0 w-px origin-center scale-y-0 bg-[#00aeef] transition-transform duration-300 group-hover:scale-y-100 group-focus-visible:scale-y-100"
@@ -177,13 +177,13 @@ export function SiteHeader() {
                         aria-hidden
                       />
                       <span className="relative flex min-w-0 flex-col gap-1.5 sm:gap-2">
-                        <span className="text-[10px] font-medium uppercase tracking-[0.26em] text-white/40 sm:text-[11px]">
+                        <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-white/40 sm:text-xs">
                           {link.hint}
                         </span>
                         <span
                           className="font-extrabold uppercase leading-[0.88] tracking-[-0.03em] text-white"
                           style={{
-                            fontSize: "clamp(2rem, 8.2vh, 5.25rem)",
+                            fontSize: "clamp(1.75rem, 7.2vh, 5.25rem)",
                           }}
                         >
                           {link.label}
@@ -200,7 +200,7 @@ export function SiteHeader() {
               </ul>
             </nav>
 
-            <SocialConnect className="shrink-0 border-t border-white/[0.08] px-5 py-5 sm:px-8 lg:hidden" />
+            <SocialConnect className="shrink-0 border-t border-white/[0.08] px-5 pt-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] sm:px-8 lg:hidden" />
           </div>
         </div>
       </div>

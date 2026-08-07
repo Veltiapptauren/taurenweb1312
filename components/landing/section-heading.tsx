@@ -21,7 +21,7 @@ export function SectionHeading({
   return (
     <div className={cn("mx-auto max-w-3xl text-center", className)}>
       {label ? (
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00aeef]">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#00aeef]">
           {label}
         </p>
       ) : null}
@@ -29,16 +29,18 @@ export function SectionHeading({
         as="h2"
         text={title}
         className={cn(
-          "mt-3 block text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl",
+          "mt-3 block text-2xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl",
           !label && "mt-0",
           titleClassName
         )}
       />
       {description ? (
-        <p className="mt-4 text-sm text-white/60 sm:text-base">{description}</p>
+        <p className="mt-3 text-sm leading-relaxed text-white/60 sm:mt-4 sm:text-base">
+          {description}
+        </p>
       ) : null}
       {badge ? (
-        <p className="mt-4 flex items-center justify-center gap-2 text-[11px] font-medium uppercase tracking-[0.2em] text-white/40">
+        <p className="mt-4 flex items-center justify-center gap-2 text-xs font-medium uppercase tracking-[0.16em] text-white/40">
           <span className="size-1.5 rounded-full bg-[#00aeef]" />
           {badge}
         </p>

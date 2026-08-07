@@ -8,7 +8,7 @@ import Link from "next/link";
 const serviceLinks = [
   { href: "#streaming", label: "Streaming en vivo" },
   { href: "#produccion-integral", label: "Producción integral" },
-  { href: "#produccion-audiovisual", label: "Producción audiovisual" },
+  { href: "#media", label: "Producción audiovisual" },
   { href: "#diseno-web", label: "Web y apps móviles" },
 ] as const;
 
@@ -28,7 +28,7 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-white/40">
+      <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/40">
         {title}
       </p>
       <div className="mt-3">{children}</div>
@@ -48,7 +48,7 @@ function ContactRow({
   external?: boolean;
 }) {
   const className =
-    "group flex items-start gap-3 text-sm text-white/70 transition-colors hover:text-white";
+    "group flex min-h-11 items-start gap-3 text-sm text-white/70 transition-colors hover:text-white";
 
   const content = (
     <>
@@ -76,8 +76,8 @@ function ContactRow({
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/[0.08] bg-black">
-      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-9">
+    <footer className="border-t border-white/[0.08] bg-black pb-[env(safe-area-inset-bottom)]">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-9">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           <div>
             <Link
@@ -86,38 +86,38 @@ export function Footer() {
             >
               Tauren <span className="text-[#00aeef]">Pro</span> Eventos
             </Link>
-            <p className="mt-2 max-w-xs text-xs leading-relaxed text-white/45">
+            <p className="mt-2 max-w-xs text-sm leading-relaxed text-white/45">
               Streaming y eventos corporativos en Chile
             </p>
-            <div className="mt-3 flex gap-2.5">
+            <div className="mt-3 flex gap-1">
               <a
                 href={siteConfig.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="text-white/50 transition-colors hover:text-[#00aeef]"
+                className="inline-flex size-11 items-center justify-center text-white/50 transition-colors hover:text-[#00aeef]"
               >
-                <InstagramIcon className="size-4" />
+                <InstagramIcon className="size-5" />
               </a>
               <a
                 href={siteConfig.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="text-white/50 transition-colors hover:text-[#00aeef]"
+                className="inline-flex size-11 items-center justify-center text-white/50 transition-colors hover:text-[#00aeef]"
               >
-                <LinkedinIcon className="size-4" />
+                <LinkedinIcon className="size-5" />
               </a>
             </div>
           </div>
 
           <FooterColumn title="Servicios">
-            <ul className="space-y-2">
+            <ul className="space-y-1">
               {serviceLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-xs text-white/55 transition-colors hover:text-white/85"
+                    className="inline-flex min-h-11 items-center text-sm text-white/55 transition-colors hover:text-white/85"
                   >
                     {link.label}
                   </Link>
@@ -127,12 +127,12 @@ export function Footer() {
           </FooterColumn>
 
           <FooterColumn title="Navegación">
-            <ul className="space-y-2">
+            <ul className="space-y-1">
               {navLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-xs text-white/55 transition-colors hover:text-white/85"
+                    className="inline-flex min-h-11 items-center text-sm text-white/55 transition-colors hover:text-white/85"
                   >
                     {link.label}
                   </Link>
@@ -142,7 +142,7 @@ export function Footer() {
           </FooterColumn>
 
           <FooterColumn title="Contacto">
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               <li>
                 <ContactRow href={`mailto:${siteConfig.contactEmail}`} icon={Mail}>
                   {siteConfig.contactEmail}
@@ -167,14 +167,16 @@ export function Footer() {
         </div>
 
         <div
-          className="mt-7 flex flex-col gap-1.5 border-t border-white/[0.06] pt-5 text-[11px] text-white/35 sm:flex-row sm:items-center sm:justify-between"
+          className="mt-7 flex flex-col gap-1.5 border-t border-white/[0.06] pt-5 text-xs text-white/35 sm:flex-row sm:items-center sm:justify-between"
           suppressHydrationWarning
         >
-          <p>© {new Date().getFullYear()} {siteConfig.name}</p>
+          <p>
+            © {new Date().getFullYear()} {siteConfig.name}
+          </p>
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="w-fit text-left transition-colors hover:text-white/60"
+            className="inline-flex min-h-11 w-fit items-center text-left transition-colors hover:text-white/60"
           >
             Volver arriba
           </button>

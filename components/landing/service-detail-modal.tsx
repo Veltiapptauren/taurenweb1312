@@ -31,7 +31,7 @@ function SnapSection({
   return (
     <section
       className={`flex w-full flex-col ${
-        fill ? "min-h-[calc(100dvh-3rem)] sm:min-h-[calc(100dvh-3.5rem)]" : ""
+        fill ? "max-sm:min-h-0 sm:min-h-[calc(100dvh-3.5rem)]" : ""
       } ${className}`}
     >
       {children}
@@ -41,12 +41,12 @@ function SnapSection({
 
 function ModalHeader({ title }: { title: string }) {
   return (
-    <div className="fixed inset-x-0 top-0 z-30 flex h-[calc(3rem+env(safe-area-inset-top))] items-end justify-center bg-black px-12 pb-2.5 sm:h-[calc(3.5rem+env(safe-area-inset-top))] sm:px-14 sm:pb-3">
-      <Dialog.Title className="line-clamp-2 max-w-[min(100%,28rem)] px-2 text-center text-[11px] font-bold uppercase leading-tight tracking-[0.18em] text-white sm:line-clamp-1 sm:text-xs md:text-sm">
+    <div className="fixed inset-x-0 top-0 z-30 flex h-[calc(3rem+env(safe-area-inset-top))] items-end justify-center bg-black px-14 pb-2.5 sm:h-[calc(3.5rem+env(safe-area-inset-top))] sm:px-16 sm:pb-3">
+      <Dialog.Title className="line-clamp-2 max-w-[min(100%,28rem)] px-2 text-center text-xs font-bold uppercase leading-tight tracking-[0.14em] text-white sm:line-clamp-1 sm:text-xs md:text-sm">
         {title}
       </Dialog.Title>
       <Dialog.Close
-        className="absolute bottom-1.5 right-3 inline-flex size-8 items-center justify-center text-white transition-opacity hover:opacity-70 sm:bottom-2 sm:right-6"
+        className="absolute bottom-0.5 right-2 inline-flex size-11 items-center justify-center text-white transition-opacity hover:opacity-70 sm:bottom-1 sm:right-6 sm:size-10"
         aria-label="Cerrar"
       >
         <X className="size-6 sm:size-7" strokeWidth={1.25} />
@@ -66,11 +66,11 @@ function InfoRow({
 }) {
   return (
     <div
-      className={`grid flex-1 content-center gap-4 border-b border-white/10 px-6 py-8 last:border-b-0 sm:grid-cols-[minmax(140px,200px)_1fr] sm:gap-12 sm:px-10 sm:py-10 lg:px-12 ${
+      className={`grid flex-1 content-center gap-3 border-b border-white/10 px-4 py-6 last:border-b-0 sm:grid-cols-[minmax(140px,200px)_1fr] sm:gap-12 sm:px-10 sm:py-10 lg:px-12 ${
         highlighted ? "bg-[#1A1A1A]" : "bg-black"
       }`}
     >
-      <p className="text-2xl font-bold uppercase tracking-tight text-white sm:text-3xl lg:text-4xl">
+      <p className="text-xl font-bold uppercase tracking-tight text-white sm:text-3xl lg:text-4xl">
         {label}
       </p>
       <p className="text-sm leading-relaxed text-white/90 sm:text-base sm:leading-loose lg:text-lg">
@@ -94,8 +94,8 @@ function ModalHero({
   priority?: boolean;
 }) {
   return (
-    <div className="flex min-h-[70dvh] w-full flex-col gap-[clamp(0.75rem,2.2vh,1.25rem)] px-[clamp(1rem,5vw,3.5rem)] pb-[clamp(1.75rem,8vh,5rem)] pt-[clamp(0.5rem,1.8vh,1rem)] sm:h-[calc(100dvh-3.5rem)] sm:min-h-0">
-      <div className="relative min-h-[220px] w-full flex-1 overflow-hidden rounded-[clamp(0.75rem,1.5vw,1.25rem)] sm:min-h-0">
+    <div className="flex min-h-[52dvh] w-full flex-col gap-[clamp(0.75rem,2.2vh,1.25rem)] px-[clamp(1rem,5vw,3.5rem)] pb-[clamp(1.5rem,6vh,5rem)] pt-[clamp(0.5rem,1.8vh,1rem)] sm:h-[calc(100dvh-3.5rem)] sm:min-h-0">
+      <div className="relative min-h-[180px] w-full flex-1 overflow-hidden rounded-[clamp(0.75rem,1.5vw,1.25rem)] sm:min-h-0">
         <Image
           src={src}
           alt={alt}
@@ -109,10 +109,10 @@ function ModalHero({
       </div>
 
       <div className="shrink-0 text-center">
-        <p className="text-[clamp(0.75rem,1.5vw,1rem)] text-white/75">
+        <p className="text-[clamp(0.8rem,1.5vw,1rem)] text-white/75">
           {tagline}
         </p>
-        <h2 className="mx-auto mt-[clamp(0.25rem,0.8vh,0.5rem)] max-w-4xl break-words text-[clamp(1.25rem,3.8vw,3rem)] font-extrabold uppercase leading-[1.1] tracking-tight text-white">
+        <h2 className="mx-auto mt-[clamp(0.25rem,0.8vh,0.5rem)] max-w-4xl break-words text-[clamp(1.2rem,5.5vw,3rem)] font-extrabold uppercase leading-[1.12] tracking-tight text-white">
           {headline}
         </h2>
       </div>
@@ -210,7 +210,7 @@ function ServiceCta({
       </p>
       <a
         href={mailto}
-        className="mt-4 inline-block text-3xl font-extrabold uppercase tracking-tight text-white transition-opacity hover:opacity-80 sm:mt-5 sm:text-4xl md:text-5xl lg:text-6xl"
+        className="mt-4 inline-block text-2xl font-extrabold uppercase tracking-tight text-white transition-opacity hover:opacity-80 sm:mt-5 sm:text-4xl md:text-5xl lg:text-6xl"
       >
         Conversemos
       </a>
@@ -258,8 +258,8 @@ function ServiceClosing({ service }: { service: Service }) {
   if (!bottom) return <ServiceCta service={service} />;
 
   return (
-    <div className="flex min-h-[70dvh] w-full flex-col gap-[clamp(0.75rem,2.2vh,1.25rem)] px-[clamp(1rem,5vw,3.5rem)] pb-[max(clamp(1.75rem,8vh,5rem),env(safe-area-inset-bottom))] pt-[clamp(0.5rem,1.8vh,1rem)] sm:h-[calc(100dvh-3.5rem)] sm:min-h-0">
-      <div className="relative min-h-[220px] w-full flex-1 overflow-hidden rounded-[clamp(0.75rem,1.5vw,1.25rem)] sm:min-h-0">
+    <div className="flex min-h-[52dvh] w-full flex-col gap-[clamp(0.75rem,2.2vh,1.25rem)] px-[clamp(1rem,5vw,3.5rem)] pb-[max(clamp(1.5rem,6vh,5rem),env(safe-area-inset-bottom))] pt-[clamp(0.5rem,1.8vh,1rem)] sm:h-[calc(100dvh-3.5rem)] sm:min-h-0">
+      <div className="relative min-h-[180px] w-full flex-1 overflow-hidden rounded-[clamp(0.75rem,1.5vw,1.25rem)] sm:min-h-0">
         <Image
           src={bottom}
           alt={`${service.title} resultado`}
@@ -294,7 +294,7 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
           {service ? (
             <>
               <ModalHeader title={service.modalTitle} />
-              <div className="h-full overflow-y-auto scroll-smooth pt-[calc(3rem+env(safe-area-inset-top))] sm:pt-[calc(3.5rem+env(safe-area-inset-top))]">
+              <div className="h-full overflow-y-auto overscroll-contain scroll-smooth pt-[calc(3rem+env(safe-area-inset-top))] pb-[env(safe-area-inset-bottom)] sm:pt-[calc(3.5rem+env(safe-area-inset-top))]">
                 <div className="w-full bg-black">
                   <SnapSection fill={false}>
                     {hero ? (

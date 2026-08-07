@@ -21,7 +21,7 @@ export function TaurenWordmark({ className }: TaurenWordmarkProps) {
       <span className="text-2xl font-semibold leading-none tracking-tight text-white sm:text-[1.75rem]">
         Tauren
       </span>
-      <span className="text-[10px] font-medium uppercase tracking-[0.32em] text-[#00aeef] sm:text-[11px]">
+      <span className="text-[11px] font-medium uppercase tracking-[0.24em] text-[#00aeef] sm:text-xs">
         Pro Eventos
       </span>
     </div>

@@ -9,19 +9,19 @@ export function Features() {
   return (
     <section
       id="servicios"
-      className="relative z-20 overflow-x-clip border-t border-white/10 bg-black py-8 sm:py-16 lg:py-20"
+      className="relative z-20 scroll-mt-20 overflow-x-clip border-t border-white/10 bg-black py-12 sm:scroll-mt-24 sm:py-16 lg:py-20"
     >
       <SectionGlow />
       <div className="relative mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
-        <BrandIntro className="pb-10 sm:pb-14 lg:pb-16" />
+        <BrandIntro className="pb-8 sm:pb-14 lg:pb-16" />
 
-        <div className="border-t border-white/10 pt-10 sm:pt-12 lg:pt-14">
+        <div className="border-t border-white/10 pt-8 sm:pt-12 lg:pt-14">
           <SectionHeading
             label="Nuestros servicios"
             title="Soluciones para eventos corporativos"
             description="Streaming, producción integral, audiovisual, desarrollo web y apps móviles con un solo equipo."
             titleClassName="text-xl sm:text-3xl lg:text-4xl"
-            className="relative z-10 mb-10 px-1 sm:mb-12"
+            className="relative z-10 mb-8 sm:mb-12"
           />
           <ServicesCarousel />
         </div>

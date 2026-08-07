@@ -6,6 +6,6 @@ export const brandIntroParagraph =
 export const brandIntroServiceLinks = [
   { href: "#streaming", label: "Streaming en vivo" },
   { href: "#produccion-integral", label: "Producción integral" },
-  { href: "#produccion-audiovisual", label: "Producción audiovisual" },
+  { href: "#media", label: "Producción audiovisual" },
   { href: "#diseno-web", label: "Web y apps móviles" },
 ] as const;

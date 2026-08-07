@@ -8,62 +8,65 @@ import Image from "next/image";
 
 export function Cta() {
   return (
-    <section id="contacto" className="relative border-t border-white/10 bg-black py-16 sm:py-20 lg:py-24">
+    <section
+      id="contacto"
+      className="relative scroll-mt-20 border-t border-white/10 bg-black py-12 sm:scroll-mt-24 sm:py-20 lg:py-24"
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="relative min-h-[320px] overflow-hidden rounded-2xl border border-white/10 sm:min-h-[360px]">
-            <ParallaxFrame
-              className="absolute inset-0"
-              innerClassName="relative h-full min-h-[320px] sm:min-h-[360px]"
-              strength={24}
-              scale={1.1}
-            >
-              <Image
-                src="/images/servicios/streaming/03.png"
-                alt="Streaming y producción de eventos corporativos"
-                fill
-                sizes="(max-width: 768px) 100vw, 1152px"
-                className="object-cover brightness-[0.5]"
-              />
-            </ParallaxFrame>
-            <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/78 to-black/55" />
-            <div className="relative z-10 px-6 py-12 text-center sm:px-10 sm:py-16">
-              <TextReveal
-                as="h2"
-                text="¿Listo para tu próximo evento o producción?"
-                className="mx-auto block max-w-2xl text-3xl font-semibold tracking-tight text-white sm:text-4xl"
-              />
-              <p className="mx-auto mt-4 max-w-lg text-white/70">
-                Cuéntanos tu proyecto y te respondemos con alcance,
-                tiempos y presupuesto.
-              </p>
-              <ul className="mx-auto mt-5 max-w-lg space-y-1.5 text-sm text-white/55">
-                <li>
-                  <a
-                    href={`tel:${siteConfig.contactPhoneTel}`}
-                    className="transition-colors hover:text-white"
-                  >
-                    {siteConfig.contactPhone}
-                  </a>
-                </li>
-                <li>{siteConfig.contactAddress}</li>
-              </ul>
-              <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                <ShineLink
-                  href={`mailto:${siteConfig.contactEmail}`}
-                  className="h-auto min-h-11 max-w-full break-all rounded-full bg-[#00aeef] px-5 py-3 text-sm font-medium text-black hover:opacity-90 sm:break-normal sm:px-6"
-                >
-                  {siteConfig.contactEmail}
-                </ShineLink>
-                <ShineLink
-                  href={getWhatsAppUrl()}
-                  external
-                  className="h-11 rounded-full border border-white/40 px-6 text-sm font-medium text-white hover:bg-white/10"
+        <div className="relative min-h-[280px] overflow-hidden rounded-2xl border border-white/10 sm:min-h-[360px]">
+          <ParallaxFrame
+            className="absolute inset-0"
+            innerClassName="relative h-full min-h-[280px] sm:min-h-[360px]"
+            strength={24}
+            scale={1.1}
+          >
+            <Image
+              src="/images/servicios/streaming/03.png"
+              alt="Streaming y producción de eventos corporativos"
+              fill
+              sizes="(max-width: 768px) 100vw, 1152px"
+              className="object-cover brightness-[0.5]"
+            />
+          </ParallaxFrame>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/78 to-black/55" />
+          <div className="relative z-10 px-4 py-10 text-center sm:px-10 sm:py-16">
+            <TextReveal
+              as="h2"
+              text="¿Listo para tu próximo evento o producción?"
+              className="mx-auto block max-w-2xl text-2xl font-semibold tracking-tight text-white sm:text-4xl"
+            />
+            <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-white/70 sm:text-base">
+              Cuéntanos tu proyecto y te respondemos con alcance, tiempos y
+              presupuesto.
+            </p>
+            <ul className="mx-auto mt-5 max-w-lg space-y-2 text-sm text-white/55">
+              <li>
+                <a
+                  href={`tel:${siteConfig.contactPhoneTel}`}
+                  className="inline-flex min-h-10 items-center transition-colors hover:text-white"
                 >
                   {siteConfig.contactPhone}
-                </ShineLink>
-              </div>
+                </a>
+              </li>
+              <li className="px-2 leading-snug">{siteConfig.contactAddress}</li>
+            </ul>
+            <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <ShineLink
+                href={`mailto:${siteConfig.contactEmail}`}
+                className="h-auto min-h-12 max-w-full break-all rounded-full bg-[#00aeef] px-5 py-3 text-sm font-medium text-black hover:opacity-90 sm:break-normal sm:px-6"
+              >
+                {siteConfig.contactEmail}
+              </ShineLink>
+              <ShineLink
+                href={getWhatsAppUrl()}
+                external
+                className="h-12 rounded-full border border-white/40 px-6 text-sm font-medium text-white hover:bg-white/10"
+              >
+                {siteConfig.contactPhone}
+              </ShineLink>
             </div>
           </div>
+        </div>
       </div>
     </section>
   );

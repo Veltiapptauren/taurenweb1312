@@ -99,6 +99,19 @@
   }
   body {
     @apply overflow-x-clip bg-black text-foreground antialiased;
+    overscroll-behavior-x: none;
+  }
+  [id] {
+    scroll-margin-top: 5rem;
+  }
+  @media (min-width: 640px) {
+    [id] {
+      scroll-margin-top: 6rem;
+    }
+  }
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
