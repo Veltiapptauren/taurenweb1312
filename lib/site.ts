@@ -4,9 +4,9 @@ const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://taurenproeventos
 
 export const siteConfig = {
   name: "Tauren Pro Eventos",
-  title: "Streaming y Eventos Corporativos | Tauren Pro Eventos",
+  title: "Streaming y Eventos Corporativos en Chile | Tauren Pro Eventos",
   description:
-    "Soluciones tecnológicas para eventos corporativos: streaming en vivo, producción audiovisual, desarrollo web, apps móviles y experiencias híbridas. Cotiza streaming, eventos, video o desarrollo digital con Tauren Pro Eventos.",
+    "Empresa de streaming y producción de eventos corporativos en Santiago de Chile. Transmisión en vivo, producción integral, video corporativo, desarrollo web y apps. Cotiza con Tauren Pro Eventos.",
   url: rawSiteUrl.replace(/\/$/, ""),
   locale: "es_CL",
   keywords: [...allSeoKeywords],

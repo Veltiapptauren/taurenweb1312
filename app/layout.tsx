@@ -1,6 +1,6 @@
 import { Providers } from "@/components/providers";
 import { SiteHeader } from "@/components/landing/site-header";
-import { getAbsoluteUrl, siteConfig } from "@/lib/site";
+import { siteConfig } from "@/lib/site";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -36,24 +36,32 @@ export const metadata: Metadata = {
   creator: siteConfig.name,
   publisher: siteConfig.name,
   applicationName: siteConfig.name,
+  generator: "Next.js",
+  referrer: "origin-when-cross-origin",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
+  icons: {
+    icon: [{ url: "/icon", type: "image/png", sizes: "32x32" }],
+    apple: [{ url: "/apple-icon", type: "image/png", sizes: "180x180" }],
+    shortcut: ["/icon"],
+  },
+  manifest: "/manifest.webmanifest",
   openGraph: {
     type: "website",
-    locale: siteConfig.locale.replace("_", "-"),
+    locale: "es_CL",
     url: siteConfig.url,
     siteName: siteConfig.name,
     title: siteConfig.title,
     description: siteConfig.description,
     images: [
       {
-        url: getAbsoluteUrl(siteConfig.ogImage),
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} — streaming y eventos corporativos`,
+        alt: `${siteConfig.name} — streaming y eventos corporativos en Chile`,
       },
     ],
   },
@@ -62,14 +70,16 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     creator: siteConfig.twitter,
-    images: [getAbsoluteUrl(siteConfig.ogImage)],
+    images: ["/twitter-image"],
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       "max-image-preview": "large",
       "max-snippet": -1,
       "max-video-preview": -1,
@@ -77,8 +87,19 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: siteConfig.url,
+    languages: {
+      "es-CL": siteConfig.url,
+      es: siteConfig.url,
+    },
   },
   category: "business",
+  classification: "Streaming y producción de eventos corporativos",
+  other: {
+    "geo.region": "CL-RM",
+    "geo.placename": "Santiago",
+    "geo.position": `${siteConfig.geo.latitude};${siteConfig.geo.longitude}`,
+    ICBM: `${siteConfig.geo.latitude}, ${siteConfig.geo.longitude}`,
+  },
 };
 
 export default function RootLayout({
